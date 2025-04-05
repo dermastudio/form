@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تشکر بابت رزرو</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Tahoma", sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+      color: #333;
+      overflow: hidden;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      animation: slideUp 1.5s ease-out forwards;
+      opacity: 0;
+      transform: translateY(100px);
+      text-align: center;
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      color: #01796F;
+      margin-bottom: 16px;
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .back-button {
+      margin-top: 40px;
+    }
+
+    .back-button a {
+      display: inline-block;
+      background-color: #01796F;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button a:hover {
+      background-color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>با تشکر، رزرو شما با موفقیت ثبت شد!</h1>
+    <p>به زودی با شما تماس خواهیم گرفت.</p>
+  </div>
+
+  <div class="back-button">
+    <a href="/">بازگشت به سایت</a>
+  </div>
+
+</body>
+</html>
