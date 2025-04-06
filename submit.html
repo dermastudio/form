@@ -106,11 +106,23 @@
       transition: background 0.3s, color 0.3s;
     }
     .pwt-datepicker-day:hover {
-      background: #f0f0f0;
+      background: #f5f5f5;
     }
     .pwt-datepicker-selected {
       background: #01796F !important;
       color: #fff !important;
+    }
+    .logo-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .logo-container img {
+      max-width: 100px;
+      height: auto;
+      transition: opacity 0.5s;
+    }
+    .logo-container img:hover {
+      opacity: 0.7;
     }
   </style>
 </head>
@@ -155,6 +167,12 @@
 
     <button type="submit">رزرو وقت</button>
   </form>
+
+  <div class="logo-container">
+    <a href="https://dermastudio.myportfolio.com/home" target="_blank">
+      <img src="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/30b11ede-4da8-48ad-84cc-16ade36fe346_rwc_0x0x1561x1120x4096.png?h=953db14fc84996108585a37c07c3ab03" alt="لوگو استودیو دِرما" title="استودیو دِرما">
+    </a>
+  </div>
 
   <script>
     $(document).ready(function () {
