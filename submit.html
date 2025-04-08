@@ -85,6 +85,36 @@
     button:hover {
       background-color: #444;
     }
+    /* استایل تایمر */
+    #timer {
+      color: #444444;
+      font-family: Thoma, Tahoma, sans-serif;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 24px;
+    }
+    /* استایل باکس اخطار */
+    #warningBox {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(204, 51, 51, 0.8);
+      color: #fff;
+      padding: 20px;
+      border: 2px solid #cc3333;
+      font-family: Tahoma, sans-serif;
+      font-size: 18px;
+      display: none;
+      z-index: 10000;
+      border-radius: 10px;
+      text-align: center;
+    }
+    /* استایل بلور پس‌زمینه */
+    #content.blurred {
+      filter: blur(5px);
+      transition: filter 0.8s;
+    }
     .pwt-datepicker-container {
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -127,52 +157,60 @@
   </style>
 </head>
 <body>
-  <h2>فرم رزرو وقت استودیو دِرما</h2>
-  <form action="https://formsubmit.co/studiodermaofficial@gmail.com" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://dermastudio.github.io/form/thankyou.html">
+  <!-- محتوای اصلی در کانتینر content برای امکان بلور کردن پس‌زمینه -->
+  <div id="content">
+    <h2>فرم رزرو وقت استودیو دِرما</h2>
+    <form action="https://formsubmit.co/studiodermaofficial@gmail.com" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://dermastudio.github.io/form/thankyou.html">
 
-    <label for="name">نام کامل: <span class="star">*</span></label>
-    <input type="text" id="name" name="نام کامل" required>
+      <label for="name">نام کامل: <span class="star">*</span></label>
+      <input type="text" id="name" name="نام کامل" required>
 
-    <label for="phone">شماره تلفن: <span class="star">*</span></label>
-    <input type="text" id="phone" name="شماره تلفن" required>
+      <label for="phone">شماره تلفن: <span class="star">*</span></label>
+      <input type="text" id="phone" name="شماره تلفن" required>
 
-    <label for="reason">دلیل رزرو وقت: <span class="star">*</span></label>
-    <select id="reason" name="دلیل رزرو وقت" onchange="toggleTabs()" required>
-      <option value="">انتخاب کنید</option>
-      <option value="رکورد">رکورد</option>
-      <option value="آهنگسازی">آهنگسازی</option>
-      <option value="تنظیم">تنظیم</option>
-      <option value="میکسینگ">میکسینگ</option>
-      <option value="پادکست">پادکست</option>
-      <option value="دوبله">دوبله</option>
-      <option value="صداگذاری و صداسازی">صداگذاری و صداسازی</option>
-      <option value="نریشن">نریشن</option>
-    </select>
+      <label for="reason">دلیل رزرو وقت: <span class="star">*</span></label>
+      <select id="reason" name="دلیل رزرو وقت" onchange="toggleTabs()" required>
+        <option value="">انتخاب کنید</option>
+        <option value="رکورد">رکورد</option>
+        <option value="آهنگسازی">آهنگسازی</option>
+        <option value="تنظیم">تنظیم</option>
+        <option value="میکسینگ">میکسینگ</option>
+        <option value="پادکست">پادکست</option>
+        <option value="دوبله">دوبله</option>
+        <option value="صداگذاری و صداسازی">صداگذاری و صداسازی</option>
+        <option value="نریشن">نریشن</option>
+      </select>
 
-    <div id="recordTabs">
-      <label for="vocal"><input type="radio" id="vocal" name="نوع رکورد" value="وکال"> وکال</label>
-      <label for="instrument"><input type="radio" id="instrument" name="نوع رکورد" value="ساز"> ساز</label>
+      <div id="recordTabs">
+        <label for="vocal"><input type="radio" id="vocal" name="نوع رکورد" value="وکال"> وکال</label>
+        <label for="instrument"><input type="radio" id="instrument" name="نوع رکورد" value="ساز"> ساز</label>
+      </div>
+
+      <label for="date">تاریخ رزرو: <span class="star">*</span></label>
+      <input type="text" id="date" name="تاریخ رزرو" required readonly>
+
+      <label for="time">ساعت رزرو: <span class="star">*</span></label>
+      <select id="time" name="ساعت رزرو" required></select>
+
+      <label for="receipt">فیش واریزی: <span class="star">*</span></label>
+      <input type="file" id="receipt" name="فیش واریزی" accept="image/*" required>
+
+      <button type="submit">رزرو وقت</button>
+      <!-- اضافه کردن div تایمر -->
+      <div id="timer"></div>
+    </form>
+
+    <div class="logo-container">
+      <a href="https://dermastudio.myportfolio.com/home" target="_blank">
+        <img src="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/30b11ede-4da8-48ad-84cc-16ade36fe346_rwc_0x0x1561x1120x4096.png?h=953db14fc84996108585a37c07c3ab03" alt="لوگو استودیو دِرما" title="استودیو دِرما">
+      </a>
     </div>
-
-    <label for="date">تاریخ رزرو: <span class="star">*</span></label>
-    <input type="text" id="date" name="تاریخ رزرو" required readonly>
-
-    <label for="time">ساعت رزرو: <span class="star">*</span></label>
-    <select id="time" name="ساعت رزرو" required></select>
-
-    <label for="receipt">فیش واریزی: <span class="star">*</span></label>
-    <input type="file" id="receipt" name="فیش واریزی" accept="image/*" required>
-
-    <button type="submit">رزرو وقت</button>
-  </form>
-
-  <div class="logo-container">
-    <a href="https://dermastudio.myportfolio.com/home" target="_blank">
-      <img src="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/30b11ede-4da8-48ad-84cc-16ade36fe346_rwc_0x0x1561x1120x4096.png?h=953db14fc84996108585a37c07c3ab03" alt="لوگو استودیو دِرما" title="استودیو دِرما">
-    </a>
   </div>
+
+  <!-- باکس اخطار کپی (بیرون از کانتینر blurred تا از بلور متاثر نشود) -->
+  <div id="warningBox">شما اجازه کپی از محتوی این صفحه را ندارید!</div>
 
   <script>
     $(document).ready(function () {
@@ -184,7 +222,6 @@
       todayPersian.startOf('day');
       var todayFormatted = todayPersian.format('YYYY/MM/DD');
 
-      // چاپ برای دیباگ
       console.log('تاریخ فعلی سیستم (میلادی):', now);
       console.log('تاریخ شمسی محاسبه‌شده:', todayFormatted);
 
@@ -192,11 +229,11 @@
       $('#date').persianDatepicker({
         format: 'YYYY/MM/DD',
         autoClose: true,
-        initialValue: false, // مقدار اولیه تنظیم نشود تا ما دستی انجام دهیم
-        minDate: todayPersian.toDate(), // تاریخ حداقل امروز
+        initialValue: false,
+        minDate: todayPersian.toDate(),
         toolbox: {
           calendarSwitch: {
-            enabled: false // غیرفعال کردن سوئیچ تقویم
+            enabled: false
           }
         }
       });
@@ -223,6 +260,83 @@
       const recordTabs = document.getElementById('recordTabs');
       recordTabs.style.display = (reason === 'رکورد') ? 'flex' : 'none';
     }
+  </script>
+
+  <!-- اسکریپت تایمر و جلوگیری از کپی -->
+  <script>
+    // تنظیم زمان تایمر به ۳ دقیقه (۱۸۰ ثانیه)
+    var timeLeft = 180;
+
+    // تبدیل ارقام انگلیسی به فارسی
+    function convertToPersianDigits(str) {
+      return str.replace(/\d/g, function(d) {
+        return "۰۱۲۳۴۵۶۷۸۹"[d];
+      });
+    }
+
+    // به‌روزرسانی نمایش تایمر
+    function updateTimer() {
+      let minutes = Math.floor(timeLeft / 60);
+      let seconds = timeLeft % 60;
+      let formattedTime = minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+      let persianTime = convertToPersianDigits(formattedTime);
+      document.getElementById('timer').textContent = "زمان باقی مانده: " + persianTime;
+    }
+
+    // به‌روزرسانی اولیه تایمر
+    updateTimer();
+
+    // شمارش معکوس تایمر هر ثانیه
+    setInterval(function() {
+      if(timeLeft <= 0){
+        // ریست فرم و بازیابی تایمر به مقدار اولیه
+        document.querySelector("form").reset();
+        timeLeft = 180;
+      } else {
+        timeLeft--;
+      }
+      updateTimer();
+    }, 1000);
+
+    // تابع نمایش باکس اخطار همراه با بلور کردن پس‌زمینه
+    function showWarning() {
+      var warningBox = document.getElementById("warningBox");
+      var content = document.getElementById("content");
+      // اعمال بلور به پس‌زمینه
+      content.classList.add("blurred");
+      warningBox.style.display = "block";
+      // پس از ۳ ثانیه اخطار پنهان شده و بلور برداشته شود
+      setTimeout(function(){
+        warningBox.style.display = "none";
+        content.classList.remove("blurred");
+      }, 3000);
+    }
+
+    // جلوگیری از کلیک راست (contextmenu)
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      showWarning();
+    });
+
+    // جلوگیری از کلیدهای PrintScreen، Ctrl+Shift+I، Ctrl+Shift+C، Ctrl+C و Ctrl+V
+    document.addEventListener('keydown', function(e) {
+      var key = e.key.toLowerCase();
+      // PrintScreen (ممکن است برخی مرورگرها پشتیبانی نکنند)
+      if (e.key === 'PrintScreen' || e.keyCode === 44) {
+        e.preventDefault();
+        showWarning();
+      }
+      // Ctrl+Shift+I و Ctrl+Shift+C
+      if (e.ctrlKey && e.shiftKey && (key === 'i' || key === 'c')) {
+        e.preventDefault();
+        showWarning();
+      }
+      // Ctrl+C و Ctrl+V
+      if (e.ctrlKey && (key === 'c' || key === 'v')) {
+        e.preventDefault();
+        showWarning();
+      }
+    });
   </script>
 </body>
 </html>
