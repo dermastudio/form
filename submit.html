@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>فرم رزرو وقت استودیو دِرما</title>
+  <!-- افزودن favicon -->
+  <link rel="icon" href="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/eb0ba0e1-a47c-4687-8e10-9daa16238288_carw_1x1x32.png?h=12e288972aa388e662af4aa74cab6528" type="image/x-icon">
+  
   <!-- فایل‌های CSS و JS تقویم persian-datepicker -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -176,7 +179,7 @@
         <option value="رکورد">رکورد</option>
         <option value="آهنگسازی">آهنگسازی</option>
         <option value="تنظیم">تنظیم</option>
-        <option value="میکسینگ">میکسینگ</option>
+        <option value="میکسینگ و مسترینگ">میکسینگ و مسترینگ</option>
         <option value="پادکست">پادکست</option>
         <option value="دوبله">دوبله</option>
         <option value="صداگذاری و صداسازی">صداگذاری و صداسازی</option>
@@ -264,8 +267,8 @@
 
   <!-- اسکریپت تایمر و جلوگیری از کپی -->
   <script>
-    // تنظیم زمان تایمر به ۳ دقیقه (۱۸۰ ثانیه)
-    var timeLeft = 180;
+    // تنظیم زمان تایمر به ۵ دقیقه (۳۰۰ ثانیه)
+    var timeLeft = 300;
 
     // تبدیل ارقام انگلیسی به فارسی
     function convertToPersianDigits(str) {
@@ -291,7 +294,7 @@
       if(timeLeft <= 0){
         // ریست فرم و بازیابی تایمر به مقدار اولیه
         document.querySelector("form").reset();
-        timeLeft = 180;
+        timeLeft = 300;
       } else {
         timeLeft--;
       }
