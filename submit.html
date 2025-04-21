@@ -1,190 +1,291 @@
 <!DOCTYPE html>
-<html lang='fa'>
+<html lang="fa">
 <head>
-  <meta charset='UTF-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>فرم رزرو وقت استودیو دِرما</title>
-  <!-- افزودن favicon -->
-  <link rel='icon' href='https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/eb0ba0e1-a47c-4687-8e10-9daa16238288_carw_1x1x32.png?h=12e288972aa388e662af4aa74cab6528' type='image/x-icon'>
-  <!-- فایل‌های CSS و JS تقویم persian-datepicker -->
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css' />
-  <script src='https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js'></script>
-  <script src='https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js'></script>
-  <script src='https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js'></script>
+  <link rel="icon"
+        href="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/eb0ba0e1-a47c-4687-8e10-9daa16238288_carw_1x1x32.png?h=12e288972aa388e662af4aa74cab6528"
+        type="image/x-icon" />
+
   <style>
+    /* ==== استایل فرم (بدون تغییر) ==== */
     @font-face {
       font-family: 'Adobe Grotesk Medium';
       src: url('fonts/AdobeGrotesk-Medium.woff2') format('woff2'),
            url('fonts/AdobeGrotesk-Medium.woff') format('woff');
-      font-weight: 500;
-      font-style: normal;
+      font-weight: 500; font-style: normal;
     }
     body {
       font-family: 'Adobe Grotesk Medium', sans-serif;
-      direction: rtl;
-      padding: 40px;
-      max-width: 600px;
-      margin: auto;
-      background-color: #f5f5f5;
-      color: #333;
+      direction: rtl; padding: 40px; max-width: 600px;
+      margin: auto; background-color: #f5f5f5; color: #333;
     }
     h2 { text-align: center; margin-bottom: 30px; color: #111; }
-    form { background: #fff; padding: 30px; border-radius: 25px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+    form {
+      background: #fff; padding: 30px; border-radius: 25px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
     label {
       margin-top: 15px; font-weight: bold; color: #222;
       display: flex; align-items: center;
-      font-family: 'Adobe Grotesk Medium', sans-serif;
     }
-    label .star { color: red; margin-right: 5px; font-size: 18px; }
+    .star { color: red; margin-right: 5px; font-size: 18px; }
     input, select, button {
       font-family: 'Adobe Grotesk Medium', sans-serif;
-      display: block; width: 100%; margin-top: 5px; padding: 10px;
-      border-radius: 6px; border: 1px solid #ccc; font-size: 18px;
-      background: #fafafa; box-sizing: border-box; transition: border-color 0.3s;
+      display: block; width: 100%; margin-top: 5px;
+      padding: 10px; border-radius: 6px; border: 1px solid #ccc;
+      font-size: 18px; background: #fafafa; box-sizing: border-box;
+      transition: border-color 0.3s;
     }
-    select#reason { font-family: 'Adobe Grotesk Medium', sans-serif; }
     #recordTabs {
       margin: 10px 0; padding: 10px; border: 1px solid #ddd;
       border-radius: 8px; background: #f0f0f0;
       display: none; gap: 15px; align-items: center;
     }
-    #recordTabs label { margin: 0; font-weight: normal; font-family: 'Adobe Grotesk Medium', sans-serif; }
-    button { background: #3366CC; color: #fff; padding: 12px; border: none; border-radius: 8px;
-      cursor: pointer; margin-top: 35px; font-size: 18px; transition: background-color 0.3s; }
-    button:hover { background: #573771; }
+    button[type=submit] {
+      background: #3366CC; color: #fff; padding: 12px;
+      border: none; border-radius: 8px; cursor: pointer;
+      margin-top: 35px; font-size: 18px; transition: background-color 0.3s;
+    }
+    button[type=submit]:hover { background: #573771; }
     #timer {
       color: #444; text-align: center; margin-top: 20px; font-size: 24px;
-      font-family: 'Adobe Grotesk Medium', sans-serif;
     }
     #warningBox {
       position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      background: rgba(204,51,51,0.8); color: #fff; padding: 20px; border: 2px solid #cc3333;
-      font-family: 'Adobe Grotesk Medium', sans-serif; font-size: 18px; display: none;
-      z-index: 10000; border-radius: 10px; text-align: center;
+      background: rgba(204,51,51,0.8); color: #fff; padding: 20px;
+      border: 2px solid #cc3333; font-size: 18px;
+      display: none; z-index: 10000; border-radius: 10px; text-align: center;
     }
     #content.blurred { filter: blur(5px); transition: filter 0.8s; }
-    .pwt-datepicker-container {
-      border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      background: #fff; font-family: 'Adobe Grotesk Medium', sans-serif;
-    }
-    .pwt-datepicker-header { background: #01796F; color: #fff;
-      border-top-left-radius: 8px; border-top-right-radius: 8px; padding: 10px; }
-    .pwt-datepicker-body { padding: 15px; }
-    .pwt-datepicker-day { border-radius: 50%; transition: background 0.3s, color 0.3s; }
-    .pwt-datepicker-day:hover { background: #f5f5f5; }
-    .pwt-datepicker-selected { background: #01796F !important; color: #fff !important; }
+
     .logo-container { text-align: center; margin-top: 30px; }
-    .logo-container img { max-width: 100px; height: auto; transition: opacity 0.5s; }
+    .logo-container img {
+      max-width: 100px; height: auto; transition: opacity 0.5s;
+    }
     .logo-container img:hover { opacity: 0.7; }
+
+    /* ==== پاپ‌آپ تقویم ==== */
+    #calendarModal {
+      display: none;              /* فقط این نمایش داده شود */
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 9999;
+      justify-content: center; align-items: center;
+      /* display:flex حذف شد */
+    }
+    #calendarContainer {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      direction: rtl; width: 340px;
+    }
+    #calendarContainer .header {
+      display: flex; justify-content: space-between;
+      align-items: center; width: 100%; margin-bottom: 10px;
+    }
+    #calendarContainer .header button {
+      background: #3366CC; color: #fff; border: none;
+      padding: 5px 10px; border-radius: 5px;
+      cursor: pointer; font-size: 1.2em; line-height: 1;
+    }
+    #calendarContainer .header span {
+      flex: 1; text-align: center; font-weight: bold;
+    }
+    #calendarContainer .calendar {
+      width: 100%; box-sizing: border-box;
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 4px; margin-bottom: 10px;
+    }
+    #calendarContainer .day {
+      padding: 8px 0; text-align: center;
+      border-radius: 4px; cursor: pointer;
+      user-select: none; background: #f0f0f0;
+      font-size: 0.95em;
+    }
+    #calendarContainer .day.header {
+      background: transparent; color: #333;
+      font-weight: bold; cursor: default;
+    }
+    #calendarContainer .day.friday {
+      color: red !important;
+    }
+    #calendarContainer .day.disabled {
+      background: transparent; color: #ccc; cursor: not-allowed;
+    }
+    #calendarContainer .day.today {
+      background: #3366CC; color: #fff; font-weight: bold;
+    }
+    #calToday {
+      display: block; width: 100%; padding: 8px;
+      margin-top: 6px; border: none; border-radius: 4px;
+      background: #3366CC; color: #fff; cursor: pointer;
+      font-size: 1em;
+    }
   </style>
 </head>
 <body>
-  <div id='content'>
+  <div id="content">
     <h2>فرم رزرو وقت استودیو دِرما</h2>
-    <form action='https://formsubmit.co/studiodermaofficial@gmail.com' method='POST' enctype='multipart/form-data'>
-      <input type='hidden' name='_captcha' value='false'>
-      <input type='hidden' name='_next' value='https://dermastudio.github.io/form/thankyou.html'>
+    <form action="https://formsubmit.co/studiodermaofficial@gmail.com"
+          method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next"
+             value="https://dermastudio.github.io/form/thankyou.html">
 
-      <label for='name'>نام کامل: <span class='star'>*</span></label>
-      <input type='text' id='name' name='نام کامل' required>
+      <label for="name">نام کامل: <span class="star">*</span></label>
+      <input type="text" id="name" name="نام کامل" required>
 
-      <label for='phone'>شماره تلفن: <span class='star'>*</span></label>
-      <input type='text' id='phone' name='شماره تلفن' required>
+      <label for="phone">شماره تلفن: <span class="star">*</span></label>
+      <input type="text" id="phone" name="شماره تلفن" required>
 
-      <label for='reason'>دلیل رزرو وقت: <span class='star'>*</span></label>
-      <select id='reason' name='دلیل رزرو وقت' onchange='toggleTabs()' required>
-        <option value=''>انتخاب کنید</option>
-        <option value='رکورد'>رکورد</option>
-        <option value='آهنگسازی'>آهنگسازی</option>
-        <option value='تنظیم'>تنظیم</option>
-        <option value='میکسینگ و مسترینگ'>میکسینگ و مسترینگ</option>
-        <option value='پادکست'>پادکست</option>
-        <option value='دوبله'>دوبله</option>
-        <option value='صداگذاری و صداسازی'>صداگذاری و صداسازی</option>
-        <option value='نریشن'>نریشن</option>
+      <label for="reason">دلیل رزرو وقت: <span class="star">*</span></label>
+      <select id="reason" name="دلیل رزرو وقت"
+              onchange="toggleTabs()" required>
+        <option value="">انتخاب کنید</option>
+        <option value="رکورد">رکورد</option>
+        <option value="آهنگسازی">آهنگسازی</option>
+        <option value="تنظیم">تنظیم</option>
+        <option value="میکسینگ و مسترینگ">میکسینگ و مسترینگ</option>
+        <option value="پادکست">پادکست</option>
+        <option value="دوبله">دوبله</option>
+        <option value="صداگذاری و صداسازی">صداگذاری و صداسازی</option>
+        <option value="نریشن">نریشن</option>
       </select>
 
-      <div id='recordTabs'>
-        <label for='vocal'><input type='radio' id='vocal' name='نوع رکورد' value='وکال'> وکال</label>
-        <label for='instrument'><input type='radio' id='instrument' name='نوع رکورد' value='ساز'> ساز</label>
+      <div id="recordTabs">
+        <label><input type="radio" name="نوع رکورد" value="وکال"> وکال</label>
+        <label><input type="radio" name="نوع رکورد" value="ساز"> ساز</label>
       </div>
 
-      <label for='date'>تاریخ رزرو: <span class='star'>*</span></label>
-      <input type='text' id='date' name='تاریخ رزرو' required readonly>
+      <label for="date">تاریخ رزرو: <span class="star">*</span></label>
+      <input type="text" id="date" name="تاریخ رزرو"
+             readonly required placeholder="کلیک کنید">
 
-      <label for='startTime'>از ساعت: <span class='star'>*</span></label>
-      <select id='startTime' name='ساعت شروع رزرو' required></select>
+      <label for="startTime">از ساعت: <span class="star">*</span></label>
+      <select id="startTime" name="ساعت شروع رزرو" required></select>
 
-      <label for='endTime'>تا ساعت: <span class='star'>*</span></label>
-      <select id='endTime' name='ساعت پایان رزرو' required></select>
+      <label for="endTime">تا ساعت: <span class="star">*</span></label>
+      <select id="endTime" name="ساعت پایان رزرو" required></select>
 
-      <label for='receipt'>فیش واریزی: <span class='star'>*</span></label>
-      <input type='file' id='receipt' name='فیش واریزی' accept='image/*' required>
+      <label for="receipt">فیش واریزی: <span class="star">*</span></label>
+      <input type="file" id="receipt" name="فیش واریزی"
+             accept="image/*" required>
 
-      <button type='submit'>رزرو وقت</button>
-      <div id='timer'></div>
+      <button type="submit">رزرو وقت</button>
+      <div id="timer"></div>
     </form>
 
-    <div class='logo-container'>
-      <a href='https://dermastudio.myportfolio.com/home' target='_blank'>
-        <img src='https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/30b11ede-4da8-48ad-84cc-16ade36fe346_rwc_0x0x1561x1120x4096.png?h=953db14fc84996108585a37c07c3ab03' alt='لوگو استودیو دِرما' title='استودیو دِرما'>
+    <div class="logo-container">
+      <a href="https://dermastudio.myportfolio.com/home" target="_blank">
+        <img src="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/30b11ede-4da8-48ad-84cc-16ade36fe346_rwc_0x0x1561x1120x4096.png?h=953db14fc84996108585a37c07c3ab03"
+             alt="لوگو" title="استودیو دِرما">
       </a>
     </div>
   </div>
 
-  <div id='warningBox'>شما اجازه کپی از محتوی این صفحه را ندارید!</div>
+  <div id="warningBox">شما اجازه کپی از محتوی این صفحه را ندارید!</div>
+
+  <!-- پاپ‌آپ تقویم -->
+  <div id="calendarModal">
+    <div id="calendarContainer">
+      <div class="header">
+        <button id="calPrev">▶</button>
+        <span id="calMonthYear"></span>
+        <button id="calNext">◀</button>
+      </div>
+      <div class="calendar" id="calDays"></div>
+      <button id="calToday">برو به امروز</button>
+    </div>
+  </div>
+
+  <!-- کتابخانه‌ها -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/min/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-jalaali@0.9.2/build/moment-jalaali.min.js"></script>
 
   <script>
-    $(document).ready(function () {
-      // تنظیم تقویمشمسی
-      var now = new Date();
-      var todayPersian = new persianDate(now);
-      todayPersian.startOf('day');
-      var todayFormatted = todayPersian.format('YYYY/MM/DD');
-      $('#date').persianDatepicker({
-        format: 'YYYY/MM/DD', autoClose: true, initialValue: false,
-        minDate: todayPersian.toDate(), toolbox: { calendarSwitch: { enabled: false } }
-      });
-      $('#date').val(todayFormatted);
-
-      // تولید بازه زمانی ساعتی از 07:00 تا 22:00
-      const timeSlots = [];
-      for (let h = 7; h <= 22; h++) {
-        const hour = h.toString().padStart(2, '0');
-        timeSlots.push({ value: `${hour}:00`, text: `${hour}:00` });
-      }
-      function populate(select, slots) {
-        select.innerHTML = '';
-        slots.forEach(s => {
-          const opt = document.createElement('option'); opt.value = s.value; opt.textContent = s.text;
-          select.appendChild(opt);
-        });
-      }
-      const startSelect = document.getElementById('startTime');
-      const endSelect = document.getElementById('endTime');
-      populate(startSelect, timeSlots); populate(endSelect, timeSlots);
-      startSelect.addEventListener('change', function() {
-        const filtered = timeSlots.filter(s => s.value > this.value);
-        populate(endSelect, filtered);
-      });
-    });
+    moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
 
     function toggleTabs() {
-      const rec = document.getElementById('reason').value;
-      document.getElementById('recordTabs').style.display = (rec === 'رکورد' ? 'flex' : 'none');
+      document.getElementById('recordTabs').style.display =
+        document.getElementById('reason').value === 'رکورد' ? 'flex' : 'none';
     }
 
-    // تایمر و جلوگیری از کپی
-    var timeLeft = 300;
-    function conv(str) { return str.replace(/\d/g, d=> '۰۱۲۳۴۵۶۷۸۹'[d]); }
-    function upd() {
-      const m = Math.floor(timeLeft/60), s = timeLeft%60;
-      document.getElementById('timer').textContent = 'زمان باقی مانده: '+conv(`${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`);
-    }
-    upd(); setInterval(()=>{ if(timeLeft--<=0){ document.querySelector('form').reset(); timeLeft=300;} upd(); },1000);
-    function warn(){ document.getElementById('content').classList.add('blurred'); document.getElementById('warningBox').style.display='block'; setTimeout(()=>{ document.getElementById('warningBox').style.display='none'; document.getElementById('content').classList.remove('blurred'); },3000);}   
-    document.addEventListener('contextmenu', e=>{ e.preventDefault(); warn(); });
-    document.addEventListener('keydown', e=>{ const k=e.key.toLowerCase(); if(e.key==='PrintScreen'||e.keyCode===44|| (e.ctrlKey&&['i','c','v'].includes(k)) ){ e.preventDefault(); warn(); }});
+    $(function(){
+      // تایمر و جلوگیری از کپی…
+      let timeLeft = 300;
+      function conv(s){ return s.replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]); }
+      function upd(){
+        const m=Math.floor(timeLeft/60), s=timeLeft%60;
+        $('#timer').text('زمان باقی مانده: '+conv(`${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`));
+      }
+      upd(); setInterval(()=>{
+        if(timeLeft--<=0){ $('form')[0].reset(); timeLeft=300; }
+        upd();
+      },1000);
+      function warn(){
+        $('#content').addClass('blurred');
+        $('#warningBox').show();
+        setTimeout(()=>{ $('#warningBox').hide(); $('#content').removeClass('blurred'); },3000);
+      }
+      $(document).on('contextmenu keydown', e=>{
+        if(e.type==='contextmenu' || e.key==='PrintScreen' || (e.ctrlKey && ['i','c','v'].includes(e.key.toLowerCase()))){
+          e.preventDefault(); warn();
+        }
+      });
+
+      // بازه‌های ساعتی
+      const slots=[];
+      for(let h=7;h<=22;h++){ const hh=h.toString().padStart(2,'0'); slots.push({v:`${hh}:00`,t:`${hh}:00`}); }
+      function populate(sel,arr){ sel.empty(); arr.forEach(o=>sel.append($('<option>').val(o.v).text(o.t))); }
+      populate($('#startTime'),slots);
+      populate($('#endTime'),slots);
+      $('#startTime').on('change', function(){
+        populate($('#endTime'), slots.filter(o=>o.v>this.value));
+      });
+
+      // پاپ‌آپ تقویم
+      const $M=$('#calendarModal'), $D=$('#calDays'), $MH=$('#calMonthYear');
+      let calDate=moment(), today=moment().startOf('day');
+
+      function render(d){
+        $D.empty();
+        const s=d.clone().startOf('jMonth'), e=d.clone().endOf('jMonth');
+        const sd=(s.day()+1)%7, dm=e.jDate();
+        $MH.text(d.format('jMMMM jYYYY'));
+        ['ش','ی','د','س','چ','پ','ج'].forEach(w=> $D.append(`<div class="day header">${w}</div>`));
+        for(let i=sd;i>0;i--){ const dt=s.clone().subtract(i,'days'); $D.append(`<div class="day out-of-month disabled">${dt.format('jD')}</div>`); }
+        for(let i=1;i<=dm;i++){
+          const cell=d.clone().jDate(i);
+          const isPast=cell.isBefore(today,'day');
+          const dow=(cell.day()+1)%7;
+          const cls=['day', dow===6?'friday':'', isPast?'disabled':'', cell.isSame(today,'day')?'today':''].filter(Boolean).join(' ');
+          $D.append(`<div class="${cls}" data-day="${i}">${cell.format('jD')}</div>`);
+        }
+        const total=42, used=sd+dm;
+        for(let i=1;i<=total-used;i++){ const dt=e.clone().add(i,'days'); $D.append(`<div class="day out-of-month disabled">${dt.format('jD')}</div>`); }
+      }
+
+      $('#date').on('click', ()=>{
+        render(calDate);
+        $M.css('display','flex');
+      });
+      $M.on('click', e=>{ if(e.target===e.currentTarget) $M.hide(); });
+      $('#calPrev').click(()=>{ calDate=calDate.clone().subtract(1,'jMonth'); render(calDate); });
+      $('#calNext').click(()=>{ calDate=calDate.clone().add(1,'jMonth'); render(calDate); });
+      $('#calToday').click(()=>{ calDate=moment(); render(calDate); });
+      $D.on('click','.day', function(){
+        if($(this).hasClass('disabled')||$(this).hasClass('header')) return;
+        const day=+$(this).data('day'), sel=calDate.clone().jDate(day);
+        $('#date').val(sel.format('jYYYY/jMM/jDD'));
+        $M.hide();
+      });
+      $(document).on('keydown', e=>{ if(e.key==='Escape') $M.hide(); });
+    });
   </script>
 </body>
 </html>
