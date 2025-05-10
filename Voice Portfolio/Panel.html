@@ -1,1 +1,175 @@
-سشیسشی
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پنل گویندگان استودیو دِرما</title>
+  <!-- favicon -->
+  <link rel="icon"
+        href="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/eb0ba0e1-a47c-4687-8e10-9daa16238288_carw_1x1x32.png?h=12e288972aa388e662af4aa74cab6528"
+        type="image/png">
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/aktiv-grotesk');
+
+    body {
+      font-family: 'Aktiv Grotesk Medium', sans-serif;
+      direction: rtl;
+      margin: 250px 765px;
+      background: url('https://dermastudio.github.io/form/Voice%20Portfolio/IMG_4226_BG.webp') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .speaker-panel {
+      width: 320px;
+      background-color: white;
+      border: 3.5px solid #3366CC;
+      border-radius: 15px;
+      padding: 50px 20px 100px;
+      position: relative;
+      text-align: center;
+      overflow: visible;
+    }
+
+    .speaker-image {
+      width: 200px; height: 200px; object-fit: cover;
+      border-radius: 50%;
+      position: absolute; top: -100px; left: 50%;
+      transform: translateX(-50%); z-index: 0;
+    }
+
+    .speaker-code {
+      background-color: #3366CC; color: white;
+      padding: 8px 40px; border-radius: 10px;
+      position: absolute; top: 75px; left: 50%;
+      transform: translateX(-50%); z-index: 1;
+    }
+
+    .speaker-details { margin-top: 100px; text-align: right; }
+
+    .audio-container {
+      position: absolute; bottom: 20px; left: 20px; right: 20px;
+      background-color: #111111; border-radius: 20px;
+      padding: 10px 30px 20px;
+    }
+
+    #waveform { width: 98%; height: 30px; }
+
+    .controls {
+      position: absolute; bottom: 15px; left: 5%;
+      transform: translateX(-50%);
+    }
+    .controls button {
+      background: none; border: none; color: white;
+      font-size: 20px; cursor: pointer; padding: 4px;
+    }
+    .controls button:disabled { opacity: 0.1; cursor: default; }
+    .controls button:hover:not(:disabled) { opacity: 0.5; }
+
+    .logo-container { text-align: center; margin-top: 60px; }
+    .logo-container img {
+      max-width: 100px; height: auto;
+      transition: opacity 0.5s; cursor: pointer;
+    }
+    .logo-container img:hover { opacity: 0.7; }
+
+    #warningBox {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(204,51,51,0.8); color: #fff;
+      padding: 20px; border: 2px solid #cc3333;
+      font-size: 18px; display: none; z-index: 10000;
+      border-radius: 10px; text-align: center;
+    }
+    #content.blurred {
+      filter: blur(5px); transition: filter 0.8s;
+    }
+  </style>
+  <script src="https://unpkg.com/wavesurfer.js"></script>
+</head>
+<body>
+  <div id="content">
+    <div class="speaker-panel">
+      <img src="https://i1.sndcdn.com/avatars-000572472459-dxez4e-t1080x1080.jpg?raw=true"
+           alt="تصویر گوینده" class="speaker-image">
+      <div class="speaker-code">کد گوینده: ۷۰۰</div>
+      <div class="speaker-details">
+        <p><strong>نام:</strong> سینا علامه</p>
+        <p><strong>امتیاز:</strong> ۴٫۹/۵</p>
+        <p><strong>هر صفحه نریشن:</strong> ۲٬۶۶۵٬۰۰۰ تومان</p>
+      </div>
+      <div class="audio-container">
+        <div id="waveform"></div>
+        <div class="controls">
+          <button id="playPause" disabled>⏳</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="logo-container">
+      <a href="https://dermastudiofficial.com/">
+        <img src="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/a56f9bb2-15ac-41ac-ba87-d44da4f2aec0_rwc_0x9x1615x1167x4096.png?h=d24ef3fc0f28136aa0938910906e382e"
+             alt="لوگوی استودیو دِرما" title="استودیو دِرما">
+      </a>
+    </div>
+  </div>
+
+  <div id="warningBox">شما اجازه کپی از محتوی این صفحه را ندارید!</div>
+
+  <script>
+    function showWarning() {
+      document.getElementById('content').classList.add('blurred');
+      const box = document.getElementById('warningBox');
+      box.style.display = 'block';
+      setTimeout(() => {
+        box.style.display = 'none';
+        document.getElementById('content').classList.remove('blurred');
+      }, 2000);
+    }
+
+    // Wavesurfer
+    const wavesurfer = WaveSurfer.create({
+      container: '#waveform',
+      waveColor: '#F5F5F5',
+      progressColor: '#3366CC',
+      backgroundColor: '#111111',
+      cursorColor: '#FFFF00',
+      height: 40, barWidth: 3, barRadius: 3, responsive: true
+    });
+    const btn = document.getElementById('playPause');
+    wavesurfer.on('ready', () => { btn.disabled = false; btn.textContent = '▶'; });
+    wavesurfer.on('error', e => { console.error(e); alert('خطا در بارگذاری فایل صوتی.'); });
+    wavesurfer.load('https://dermastudio.github.io/form/Voice%20Portfolio/audio%20test.mp3');
+    btn.addEventListener('click', () => {
+      wavesurfer.playPause();
+      btn.textContent = wavesurfer.isPlaying() ? '⏸︎' : '▶';
+    });
+
+    // مسدودسازی Copy/Paste/ContextMenu
+    ['copy', 'paste', 'contextmenu'].forEach(evt => {
+      document.addEventListener(evt, e => {
+        e.preventDefault();
+        showWarning();
+      }, true);
+    });
+
+    // مسدودسازی میانبرها در فاز capture
+    function blockDevTools(e) {
+      const k = e.key.toLowerCase();
+      if (
+        // Ctrl+C, Ctrl+V
+        (e.ctrlKey && (k === 'c' || k === 'v')) ||
+        // Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
+        (e.ctrlKey && e.shiftKey && (k === 'i' || k === 'c' || k === 'j')) ||
+        // F12
+        e.key === 'F12' ||
+        // PrintScreen
+        e.code === 'PrintScreen'
+      ) {
+        e.preventDefault();
+        showWarning();
+      }
+    }
+    document.addEventListener('keydown', blockDevTools, true);
+  </script>
+</body>
+</html>
