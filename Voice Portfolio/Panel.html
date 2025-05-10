@@ -31,57 +31,126 @@
     }
 
     .speaker-image {
-      width: 200px; height: 200px; object-fit: cover;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
       border-radius: 50%;
-      position: absolute; top: -100px; left: 50%;
-      transform: translateX(-50%); z-index: 0;
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
     }
 
     .speaker-code {
-      background-color: #3366CC; color: white;
-      padding: 8px 40px; border-radius: 10px;
-      position: absolute; top: 75px; left: 50%;
-      transform: translateX(-50%); z-index: 1;
+      background-color: #3366CC;
+      color: white;
+      padding: 8px 40px;
+      border-radius: 10px;
+      position: absolute;
+      top: 75px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
     }
 
-    .speaker-details { margin-top: 100px; text-align: right; }
+    .speaker-details {
+      margin-top: 100px;
+      text-align: right;
+    }
 
     .audio-container {
-      position: absolute; bottom: 20px; left: 20px; right: 20px;
-      background-color: #111111; border-radius: 20px;
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background-color: #111111;
+      border-radius: 20px;
       padding: 10px 30px 20px;
     }
 
-    #waveform { width: 98%; height: 30px; }
+    #waveform {
+      width: 98%;
+      height: 30px;
+    }
 
     .controls {
-      position: absolute; bottom: 15px; left: 5%;
+      position: absolute;
+      bottom: 15px;
+      left: 5%;
       transform: translateX(-50%);
     }
     .controls button {
-      background: none; border: none; color: white;
-      font-size: 20px; cursor: pointer; padding: 4px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 4px;
     }
-    .controls button:disabled { opacity: 0.1; cursor: default; }
-    .controls button:hover:not(:disabled) { opacity: 0.5; }
+    .controls button:disabled {
+      opacity: 0.1;
+      cursor: default;
+    }
+    .controls button:hover:not(:disabled) {
+      opacity: 0.5;
+    }
 
-    .logo-container { text-align: center; margin-top: 60px; }
-    .logo-container img {
-      max-width: 100px; height: auto;
-      transition: opacity 0.5s; cursor: pointer;
+    .logo-container {
+      text-align: center;
+      margin-top: 60px;
     }
-    .logo-container img:hover { opacity: 0.7; }
+    .logo-container img {
+      max-width: 100px;
+      height: auto;
+      transition: opacity 0.5s;
+      cursor: pointer;
+    }
+    .logo-container img:hover {
+      opacity: 0.7;
+    }
 
     #warningBox {
-      position: fixed; top: 50%; left: 50%;
+      position: fixed;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(204,51,51,0.8); color: #fff;
-      padding: 20px; border: 2px solid #cc3333;
-      font-size: 18px; display: none; z-index: 10000;
-      border-radius: 10px; text-align: center;
+      background: rgba(204,51,51,0.8);
+      color: #fff;
+      padding: 20px;
+      border: 2px solid #cc3333;
+      font-size: 18px;
+      display: none;
+      z-index: 10000;
+      border-radius: 10px;
+      text-align: center;
     }
     #content.blurred {
-      filter: blur(5px); transition: filter 0.8s;
+      filter: blur(5px);
+      transition: filter 0.8s;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body {
+        margin: 20px;
+      }
+      .speaker-panel {
+        width: 90%;
+        max-width: 320px;
+        padding: 40px 15px 80px;
+      }
+      .logo-container img {
+        max-width: 80px;
+      }
+    }
+    @media (max-width: 480px) {
+      .speaker-panel {
+        padding: 30px 10px 60px;
+      }
+      .audio-container {
+        padding: 8px 10px 15px;
+      }
     }
   </style>
   <script src="https://unpkg.com/wavesurfer.js"></script>
@@ -89,8 +158,7 @@
 <body>
   <div id="content">
     <div class="speaker-panel">
-      <img src="https://i1.sndcdn.com/avatars-000572472459-dxez4e-t1080x1080.jpg?raw=true"
-           alt="تصویر گوینده" class="speaker-image">
+      <img src="https://i1.sndcdn.com/avatars-000572472459-dxez4e-t1080x1080.jpg?raw=true" alt="تصویر گوینده" class="speaker-image">
       <div class="speaker-code">کد گوینده: ۷۰۰</div>
       <div class="speaker-details">
         <p><strong>نام:</strong> سینا علامه</p>
@@ -107,8 +175,7 @@
 
     <div class="logo-container">
       <a href="https://dermastudiofficial.com/">
-        <img src="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/a56f9bb2-15ac-41ac-ba87-d44da4f2aec0_rwc_0x9x1615x1167x4096.png?h=d24ef3fc0f28136aa0938910906e382e"
-             alt="لوگوی استودیو دِرما" title="استودیو دِرما">
+        <img src="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/a56f9bb2-15ac-41ac-ba87-d44da4f2aec0_rwc_0x9x1615x1167x4096.png?h=d24ef3fc0f28136aa0938910906e382e" alt="لوگوی استودیو دِرما" title="استودیو دِرما">
       </a>
     </div>
   </div>
