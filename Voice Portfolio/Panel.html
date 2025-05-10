@@ -14,13 +14,16 @@
     body {
       font-family: 'Aktiv Grotesk Medium', sans-serif;
       direction: rtl;
-      margin: 250px 765px;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 180px;
       background: url('https://dermastudio.github.io/form/Voice%20Portfolio/IMG_4226_BG.webp') no-repeat center center fixed;
       background-size: cover;
+      box-sizing: border-box;
     }
 
     .speaker-panel {
-      width: 320px;
+      width: 100%;
       background-color: white;
       border: 3.5px solid #3366CC;
       border-radius: 15px;
@@ -28,6 +31,7 @@
       position: relative;
       text-align: center;
       overflow: visible;
+      box-sizing: border-box;
     }
 
     .speaker-image {
@@ -131,13 +135,14 @@
     }
 
     /* Responsive adjustments */
-    @media (max-width: 768px) {
+    @media (max-width: 200px) {
       body {
-        margin: 20px;
+        /* روی موبایل پس‌زمینه به جای cover از contain استفاده می‌کنیم */
+        background-attachment: scroll;
+        background-size: contain;
+        background-position: top center;
       }
       .speaker-panel {
-        width: 90%;
-        max-width: 320px;
         padding: 40px 15px 80px;
       }
       .logo-container img {
@@ -193,14 +198,17 @@
       }, 2000);
     }
 
-    // Wavesurfer
+    // Wavesurfer setup
     const wavesurfer = WaveSurfer.create({
       container: '#waveform',
       waveColor: '#F5F5F5',
       progressColor: '#3366CC',
       backgroundColor: '#111111',
       cursorColor: '#FFFF00',
-      height: 40, barWidth: 3, barRadius: 3, responsive: true
+      height: 40,
+      barWidth: 3,
+      barRadius: 3,
+      responsive: true
     });
     const btn = document.getElementById('playPause');
     wavesurfer.on('ready', () => { btn.disabled = false; btn.textContent = '▶'; });
@@ -219,22 +227,16 @@
       }, true);
     });
 
-    // مسدودسازی میانبرها در فاز capture
+    // مسدودسازی DevTools کلیدها
     function blockDevTools(e) {
-      const k = e.key.toLowerCase();
-      if (
-        // Ctrl+C, Ctrl+V
-        (e.ctrlKey && (k === 'c' || k === 'v')) ||
-        // Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
-        (e.ctrlKey && e.shiftKey && (k === 'i' || k === 'c' || k === 'j')) ||
-        // F12
-        e.key === 'F12' ||
-        // PrintScreen
-        e.code === 'PrintScreen'
-      ) {
-        e.preventDefault();
-        showWarning();
+      // Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
+      if (e.ctrlKey && e.shiftKey && ['I','C','J'].includes(e.key)) {
+        e.preventDefault(); showWarning();
       }
+      // F12
+      if (e.key === 'F12') { e.preventDefault(); showWarning(); }
+      // PrintScreen
+      if (e.code === 'PrintScreen') { e.preventDefault(); showWarning(); }
     }
     document.addEventListener('keydown', blockDevTools, true);
   </script>
