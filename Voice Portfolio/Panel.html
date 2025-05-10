@@ -14,12 +14,20 @@
     body {
       font-family: 'Aktiv Grotesk Medium', sans-serif;
       direction: rtl;
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 180px;
       background: url('https://dermastudio.github.io/form/Voice%20Portfolio/IMG_4226_BG.webp') no-repeat center center fixed;
       background-size: cover;
+      margin: 0;
+      padding: 20px;
       box-sizing: border-box;
+    }
+
+    .panels-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 150px auto 0;
+      padding: 20px 0;
     }
 
     .speaker-panel {
@@ -81,9 +89,10 @@
     .controls {
       position: absolute;
       bottom: 15px;
-      left: 5%;
+      left: 7%;
       transform: translateX(-50%);
     }
+
     .controls button {
       background: none;
       border: none;
@@ -102,7 +111,7 @@
 
     .logo-container {
       text-align: center;
-      margin-top: 60px;
+      margin: 40px auto 0;
     }
     .logo-container img {
       max-width: 100px;
@@ -134,19 +143,23 @@
       transition: filter 0.8s;
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 200px) {
+    /* Responsive columns */
+    @media (max-width: 900px) {
+      .panels-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .panels-container {
+        grid-template-columns: 1fr;
+      }
       body {
-        /* روی موبایل پس‌زمینه به جای cover از contain استفاده می‌کنیم */
         background-attachment: scroll;
         background-size: contain;
         background-position: top center;
       }
       .speaker-panel {
         padding: 40px 15px 80px;
-      }
-      .logo-container img {
-        max-width: 80px;
       }
     }
     @media (max-width: 480px) {
@@ -156,31 +169,66 @@
       .audio-container {
         padding: 8px 10px 15px;
       }
+      .logo-container img {
+        max-width: 80px;
+      }
     }
   </style>
   <script src="https://unpkg.com/wavesurfer.js"></script>
 </head>
 <body>
   <div id="content">
-    <div class="speaker-panel">
-      <img src="https://i1.sndcdn.com/avatars-000572472459-dxez4e-t1080x1080.jpg?raw=true" alt="تصویر گوینده" class="speaker-image">
-      <div class="speaker-code">کد گوینده: ۷۰۰</div>
-      <div class="speaker-details">
-        <p><strong>نام:</strong> سینا علامه</p>
-        <p><strong>امتیاز:</strong> ۴٫۹/۵</p>
-        <p><strong>هر صفحه نریشن:</strong> ۲٬۶۶۵٬۰۰۰ تومان</p>
+    <div class="panels-container">
+      <!-- تکرار .speaker-panel برای هر گوینده -->
+      <div class="speaker-panel">
+        <!-- محتوای گوینده ۱ -->
+        <img src="https://i1.sndcdn.com/avatars-000572472459-dxez4e-t1080x1080.jpg?raw=true" alt="تصویر گوینده" class="speaker-image">
+        <div class="speaker-code">کد: ۷۰۰</div>
+        <div class="speaker-details">
+          <p><strong>نام:</strong> سینا علامه</p>
+          <p><strong>امتیاز:</strong> ۴.۹/۵</p>
+          <p><strong>قیمت:</strong> ۲٬۶۶۵٬۰۰۰ تومان</p>
+        </div>
+        <div class="audio-container">
+          <div id="waveform"></div>
+          <div class="controls">
+            <button id="playPause" disabled>⏳</button>
+          </div>
+        </div>
       </div>
-      <div class="audio-container">
-        <div id="waveform"></div>
-        <div class="controls">
-          <button id="playPause" disabled>⏳</button>
+      <div class="speaker-panel">
+        <!-- محتوای گوینده ۲ (همان ساختار) -->
+        <img src="..." alt="" class="speaker-image">
+        <div class="speaker-code">کد: ###</div>
+        <div class="speaker-details">
+          <!-- جزئیات -->
+        </div>
+        <div class="audio-container">
+          <div id="waveform"></div>
+          <div class="controls">
+            <button disabled>⏳</button>
+          </div>
+        </div>
+      </div>
+      <div class="speaker-panel">
+        <!-- محتوای گوینده ۳ -->
+        <img src="..." alt="" class="speaker-image">
+        <div class="speaker-code">کد: ###</div>
+        <div class="speaker-details">
+          <!-- جزئیات -->
+        </div>
+        <div class="audio-container">
+          <div id="waveform"></div>
+          <div class="controls">
+            <button disabled>⏳</button>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="logo-container">
       <a href="https://dermastudiofficial.com/">
-        <img src="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/a56f9bb2-15ac-41ac-ba87-d44da4f2aec0_rwc_0x9x1615x1167x4096.png?h=d24ef3fc0f28136aa0938910906e382e" alt="لوگوی استودیو دِرما" title="استودیو دِرما">
+        <img src="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/a56f9bb2-15ac-41ac-ba87-d44da4f2aec0_rwc_0x9x1615x1167x4096.png?h=d24ef3fc0f28136aa0938910906e382e" alt="لوگو" title="استودیو دِرما">
       </a>
     </div>
   </div>
