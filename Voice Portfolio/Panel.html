@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>پنل گویندگان استودیو دِرما</title>
-  <!-- favicon -->
   <link rel="icon"
         href="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/eb0ba0e1-a47c-4687-8e10-9daa16238288_carw_1x1x32.png?h=12e288972aa388e662af4aa74cab6528"
         type="image/png">
@@ -81,16 +80,20 @@
       padding: 10px 30px 20px;
     }
 
-    #waveform {
+    /* کلاس waveform به جای آی‌دی */
+    .waveform {
       width: 98%;
-      height: 30px;
+      height: 30px; /* ارتفاع اولیه، wavesurfer می‌تواند آن را تغییر دهد */
     }
 
     .controls {
       position: absolute;
       bottom: 15px;
-      left: 7%;
+      left: 7%; /* تنظیم موقعیت دکمه نسبت به audio-container */
       transform: translateX(-50%);
+      display: flex; /* برای اطمینان از نمایش صحیح دکمه */
+      justify-content: center; /* مرکز کردن دکمه در صورت نیاز */
+      align-items: center;
     }
 
     .controls button {
@@ -179,10 +182,8 @@
 <body>
   <div id="content">
     <div class="panels-container">
-      <!-- تکرار .speaker-panel برای هر گوینده -->
-      <div class="speaker-panel">
-        <!-- محتوای گوینده ۱ -->
-        <img src="https://i1.sndcdn.com/avatars-000572472459-dxez4e-t1080x1080.jpg?raw=true" alt="تصویر گوینده" class="speaker-image">
+      <div class="speaker-panel" data-audio-src="https://dermastudio.github.io/form/Voice%20Portfolio/audio%20test.mp3">
+        <img src="https://i1.sndcdn.com/avatars-000572472459-dxez4e-t1080x1080.jpg?raw=true" alt="تصویر گوینده ۱" class="speaker-image">
         <div class="speaker-code">کد: ۷۰۰</div>
         <div class="speaker-details">
           <p><strong>نام:</strong> سینا علامه</p>
@@ -190,37 +191,39 @@
           <p><strong>قیمت:</strong> ۲٬۶۶۵٬۰۰۰ تومان</p>
         </div>
         <div class="audio-container">
-          <div id="waveform"></div>
+          <div class="waveform"></div> <div class="controls">
+            <button class="playPauseBtn" disabled>⏳</button> </div>
+        </div>
+      </div>
+
+      <div class="speaker-panel" data-audio-src="مسیر/فایل/صوتی/گوینده۲.mp3">
+        <img src="مسیر/تصویر/گوینده۲.jpg" alt="تصویر گوینده ۲" class="speaker-image">
+        <div class="speaker-code">کد: ۷۰۱</div>
+        <div class="speaker-details">
+          <p><strong>نام:</strong> گوینده دوم</p>
+          <p><strong>امتیاز:</strong> ۴.۸/۵</p>
+          <p><strong>قیمت:</strong> ۲٬۵۰۰٬۰۰۰ تومان</p>
+        </div>
+        <div class="audio-container">
+          <div class="waveform"></div>
           <div class="controls">
-            <button id="playPause" disabled>⏳</button>
+            <button class="playPauseBtn" disabled>⏳</button>
           </div>
         </div>
       </div>
-      <div class="speaker-panel">
-        <!-- محتوای گوینده ۲ (همان ساختار) -->
-        <img src="..." alt="" class="speaker-image">
-        <div class="speaker-code">کد: ###</div>
+
+      <div class="speaker-panel" data-audio-src="مسیر/فایل/صوتی/گوینده۳.mp3">
+        <img src="مسیر/تصویر/گوینده۳.jpg" alt="تصویر گوینده ۳" class="speaker-image">
+        <div class="speaker-code">کد: ۷۰۲</div>
         <div class="speaker-details">
-          <!-- جزئیات -->
+          <p><strong>نام:</strong> گوینده سوم</p>
+          <p><strong>امتیاز:</strong> ۴.۷/۵</p>
+          <p><strong>قیمت:</strong> ۲٬۴۰۰٬۰۰۰ تومان</p>
         </div>
         <div class="audio-container">
-          <div id="waveform"></div>
+          <div class="waveform"></div>
           <div class="controls">
-            <button disabled>⏳</button>
-          </div>
-        </div>
-      </div>
-      <div class="speaker-panel">
-        <!-- محتوای گوینده ۳ -->
-        <img src="..." alt="" class="speaker-image">
-        <div class="speaker-code">کد: ###</div>
-        <div class="speaker-details">
-          <!-- جزئیات -->
-        </div>
-        <div class="audio-container">
-          <div id="waveform"></div>
-          <div class="controls">
-            <button disabled>⏳</button>
+            <button class="playPauseBtn" disabled>⏳</button>
           </div>
         </div>
       </div>
@@ -236,57 +239,110 @@
   <div id="warningBox">شما اجازه کپی از محتوی این صفحه را ندارید!</div>
 
   <script>
-    function showWarning() {
-      document.getElementById('content').classList.add('blurred');
-      const box = document.getElementById('warningBox');
-      box.style.display = 'block';
-      setTimeout(() => {
-        box.style.display = 'none';
-        document.getElementById('content').classList.remove('blurred');
-      }, 2000);
-    }
-
-    // Wavesurfer setup
-    const wavesurfer = WaveSurfer.create({
-      container: '#waveform',
-      waveColor: '#F5F5F5',
-      progressColor: '#3366CC',
-      backgroundColor: '#111111',
-      cursorColor: '#FFFF00',
-      height: 40,
-      barWidth: 3,
-      barRadius: 3,
-      responsive: true
-    });
-    const btn = document.getElementById('playPause');
-    wavesurfer.on('ready', () => { btn.disabled = false; btn.textContent = '▶'; });
-    wavesurfer.on('error', e => { console.error(e); alert('خطا در بارگذاری فایل صوتی.'); });
-    wavesurfer.load('https://dermastudio.github.io/form/Voice%20Portfolio/audio%20test.mp3');
-    btn.addEventListener('click', () => {
-      wavesurfer.playPause();
-      btn.textContent = wavesurfer.isPlaying() ? '⏸︎' : '▶';
-    });
-
-    // مسدودسازی Copy/Paste/ContextMenu
-    ['copy', 'paste', 'contextmenu'].forEach(evt => {
-      document.addEventListener(evt, e => {
-        e.preventDefault();
-        showWarning();
-      }, true);
-    });
-
-    // مسدودسازی DevTools کلیدها
-    function blockDevTools(e) {
-      // Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
-      if (e.ctrlKey && e.shiftKey && ['I','C','J'].includes(e.key)) {
-        e.preventDefault(); showWarning();
+    document.addEventListener('DOMContentLoaded', () => {
+      function showWarning() {
+        document.getElementById('content').classList.add('blurred');
+        const box = document.getElementById('warningBox');
+        box.style.display = 'block';
+        setTimeout(() => {
+          box.style.display = 'none';
+          document.getElementById('content').classList.remove('blurred');
+        }, 2000);
       }
-      // F12
-      if (e.key === 'F12') { e.preventDefault(); showWarning(); }
-      // PrintScreen
-      if (e.code === 'PrintScreen') { e.preventDefault(); showWarning(); }
-    }
-    document.addEventListener('keydown', blockDevTools, true);
+
+      // مسدودسازی Copy/Paste/ContextMenu
+      ['copy', 'paste', 'contextmenu'].forEach(evt => {
+        document.addEventListener(evt, e => {
+          e.preventDefault();
+          showWarning();
+        }, true);
+      });
+
+      // مسدودسازی DevTools کلیدها
+      function blockDevTools(e) {
+        // Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
+        if (e.ctrlKey && e.shiftKey && ['I', 'C', 'J'].includes(e.key.toUpperCase())) {
+          e.preventDefault();
+          showWarning();
+        }
+        // F12
+        if (e.key === 'F12') {
+          e.preventDefault();
+          showWarning();
+        }
+        // PrintScreen
+        if (e.code === 'PrintScreen') {
+          e.preventDefault();
+          showWarning();
+        }
+      }
+      document.addEventListener('keydown', blockDevTools, true);
+
+      // راه‌اندازی Wavesurfer برای هر پنل
+      const speakerPanels = document.querySelectorAll('.speaker-panel');
+      const wavesurferInstances = []; // برای نگهداری نمونه‌های wavesurfer
+
+      speakerPanels.forEach((panel, index) => {
+        const waveformContainer = panel.querySelector('.waveform');
+        const playPauseBtn = panel.querySelector('.playPauseBtn');
+        const audioSrc = panel.dataset.audioSrc;
+
+        if (!waveformContainer || !playPauseBtn || !audioSrc) {
+          console.error(`پنل شماره ${index + 1} فاقد کانتینر ویوفورم، دکمه پخش یا منبع صوتی است.`);
+          if(playPauseBtn) playPauseBtn.textContent = '⚠️';
+          return;
+        }
+
+        const wavesurfer = WaveSurfer.create({
+          container: waveformContainer,
+          waveColor: '#F5F5F5',
+          progressColor: '#3366CC',
+          backgroundColor: '#111111',
+          cursorColor: '#FFFF00',
+          height: 40, // ارتفاع ویوفورم
+          barWidth: 3,
+          barRadius: 3,
+          responsive: true,
+          hideScrollbar: true
+        });
+
+        wavesurferInstances.push(wavesurfer); // اضافه کردن نمونه به آرایه
+
+        wavesurfer.on('ready', () => {
+          playPauseBtn.disabled = false;
+          playPauseBtn.textContent = '▶';
+        });
+
+        wavesurfer.on('error', e => {
+          console.error(`خطا در بارگذاری فایل صوتی برای پنل ${index + 1}:`, e);
+          playPauseBtn.textContent = '⚠️'; // نمایش خطا روی دکمه
+          playPauseBtn.disabled = true;
+          // alert(`خطا در بارگذاری فایل صوتی برای پنل ${index + 1}.`);
+        });
+
+        wavesurfer.load(audioSrc);
+
+        playPauseBtn.addEventListener('click', () => {
+          // توقف سایر نمونه‌های در حال پخش
+          wavesurferInstances.forEach(instance => {
+            if (instance !== wavesurfer && instance.isPlaying()) {
+              instance.pause();
+              // به‌روزرسانی دکمه سایر پنل‌ها
+              const otherPanelBtn = instance.container.closest('.speaker-panel').querySelector('.playPauseBtn');
+              if(otherPanelBtn) otherPanelBtn.textContent = '▶';
+            }
+          });
+          // پخش یا توقف نمونه فعلی
+          wavesurfer.playPause();
+          playPauseBtn.textContent = wavesurfer.isPlaying() ? '⏸︎' : '▶';
+        });
+
+        // وقتی پخش تمام شد، دکمه را به حالت پخش برگردان
+        wavesurfer.on('finish', () => {
+            playPauseBtn.textContent = '▶';
+        });
+      });
+    });
   </script>
 </body>
 </html>
