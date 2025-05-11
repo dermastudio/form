@@ -10,14 +10,23 @@
   <style>
     @import url('https://fonts.cdnfonts.com/css/aktiv-grotesk');
 
+    html {
+      height: 100%;
+    }
+
     body {
       font-family: 'Aktiv Grotesk Medium', sans-serif;
       direction: rtl;
-      background: url('https://dermastudio.github.io/form/Voice%20Portfolio/IMG_4226_BG.webp') no-repeat center center fixed;
+      /* تصویر پس‌زمینه دسکتاپ */
+      background-image: url('https://dermastudio.github.io/form/Voice%20Portfolio/IMG_4226_BG_desktop.webp'); /* <-- مسیر تصویر دسکتاپ خود را اینجا قرار دهید */
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
       background-size: cover;
       margin: 0;
       padding: 20px;
       box-sizing: border-box;
+      min-height: 100vh;
     }
 
     .panels-container {
@@ -80,19 +89,18 @@
       padding: 10px 30px 20px;
     }
 
-    /* کلاس waveform به جای آی‌دی */
     .waveform {
-      width: 98%;
-      height: 30px; /* ارتفاع اولیه، wavesurfer می‌تواند آن را تغییر دهد */
+      width: 90%;
+      height: 30px;
     }
 
     .controls {
       position: absolute;
       bottom: 15px;
-      left: 7%; /* تنظیم موقعیت دکمه نسبت به audio-container */
-      transform: translateX(-50%);
-      display: flex; /* برای اطمینان از نمایش صحیح دکمه */
-      justify-content: center; /* مرکز کردن دکمه در صورت نیاز */
+      left: 20px;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
       align-items: center;
     }
 
@@ -146,31 +154,38 @@
       transition: filter 0.8s;
     }
 
-    /* Responsive columns */
     @media (max-width: 900px) {
       .panels-container {
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
     @media (max-width: 600px) {
       .panels-container {
         grid-template-columns: 1fr;
       }
       body {
+        /* تصویر پس‌زمینه موبایل */
+        background-image: url('https://dermastudio.github.io/form/Voice%20Portfolio/IMG_4226_BG_Mobile.webp'); /* <-- مسیر تصویر موبایل خود را اینجا قرار دهید */
         background-attachment: scroll;
-        background-size: contain;
-        background-position: top center;
+        background-position: center center;
+        /* background-size: cover; به ارث برده می‌شود */
       }
       .speaker-panel {
         padding: 40px 15px 80px;
       }
     }
+
     @media (max-width: 480px) {
       .speaker-panel {
         padding: 30px 10px 60px;
       }
       .audio-container {
         padding: 8px 10px 15px;
+      }
+      .controls {
+        left: 10px;
+        bottom: 10px;
       }
       .logo-container img {
         max-width: 80px;
@@ -191,8 +206,10 @@
           <p><strong>قیمت:</strong> ۲٬۶۶۵٬۰۰۰ تومان</p>
         </div>
         <div class="audio-container">
-          <div class="waveform"></div> <div class="controls">
-            <button class="playPauseBtn" disabled>⏳</button> </div>
+          <div class="waveform"></div>
+          <div class="controls">
+            <button class="playPauseBtn" disabled>⏳</button>
+          </div>
         </div>
       </div>
 
@@ -241,13 +258,19 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       function showWarning() {
+        // برای جلوگیری از نمایش چندباره سریع هشدار، می‌توان یک فلگ اضافه کرد
+        if (document.body.dataset.warningShown === 'true') return;
+        document.body.dataset.warningShown = 'true';
+
         document.getElementById('content').classList.add('blurred');
         const box = document.getElementById('warningBox');
         box.style.display = 'block';
+        
         setTimeout(() => {
           box.style.display = 'none';
           document.getElementById('content').classList.remove('blurred');
-        }, 2000);
+          delete document.body.dataset.warningShown; // ریست کردن فلگ
+        }, 2500); // کمی زمان بیشتر برای خواندن هشدار
       }
 
       // مسدودسازی Copy/Paste/ContextMenu
@@ -255,41 +278,51 @@
         document.addEventListener(evt, e => {
           e.preventDefault();
           showWarning();
-        }, true);
+        }, true); // استفاده از فاز capturing
       });
 
-      // مسدودسازی DevTools کلیدها
+      // مسدودسازی کلیدهای DevTools
       function blockDevTools(e) {
         // Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
-        if (e.ctrlKey && e.shiftKey && ['I', 'C', 'J'].includes(e.key.toUpperCase())) {
+        // همچنین Cmd+Opt+I/J/C در macOS
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+        const modifierKeyPressed = isMac ? e.metaKey && e.altKey : e.ctrlKey && e.shiftKey;
+
+        if (modifierKeyPressed && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
           e.preventDefault();
           showWarning();
+          return;
         }
         // F12
         if (e.key === 'F12') {
           e.preventDefault();
           showWarning();
+          return;
         }
-        // PrintScreen
+        // PrintScreen (بسیار نامعتبر و وابسته به سیستم‌عامل/مرورگر)
         if (e.code === 'PrintScreen') {
           e.preventDefault();
           showWarning();
+          return;
         }
       }
+      // گوش دادن به رویداد keydown در فاز capturing برای اولویت بالاتر
       document.addEventListener('keydown', blockDevTools, true);
 
-      // راه‌اندازی Wavesurfer برای هر پنل
       const speakerPanels = document.querySelectorAll('.speaker-panel');
-      const wavesurferInstances = []; // برای نگهداری نمونه‌های wavesurfer
+      const wavesurferInstances = []; 
 
       speakerPanels.forEach((panel, index) => {
         const waveformContainer = panel.querySelector('.waveform');
         const playPauseBtn = panel.querySelector('.playPauseBtn');
         const audioSrc = panel.dataset.audioSrc;
 
-        if (!waveformContainer || !playPauseBtn || !audioSrc) {
-          console.error(`پنل شماره ${index + 1} فاقد کانتینر ویوفورم، دکمه پخش یا منبع صوتی است.`);
-          if(playPauseBtn) playPauseBtn.textContent = '⚠️';
+        if (!waveformContainer || !playPauseBtn || !audioSrc || audioSrc.startsWith("مسیر/")) {
+          console.error(`پنل شماره ${index + 1} فاقد کانتینر ویوفورم، دکمه پخش یا منبع صوتی معتبر است.`);
+          if(playPauseBtn) {
+            playPauseBtn.textContent = '⚠️';
+            playPauseBtn.disabled = true;
+          }
           return;
         }
 
@@ -299,14 +332,14 @@
           progressColor: '#3366CC',
           backgroundColor: '#111111',
           cursorColor: '#FFFF00',
-          height: 40, // ارتفاع ویوفورم
+          height: 40,
           barWidth: 3,
           barRadius: 3,
           responsive: true,
           hideScrollbar: true
         });
 
-        wavesurferInstances.push(wavesurfer); // اضافه کردن نمونه به آرایه
+        wavesurferInstances.push({ instance: wavesurfer, button: playPauseBtn, panel: panel });
 
         wavesurfer.on('ready', () => {
           playPauseBtn.disabled = false;
@@ -315,31 +348,32 @@
 
         wavesurfer.on('error', e => {
           console.error(`خطا در بارگذاری فایل صوتی برای پنل ${index + 1}:`, e);
-          playPauseBtn.textContent = '⚠️'; // نمایش خطا روی دکمه
+          playPauseBtn.textContent = '⚠️';
           playPauseBtn.disabled = true;
-          // alert(`خطا در بارگذاری فایل صوتی برای پنل ${index + 1}.`);
         });
 
+        wavesurfer.on('play', () => {
+            wavesurferInstances.forEach(item => {
+                if (item.instance !== wavesurfer && item.instance.isPlaying()) {
+                    item.instance.pause();
+                    // متن دکمه در رویداد pause خود wavesurfer مدیریت می‌شود
+                }
+            });
+            playPauseBtn.textContent = '⏸︎';
+        });
+        
+        wavesurfer.on('pause', () => {
+            playPauseBtn.textContent = '▶';
+        });
+
+        wavesurfer.on('finish', () => {
+          playPauseBtn.textContent = '▶';
+        });
+        
         wavesurfer.load(audioSrc);
 
         playPauseBtn.addEventListener('click', () => {
-          // توقف سایر نمونه‌های در حال پخش
-          wavesurferInstances.forEach(instance => {
-            if (instance !== wavesurfer && instance.isPlaying()) {
-              instance.pause();
-              // به‌روزرسانی دکمه سایر پنل‌ها
-              const otherPanelBtn = instance.container.closest('.speaker-panel').querySelector('.playPauseBtn');
-              if(otherPanelBtn) otherPanelBtn.textContent = '▶';
-            }
-          });
-          // پخش یا توقف نمونه فعلی
           wavesurfer.playPause();
-          playPauseBtn.textContent = wavesurfer.isPlaying() ? '⏸︎' : '▶';
-        });
-
-        // وقتی پخش تمام شد، دکمه را به حالت پخش برگردان
-        wavesurfer.on('finish', () => {
-            playPauseBtn.textContent = '▶';
         });
       });
     });
