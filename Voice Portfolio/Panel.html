@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>پنل گویندگان استودیو دِرما</title>
+  <title>بانک صدای استودیو دِرما</title>
   <link rel="icon"
         href="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/eb0ba0e1-a47c-4687-8e10-9daa16238288_carw_1x1x32.png?h=12e288972aa388e662af4aa74cab6528"
         type="image/png">
@@ -17,8 +17,7 @@
     body {
       font-family: 'Aktiv Grotesk Medium', sans-serif;
       direction: rtl;
-      /* تصویر پس‌زمینه دسکتاپ */
-      background-image: url('https://dermastudio.github.io/form/Voice%20Portfolio/IMG_4226_BG_desktop.webp'); /* <-- مسیر تصویر دسکتاپ خود را اینجا قرار دهید */
+      background-image: url('https://dermastudio.github.io/form/Voice%20Portfolio/IMG_4226_BG_desktop.webp');
       background-repeat: no-repeat;
       background-position: center center;
       background-attachment: fixed;
@@ -48,6 +47,13 @@
       text-align: center;
       overflow: visible;
       box-sizing: border-box;
+      transition: filter 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Transition for smooth effect changes */
+    }
+
+    /* کلاس جدید برای تار و سیاه و سفید کردن پنل‌های غیرفعال */
+    .speaker-panel.panel-dimmed {
+      filter: blur(5px) grayscale(1);
+      opacity: 0.5; /* کمی شفاف‌تر کردن پنل‌های غیرفعال */
     }
 
     .speaker-image {
@@ -149,6 +155,7 @@
       border-radius: 10px;
       text-align: center;
     }
+    /* برای هشدار کپی/پیست و دولوپر تولز */
     #content.blurred {
       filter: blur(5px);
       transition: filter 0.8s;
@@ -165,11 +172,9 @@
         grid-template-columns: 1fr;
       }
       body {
-        /* تصویر پس‌زمینه موبایل */
-        background-image: url('https://dermastudio.github.io/form/Voice Portfolio/IMG_4226_BG_Mobile 02.webp'); /* <-- مسیر تصویر موبایل خود را اینجا قرار دهید */
+        background-image: url('https://dermastudio.github.io/form/Voice%20Portfolio/IMG_4226_BG_Mobile%2002.webp');
         background-attachment: scroll;
         background-position: center top;
-        /* background-size: cover; به ارث برده می‌شود */
       }
       .speaker-panel {
         padding: 40px 15px 80px;
@@ -197,7 +202,7 @@
 <body>
   <div id="content">
     <div class="panels-container">
-      <div class="speaker-panel" data-audio-src="https://dermastudio.github.io/form/Voice%20Portfolio/audio%20test.mp3">
+      <div class="speaker-panel" data-audio-src="https://dermastudio.github.io/form/Voice Portfolio/Monfared_04.mp3.mp3">
         <img src="https://i1.sndcdn.com/avatars-000572472459-dxez4e-t1080x1080.jpg?raw=true" alt="تصویر گوینده ۱" class="speaker-image">
         <div class="speaker-code">کد: ۷۰۰</div>
         <div class="speaker-details">
@@ -257,34 +262,32 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const contentElement = document.getElementById('content');
+      const allSpeakerPanelsNodeList = document.querySelectorAll('.speaker-panel'); // گرفتن همه پنل‌ها یکبار
+
       function showWarning() {
-        // برای جلوگیری از نمایش چندباره سریع هشدار، می‌توان یک فلگ اضافه کرد
         if (document.body.dataset.warningShown === 'true') return;
         document.body.dataset.warningShown = 'true';
 
-        document.getElementById('content').classList.add('blurred');
+        contentElement.classList.add('blurred');
         const box = document.getElementById('warningBox');
         box.style.display = 'block';
         
         setTimeout(() => {
           box.style.display = 'none';
-          document.getElementById('content').classList.remove('blurred');
-          delete document.body.dataset.warningShown; // ریست کردن فلگ
-        }, 2500); // کمی زمان بیشتر برای خواندن هشدار
+          contentElement.classList.remove('blurred');
+          delete document.body.dataset.warningShown;
+        }, 2500);
       }
 
-      // مسدودسازی Copy/Paste/ContextMenu
       ['copy', 'paste', 'contextmenu'].forEach(evt => {
         document.addEventListener(evt, e => {
           e.preventDefault();
           showWarning();
-        }, true); // استفاده از فاز capturing
+        }, true);
       });
 
-      // مسدودسازی کلیدهای DevTools
       function blockDevTools(e) {
-        // Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
-        // همچنین Cmd+Opt+I/J/C در macOS
         const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
         const modifierKeyPressed = isMac ? e.metaKey && e.altKey : e.ctrlKey && e.shiftKey;
 
@@ -293,26 +296,37 @@
           showWarning();
           return;
         }
-        // F12
         if (e.key === 'F12') {
           e.preventDefault();
           showWarning();
           return;
         }
-        // PrintScreen (بسیار نامعتبر و وابسته به سیستم‌عامل/مرورگر)
-        if (e.code === 'PrintScreen') {
-          e.preventDefault();
-          showWarning();
-          return;
+        if ((e.ctrlKey || e.metaKey) && e.key.toUpperCase() === 'U') {
+            e.preventDefault();
+            showWarning();
+            return;
         }
       }
-      // گوش دادن به رویداد keydown در فاز capturing برای اولویت بالاتر
       document.addEventListener('keydown', blockDevTools, true);
 
-      const speakerPanels = document.querySelectorAll('.speaker-panel');
-      const wavesurferInstances = []; 
+      const wavesurferInstances = [];
 
-      speakerPanels.forEach((panel, index) => {
+      // تابع برای اعمال افکت به پنل‌های غیرفعال
+      function updatePanelEffects(activePanelElement) {
+          allSpeakerPanelsNodeList.forEach(p => {
+              if (activePanelElement && p !== activePanelElement) {
+                  p.classList.add('panel-dimmed');
+              } else {
+                  p.classList.remove('panel-dimmed');
+              }
+          });
+      }
+      
+      // در ابتدا که هیچ صدایی پخش نمی‌شود، افکت را از همه پنل‌ها برمی‌داریم
+      updatePanelEffects(null);
+
+
+      allSpeakerPanelsNodeList.forEach((panel, index) => { // تغییر نام speakerPanels به allSpeakerPanelsNodeList در حلقه forEach
         const waveformContainer = panel.querySelector('.waveform');
         const playPauseBtn = panel.querySelector('.playPauseBtn');
         const audioSrc = panel.dataset.audioSrc;
@@ -339,7 +353,8 @@
           hideScrollbar: true
         });
 
-        wavesurferInstances.push({ instance: wavesurfer, button: playPauseBtn, panel: panel });
+        // ذخیره خود پنل DOM به همراه نمونه WaveSurfer
+        wavesurferInstances.push({ instance: wavesurfer, button: playPauseBtn, panelElement: panel });
 
         wavesurfer.on('ready', () => {
           playPauseBtn.disabled = false;
@@ -353,21 +368,34 @@
         });
 
         wavesurfer.on('play', () => {
-            wavesurferInstances.forEach(item => {
-                if (item.instance !== wavesurfer && item.instance.isPlaying()) {
-                    item.instance.pause();
-                    // متن دکمه در رویداد pause خود wavesurfer مدیریت می‌شود
-                }
-            });
-            playPauseBtn.textContent = '⏸︎';
+          wavesurferInstances.forEach(item => {
+            if (item.instance !== wavesurfer && item.instance.isPlaying()) {
+              item.instance.pause();
+            }
+          });
+          playPauseBtn.textContent = '⏸︎';
+          updatePanelEffects(panel); // `panel` اینجا همان پنل DOM است که صدا از آن پخش می‌شود
         });
         
+        const handleAudioStop = () => {
+            playPauseBtn.textContent = '▶'; // این باید برای دکمه مربوط به همین wavesurfer باشد
+            const currentlyPlayingItem = wavesurferInstances.find(item => item.instance.isPlaying());
+            if (currentlyPlayingItem) {
+                updatePanelEffects(currentlyPlayingItem.panelElement);
+            } else {
+                updatePanelEffects(null); // هیچ صدایی پخش نمی‌شود
+            }
+        };
+
         wavesurfer.on('pause', () => {
-            playPauseBtn.textContent = '▶';
+            playPauseBtn.textContent = '▶'; // اطمینان از اینکه دکمه همین پنل آپدیت می‌شود
+            handleAudioStop();
         });
 
         wavesurfer.on('finish', () => {
-          playPauseBtn.textContent = '▶';
+            playPauseBtn.textContent = '▶'; // اطمینان از اینکه دکمه همین پنل آپدیت می‌شود
+            wavesurfer.seekTo(0);
+            handleAudioStop();
         });
         
         wavesurfer.load(audioSrc);
