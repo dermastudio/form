@@ -42,18 +42,17 @@
       background-color: white;
       border: 3.5px solid #3366CC;
       border-radius: 15px;
-      padding: 50px 20px 100px;
+      padding: 50px 20px 100px; /* پدینگ پایین برای جای دادن پلیر */
       position: relative;
       text-align: center;
       overflow: visible;
       box-sizing: border-box;
-      transition: filter 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Transition for smooth effect changes */
+      transition: filter 0.5s ease-in-out, opacity 0.5s ease-in-out;
     }
 
-    /* کلاس جدید برای تار و سیاه و سفید کردن پنل‌های غیرفعال */
     .speaker-panel.panel-dimmed {
       filter: blur(5px) grayscale(1);
-      opacity: 0.5; /* کمی شفاف‌تر کردن پنل‌های غیرفعال */
+      opacity: 0.5;
     }
 
     .speaker-image {
@@ -83,7 +82,57 @@
     .speaker-details {
       margin-top: 100px;
       text-align: right;
+      padding-bottom: 20px; /* فضای بیشتر برای ژانرها اگر لازم باشد */
     }
+
+    /* استایل برای بخش انتخاب ژانر */
+    .genre-selection {
+        margin-top: 15px;
+        text-align: right;
+    }
+    .genre-selection h4 {
+        margin-bottom: 8px;
+        font-size: 1.1em; /* کمی بزرگتر برای عنوان ژانرها */
+    }
+    .genre-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 10px;
+        justify-content: flex-start;
+    }
+    .genre-btn {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 6px 12px;
+        border-radius: 20px; /* گردتر شدن دکمه‌ها */
+        cursor: pointer;
+        font-family: 'Aktiv Grotesk Medium', sans-serif;
+        font-size: 13px;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .genre-btn:hover {
+        background-color: #e0e0e0;
+        border-color: #bbb;
+    }
+    .genre-btn.active {
+        background-color: #3366CC;
+        color: white;
+        border-color: #3366CC;
+    }
+    .genre-description {
+        font-size: 0.85em; /* کمی کوچکتر برای توضیحات */
+        color: #444; /* کمی تیره‌تر */
+        margin-top: 8px;
+        min-height: 3em; /* برای جلوگیری از پرش صفحه هنگام تغییر توضیحات */
+        line-height: 1.5;
+        padding: 5px;
+        background-color: #f9f9f9; /* پس‌زمینه ملایم برای توضیحات */
+        border-radius: 5px;
+        border-right: 3px solid #3366CC; /* نوار رنگی کنار توضیحات */
+        padding-right: 10px;
+    }
+
 
     .audio-container {
       position: absolute;
@@ -155,7 +204,6 @@
       border-radius: 10px;
       text-align: center;
     }
-    /* برای هشدار کپی/پیست و دولوپر تولز */
     #content.blurred {
       filter: blur(5px);
       transition: filter 0.8s;
@@ -185,6 +233,12 @@
       .speaker-panel {
         padding: 30px 10px 60px;
       }
+      .genre-buttons {
+        justify-content: center; /* دکمه‌های ژانر در موبایل وسط‌چین شوند */
+      }
+      .genre-description {
+        font-size: 0.8em;
+      }
       .audio-container {
         padding: 8px 10px 15px;
       }
@@ -202,13 +256,32 @@
 <body>
   <div id="content">
     <div class="panels-container">
-      <div class="speaker-panel" data-audio-src="https://dermastudio.github.io/form/Voice Portfolio/Monfared_04.mp3">
-        <img src="https://dermastudio.github.io/form/Voice Portfolio/Niloofar_Monfared.jpg?raw=true" alt="تصویر گوینده ۱" class="speaker-image">
-        <div class="speaker-code">کد: ۳۲۱</div>
+      <div class="speaker-panel" data-speaker-code-id="1010"> <img src="https://dermastudio.github.io/form/Voice%20Portfolio/profile_template.jpg?raw=true" alt="تصویر نیلوفر منفرد" class="speaker-image">
+        <div class="speaker-code">کد: ۱۰۱۰</div>
         <div class="speaker-details">
           <p><strong>نام:</strong> نیلوفر منفرد</p>
-          <p><strong>امتیاز:</strong> ☆☆★★★</p>
-          <p><strong>ژانر:</strong> نریشن، پادکست، دوبله</p>
+          <div class="genre-selection">
+            <h4>ژانرها:</h4>
+            <div class="genre-buttons">
+              <button class="genre-btn active"
+                      data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Monfared_1010_01.mp3"
+                      data-genre-name="نریشن داستانی"
+                      data-genre-desc="با صدایی قدرتمند، پرصلابت و الهام‌بخش، مثل تیزرهای سینمایی.">حماسی، پرشور و انگیزشی</button>
+              <button class="genre-btn"
+                      data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Monfared_1010_02.mp3"
+                      data-genre-name="احساسی، گرم و صمیمی"
+                      data-genre-desc="با صدایی نرم، عمیق و پراحساس، مثل روایت یک داستان شخصی.">احساسی، گرم و صمیمی</button>
+              <button class="genre-btn"
+                      data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Monfared_1010_03.mp3"
+                      data-genre-name="نریشن، حرفه‌ای و اطلاع‌رسان"
+                      data-genre-desc="با صدایی واضح، مطمئن و رسمی، مثل مستند یا تبلیغات رادیویی.">نریشن، حرفه‌ای و اطلاع‌رسان</button>
+              <button class="genre-btn"
+                      data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Monfared_1010_04.mp3"
+                      data-genre-name="دوبله‌ای، پرانرژی و نمایشی"
+                      data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن.">دوبله‌ای، پرانرژی و نمایشی</button>
+            </div>
+            <p class="genre-description">توضیحات اولیه ژانر فعال در اینجا نمایش داده می‌شود.</p>
+          </div>
         </div>
         <div class="audio-container">
           <div class="waveform"></div>
@@ -263,16 +336,14 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const contentElement = document.getElementById('content');
-      const allSpeakerPanelsNodeList = document.querySelectorAll('.speaker-panel'); // گرفتن همه پنل‌ها یکبار
+      const allSpeakerPanelsNodeList = document.querySelectorAll('.speaker-panel');
 
       function showWarning() {
         if (document.body.dataset.warningShown === 'true') return;
         document.body.dataset.warningShown = 'true';
-
         contentElement.classList.add('blurred');
         const box = document.getElementById('warningBox');
         box.style.display = 'block';
-        
         setTimeout(() => {
           box.style.display = 'none';
           contentElement.classList.remove('blurred');
@@ -281,128 +352,129 @@
       }
 
       ['copy', 'paste', 'contextmenu'].forEach(evt => {
-        document.addEventListener(evt, e => {
-          e.preventDefault();
-          showWarning();
-        }, true);
+        document.addEventListener(evt, e => { e.preventDefault(); showWarning(); }, true);
       });
 
       function blockDevTools(e) {
         const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
         const modifierKeyPressed = isMac ? e.metaKey && e.altKey : e.ctrlKey && e.shiftKey;
-
-        if (modifierKeyPressed && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
+        if ((modifierKeyPressed && ['I', 'J', 'C'].includes(e.key.toUpperCase())) || e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.key.toUpperCase() === 'U')) {
           e.preventDefault();
           showWarning();
-          return;
-        }
-        if (e.key === 'F12') {
-          e.preventDefault();
-          showWarning();
-          return;
-        }
-        if ((e.ctrlKey || e.metaKey) && e.key.toUpperCase() === 'U') {
-            e.preventDefault();
-            showWarning();
-            return;
         }
       }
       document.addEventListener('keydown', blockDevTools, true);
 
       const wavesurferInstances = [];
 
-      // تابع برای اعمال افکت به پنل‌های غیرفعال
       function updatePanelEffects(activePanelElement) {
-          allSpeakerPanelsNodeList.forEach(p => {
-              if (activePanelElement && p !== activePanelElement) {
-                  p.classList.add('panel-dimmed');
-              } else {
-                  p.classList.remove('panel-dimmed');
-              }
-          });
+        allSpeakerPanelsNodeList.forEach(p => {
+          if (activePanelElement && p !== activePanelElement) p.classList.add('panel-dimmed');
+          else p.classList.remove('panel-dimmed');
+        });
       }
-      
-      // در ابتدا که هیچ صدایی پخش نمی‌شود، افکت را از همه پنل‌ها برمی‌داریم
       updatePanelEffects(null);
 
-
-      allSpeakerPanelsNodeList.forEach((panel, index) => { // تغییر نام speakerPanels به allSpeakerPanelsNodeList در حلقه forEach
+      allSpeakerPanelsNodeList.forEach((panel, index) => {
         const waveformContainer = panel.querySelector('.waveform');
         const playPauseBtn = panel.querySelector('.playPauseBtn');
-        const audioSrc = panel.dataset.audioSrc;
+        let initialAudioSrc = panel.dataset.audioSrc; // برای پنل‌های عادی
 
-        if (!waveformContainer || !playPauseBtn || !audioSrc || audioSrc.startsWith("مسیر/")) {
-          console.error(`پنل شماره ${index + 1} فاقد کانتینر ویوفورم، دکمه پخش یا منبع صوتی معتبر است.`);
-          if(playPauseBtn) {
-            playPauseBtn.textContent = '⚠️';
-            playPauseBtn.disabled = true;
-          }
+        const speakerId = panel.dataset.speakerCodeId; // برای شناسایی پنل خانم منفرد
+        const isMonfaredPanel = speakerId === "1010";
+        const genreDescriptionElement = panel.querySelector('.genre-description');
+
+
+        if (isMonfaredPanel) {
+            const firstActiveGenreButton = panel.querySelector('.genre-btn.active');
+            if (firstActiveGenreButton && firstActiveGenreButton.dataset.genreAudio) {
+                initialAudioSrc = firstActiveGenreButton.dataset.genreAudio;
+                if (genreDescriptionElement) { // نمایش توضیحات ژانر پیش‌فرض
+                    genreDescriptionElement.textContent = firstActiveGenreButton.dataset.genreDesc || "توضیحات این ژانر موجود نیست.";
+                }
+            } else {
+                console.error("پنل خانم منفرد: دکمه ژانر فعال پیش‌فرض یا اطلاعات صوتی آن یافت نشد.");
+                if(playPauseBtn) { playPauseBtn.textContent = '⚠️'; playPauseBtn.disabled = true; }
+                return; 
+            }
+        }
+        
+        // بررسی کلی برای همه پنل‌ها
+        if (!waveformContainer || !playPauseBtn || !initialAudioSrc || initialAudioSrc.startsWith("مسیر/")) {
+          // اگر initialAudioSrc برای پنل عادی معتبر نباشد یا برای منفرد تعیین نشده باشد
+          let panelName = `پنل شماره ${index + 1}`;
+          if(isMonfaredPanel) panelName = "پنل خانم منفرد (ژانر پیش‌فرض)";
+
+          console.error(`${panelName} فاقد کانتینر ویوفورم، دکمه پخش یا منبع صوتی معتبر اولیه است: ${initialAudioSrc}`);
+          if(playPauseBtn) { playPauseBtn.textContent = '⚠️'; playPauseBtn.disabled = true; }
           return;
         }
 
+
         const wavesurfer = WaveSurfer.create({
-          container: waveformContainer,
-          waveColor: '#F5F5F5',
-          progressColor: '#3366CC',
-          backgroundColor: '#111111',
-          cursorColor: '#FFFF00',
-          height: 40,
-          barWidth: 3,
-          barRadius: 3,
-          responsive: true,
-          hideScrollbar: true
+          container: waveformContainer, waveColor: '#F5F5F5', progressColor: '#3366CC',
+          backgroundColor: '#111111', cursorColor: '#FFFF00', height: 40, barWidth: 3,
+          barRadius: 3, responsive: true, hideScrollbar: true
         });
 
-        // ذخیره خود پنل DOM به همراه نمونه WaveSurfer
         wavesurferInstances.push({ instance: wavesurfer, button: playPauseBtn, panelElement: panel });
 
-        wavesurfer.on('ready', () => {
-          playPauseBtn.disabled = false;
-          playPauseBtn.textContent = '▶';
-        });
-
+        wavesurfer.on('ready', () => { playPauseBtn.disabled = false; playPauseBtn.textContent = '▶'; });
         wavesurfer.on('error', e => {
-          console.error(`خطا در بارگذاری فایل صوتی برای پنل ${index + 1}:`, e);
-          playPauseBtn.textContent = '⚠️';
-          playPauseBtn.disabled = true;
+          console.error(`خطا در بارگذاری فایل صوتی برای ${isMonfaredPanel ? 'خانم منفرد (ژانر فعلی)' : `پنل ${index + 1}`}:`, e, initialAudioSrc);
+          playPauseBtn.textContent = '⚠️'; playPauseBtn.disabled = true;
         });
 
         wavesurfer.on('play', () => {
           wavesurferInstances.forEach(item => {
-            if (item.instance !== wavesurfer && item.instance.isPlaying()) {
-              item.instance.pause();
-            }
+            if (item.instance !== wavesurfer && item.instance.isPlaying()) item.instance.pause();
           });
           playPauseBtn.textContent = '⏸︎';
-          updatePanelEffects(panel); // `panel` اینجا همان پنل DOM است که صدا از آن پخش می‌شود
+          updatePanelEffects(panel);
         });
-        
+
         const handleAudioStop = () => {
-            playPauseBtn.textContent = '▶'; // این باید برای دکمه مربوط به همین wavesurfer باشد
-            const currentlyPlayingItem = wavesurferInstances.find(item => item.instance.isPlaying());
-            if (currentlyPlayingItem) {
-                updatePanelEffects(currentlyPlayingItem.panelElement);
-            } else {
-                updatePanelEffects(null); // هیچ صدایی پخش نمی‌شود
-            }
+          const currentlyPlayingItem = wavesurferInstances.find(item => item.instance.isPlaying());
+          updatePanelEffects(currentlyPlayingItem ? currentlyPlayingItem.panelElement : null);
         };
 
-        wavesurfer.on('pause', () => {
-            playPauseBtn.textContent = '▶'; // اطمینان از اینکه دکمه همین پنل آپدیت می‌شود
-            handleAudioStop();
-        });
-
-        wavesurfer.on('finish', () => {
-            playPauseBtn.textContent = '▶'; // اطمینان از اینکه دکمه همین پنل آپدیت می‌شود
-            wavesurfer.seekTo(0);
-            handleAudioStop();
-        });
+        wavesurfer.on('pause', () => { playPauseBtn.textContent = '▶'; handleAudioStop(); });
+        wavesurfer.on('finish', () => { playPauseBtn.textContent = '▶'; wavesurfer.seekTo(0); handleAudioStop(); });
         
-        wavesurfer.load(audioSrc);
+        wavesurfer.load(initialAudioSrc);
 
-        playPauseBtn.addEventListener('click', () => {
-          wavesurfer.playPause();
-        });
+        playPauseBtn.addEventListener('click', () => { wavesurfer.playPause(); });
+
+        if (isMonfaredPanel) {
+            const genreButtons = panel.querySelectorAll('.genre-btn');
+            genreButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    if (button.classList.contains('active')) return;
+
+                    const newAudioUrl = button.dataset.genreAudio;
+                    const genreDesc = button.dataset.genreDesc || "توضیحات این ژانر بارگذاری نشده است.";
+                    
+                    if (!newAudioUrl || newAudioUrl.startsWith("مسیر/")) {
+                        console.error(`منبع صوتی نامعتبر برای ژانر '${button.dataset.genreName || button.textContent}' در پنل خانم منفرد.`);
+                        if(genreDescriptionElement) genreDescriptionElement.textContent = "خطا: فایل صوتی این ژانر یافت نشد.";
+                        // اینجا می‌توانید دکمه پخش را نیز غیرفعال یا روی حالت خطا تنظیم کنید
+                        playPauseBtn.textContent = '⚠️';
+                        playPauseBtn.disabled = true;
+                        if (wavesurfer.isPlaying()) wavesurfer.stop(); // توقف پخش فعلی اگر در حال پخش بود
+                        return;
+                    }
+
+                    if(genreDescriptionElement) genreDescriptionElement.textContent = genreDesc;
+                    genreButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    if (wavesurfer.isPlaying()) wavesurfer.pause();
+                    playPauseBtn.textContent = '⏳';
+                    playPauseBtn.disabled = true;
+                    wavesurfer.load(newAudioUrl);
+                });
+            });
+        }
       });
     });
   </script>
