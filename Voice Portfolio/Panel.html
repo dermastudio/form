@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="fa">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>بانک صدای گویندگان استودیو دِرما</title>
   <link rel="icon"
-        href="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/eb0ba0e1-a47c-4687-8e10-9daa16238288_carw_1x1x32.png?h=12e288972aa388e662af4aa74cab6528"
-        type="image/png">
+    href="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/eb0ba0e1-a47c-4687-8e10-9daa16238288_carw_1x1x32.png?h=12e288972aa388e662af4aa74cab6528"
+    type="image/png">
   <style>
     @import url('https://fonts.cdnfonts.com/css/aktiv-grotesk');
 
@@ -16,6 +17,7 @@
 
     body {
       font-family: 'Aktiv Grotesk Medium', sans-serif;
+      /* اعمال فونت به کل صفحه */
       direction: rtl;
       background-image: url('https://dermastudio.github.io/form/Voice%20Portfolio/IMG_4226_BG_desktop.webp');
       background-repeat: no-repeat;
@@ -42,7 +44,8 @@
       background-color: white;
       border: 3.5px solid #3366CC;
       border-radius: 15px;
-      padding: 50px 20px 100px; /* پدینگ پایین برای جای دادن پلیر */
+      padding: 50px 20px 100px;
+      /* پدینگ پایین برای جای دادن پلیر */
       position: relative;
       text-align: center;
       overflow: visible;
@@ -65,6 +68,15 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 0;
+      /* استایل‌های جلوگیری از کپی و درگ کردن عکس */
+      -webkit-user-drag: none;
+      -moz-user-drag: none;
+      -ms-user-drag: none;
+      user-drag: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     .speaker-code {
@@ -82,55 +94,83 @@
     .speaker-details {
       margin-top: 100px;
       text-align: right;
-      padding-bottom: 20px; /* فضای بیشتر برای ژانرها اگر لازم باشد */
+      padding-bottom: 20px;
+      /* فضای بیشتر برای ژانرها اگر لازم باشد */
+    }
+
+    /* برای بزرگ‌تر شدن نام گوینده */
+    .speaker-name {
+      font-size: 1.4em;
+      /* اندازه دلخواه برای نام گوینده */
+      font-weight: bold;
+      margin-bottom: 10px;
+      /* اضافه کردن کمی فاصله در پایین نام */
     }
 
     /* استایل برای بخش انتخاب ژانر */
     .genre-selection {
-        margin-top: 15px;
-        text-align: right;
+      margin-top: 15px;
+      text-align: right;
     }
+
     .genre-selection h4 {
-        margin-bottom: 8px;
-        font-size: 1.1em; /* کمی بزرگتر برای عنوان ژانرها */
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      /* کمی بزرگتر برای عنوان ژانرها */
     }
+
     .genre-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 10px;
-        justify-content: flex-start;
+      display: flex;
+      flex-direction: column;
+      /* تغییر به حالت ستونی */
+      gap: 8px;
+      margin-bottom: 10px;
+      justify-content: flex-start;
     }
+
     .genre-btn {
-        background-color: #f0f0f0;
-        border: 1px solid #ccc;
-        padding: 6px 12px;
-        border-radius: 20px; /* گردتر شدن دکمه‌ها */
-        cursor: pointer;
-        font-family: 'Aktiv Grotesk Medium', sans-serif;
-        font-size: 13px;
-        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 6px 12px;
+      border-radius: 20px;
+      /* گردتر شدن دکمه‌ها */
+      cursor: pointer;
+      font-family: 'Aktiv Grotesk Medium', sans-serif;
+      font-size: 13px;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+      width: 100%;
+      /* اضافه کردن این خط برای عرض کامل */
+      box-sizing: border-box;
+      /* برای در نظر گرفتن پدینگ و بردر در عرض */
     }
+
     .genre-btn:hover {
-        background-color: #e0e0e0;
-        border-color: #bbb;
+      background-color: #e0e0e0;
+      border-color: #bbb;
     }
+
     .genre-btn.active {
-        background-color: #3366CC;
-        color: white;
-        border-color: #3366CC;
+      background-color: #3366CC;
+      color: white;
+      border-color: #3366CC;
     }
+
     .genre-description {
-        font-size: 0.85em; /* کمی کوچکتر برای توضیحات */
-        color: #444; /* کمی تیره‌تر */
-        margin-top: 8px;
-        min-height: 3em; /* برای جلوگیری از پرش صفحه هنگام تغییر توضیحات */
-        line-height: 1.5;
-        padding: 5px;
-        background-color: #f9f9f9; /* پس‌زمینه ملایم برای توضیحات */
-        border-radius: 5px;
-        border-right: 3px solid #3366CC; /* نوار رنگی کنار توضیحات */
-        padding-right: 10px;
+      font-size: 0.85em;
+      /* کمی کوچکتر برای توضیحات */
+      color: #444;
+      /* کمی تیره‌تر */
+      margin-top: 8px;
+      min-height: 3em;
+      /* برای جلوگیری از پرش صفحه هنگام تغییر توضیحات */
+      line-height: 1.5;
+      padding: 5px;
+      background-color: #f9f9f9;
+      /* پس‌زمینه ملایم برای توضیحات */
+      border-radius: 5px;
+      border-right: 3px solid #3366CC;
+      /* نوار رنگی کنار توضیحات */
+      padding-right: 10px;
     }
 
 
@@ -167,10 +207,12 @@
       cursor: pointer;
       padding: 4px;
     }
+
     .controls button:disabled {
       opacity: 0.1;
       cursor: default;
     }
+
     .controls button:hover:not(:disabled) {
       opacity: 0.5;
     }
@@ -179,12 +221,14 @@
       text-align: center;
       margin: 40px auto 0;
     }
+
     .logo-container img {
       max-width: 100px;
       height: auto;
       transition: opacity 0.5s;
       cursor: pointer;
     }
+
     .logo-container img:hover {
       opacity: 0.7;
     }
@@ -194,7 +238,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(204,51,51,0.8);
+      background: rgba(204, 51, 51, 0.8);
       color: #fff;
       padding: 20px;
       border: 2px solid #cc3333;
@@ -204,6 +248,7 @@
       border-radius: 10px;
       text-align: center;
     }
+
     #content.blurred {
       filter: blur(5px);
       transition: filter 0.8s;
@@ -219,11 +264,13 @@
       .panels-container {
         grid-template-columns: 1fr;
       }
+
       body {
         background-image: url('https://dermastudio.github.io/form/Voice%20Portfolio/IMG_4226_BG_Mobile%2002.webp');
         background-attachment: scroll;
         background-position: center top;
       }
+
       .speaker-panel {
         padding: 40px 15px 80px;
       }
@@ -233,19 +280,25 @@
       .speaker-panel {
         padding: 30px 10px 60px;
       }
+
       .genre-buttons {
-        justify-content: center; /* دکمه‌های ژانر در موبایل وسط‌چین شوند */
+        justify-content: flex-start;
+        /* در موبایل هم سمت راست چین باشد */
       }
+
       .genre-description {
         font-size: 0.8em;
       }
+
       .audio-container {
         padding: 8px 10px 15px;
       }
+
       .controls {
         left: 10px;
         bottom: 10px;
       }
+
       .logo-container img {
         max-width: 80px;
       }
@@ -253,32 +306,38 @@
   </style>
   <script src="https://unpkg.com/wavesurfer.js"></script>
 </head>
+
 <body>
   <div id="content">
     <div class="panels-container">
-      <div class="speaker-panel" data-speaker-code-id="1010"> <img src="https://dermastudio.github.io/form/Voice%20Portfolio/profile_template.jpg?raw=true" alt="تصویر نیلوفر منفرد" class="speaker-image">
+      <div class="speaker-panel" data-speaker-code-id="1010">
+        <img src="https://dermastudio.github.io/form/Voice%20Portfolio/profile_template.jpg?raw=true"
+          alt="تصویر نیلوفر منفرد" class="speaker-image" draggable="false">
         <div class="speaker-code">کد: ۱۰۱۰</div>
         <div class="speaker-details">
-          <p><strong>نام گوینده:</strong> نیلوفر ساعدی منفرد</p>
+          <p class="speaker-name"><strong>نام گوینده:</strong> نیلوفر ساعدی منفرد</p>
           <div class="genre-selection">
             <h4>ژانرها:</h4>
             <div class="genre-buttons">
               <button class="genre-btn active"
-                      data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Monfared_1010_01.mp3"
-                      data-genre-name="نریشن داستانی"
-                      data-genre-desc="با صدایی قدرتمند، پرصلابت و الهام‌بخش، مثل تیزرهای سینمایی.">حماسی، پرشور و انگیزشی</button>
+                data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Monfared_1010_01.mp3"
+                data-genre-name="نریشن داستانی"
+                data-genre-desc="با صدایی قدرتمند، پرصلابت و الهام‌بخش، مثل تیزرهای سینمایی.">حماسی، پرشور و
+                انگیزشی</button>
               <button class="genre-btn"
-                      data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Monfared_1010_02.mp3"
-                      data-genre-name="احساسی، گرم و صمیمی"
-                      data-genre-desc="با صدایی نرم، عمیق و پراحساس، مثل روایت یک داستان شخصی.">احساسی، گرم و صمیمی</button>
+                data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Monfared_1010_02.mp3"
+                data-genre-name="احساسی، گرم و صمیمی"
+                data-genre-desc="با صدایی نرم، عمیق و پراحساس، مثل روایت یک داستان شخصی.">احساسی، گرم و صمیمی</button>
               <button class="genre-btn"
-                      data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Monfared_1010_03.mp3"
-                      data-genre-name="نریشن، حرفه‌ای و اطلاع‌رسان"
-                      data-genre-desc="با صدایی واضح، مطمئن و رسمی، مثل مستند یا تبلیغات رادیویی.">نریشن، حرفه‌ای و اطلاع‌رسان</button>
+                data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Monfared_1010_03.mp3"
+                data-genre-name="نریشن، حرفه‌ای و اطلاع‌رسان"
+                data-genre-desc="با صدایی واضح، مطمئن و رسمی، مثل مستند یا تبلیغات رادیویی.">نریشن، حرفه‌ای و
+                اطلاع‌رسان</button>
               <button class="genre-btn"
-                      data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Monfared_1010_04.mp3"
-                      data-genre-name="دوبله‌ای، پرانرژی و نمایشی"
-                      data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن.">دوبله‌ای، پرانرژی و نمایشی</button>
+                data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Monfared_1010_04.mp3"
+                data-genre-name="دوبله‌ای، پرانرژی و نمایشی"
+                data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن.">دوبله‌ای، پرانرژی و
+                نمایشی</button>
             </div>
             <p class="genre-description">توضیحات اولیه ژانر فعال در اینجا نمایش داده می‌شود.</p>
           </div>
@@ -291,13 +350,23 @@
         </div>
       </div>
 
-      <div class="speaker-panel" data-audio-src="مسیر/فایل/صوتی/گوینده۲.mp3">
-        <img src="مسیر/تصویر/گوینده۲.jpg" alt="تصویر گوینده ۲" class="speaker-image">
+      <div class="speaker-panel" data-speaker-code-id="701">
+        <img src="YOUR_IMAGE_LINK_HERE" alt="تصویر گوینده دوم" class="speaker-image" draggable="false">
         <div class="speaker-code">کد: ۷۰۱</div>
         <div class="speaker-details">
-          <p><strong>نام:</strong> گوینده دوم</p>
-          <p><strong>امتیاز:</strong> ۴.۸/۵</p>
-          <p><strong>قیمت:</strong> ۲٬۵۰۰٬۰۰۰ تومان</p>
+          <p class="speaker-name"><strong>نام گوینده:</strong> گوینده دوم</p>
+          <div class="genre-selection">
+            <h4>ژانرها:</h4>
+            <div class="genre-buttons">
+              <button class="genre-btn active" data-genre-audio="YOUR_AUDIO_LINK_HERE"
+                data-genre-name="ژانر اول گوینده دوم" data-genre-desc="توضیحات ژانر اول گوینده دوم">ژانر اول</button>
+              <button class="genre-btn" data-genre-audio="YOUR_AUDIO_LINK_HERE" data-genre-name="ژانر دوم گوینده دوم"
+                data-genre-desc="توضیحات ژانر دوم گوینده دوم">ژانر دوم</button>
+              <button class="genre-btn" data-genre-audio="YOUR_AUDIO_LINK_HERE" data-genre-name="ژانر سوم گوینده دوم"
+                data-genre-desc="توضیحات ژانر سوم گوینده دوم">ژانر سوم</button>
+            </div>
+            <p class="genre-description">توضیحات اولیه ژانر فعال در اینجا نمایش داده می‌شود.</p>
+          </div>
         </div>
         <div class="audio-container">
           <div class="waveform"></div>
@@ -307,13 +376,23 @@
         </div>
       </div>
 
-      <div class="speaker-panel" data-audio-src="مسیر/فایل/صوتی/گوینده۳.mp3">
-        <img src="مسیر/تصویر/گوینده۳.jpg" alt="تصویر گوینده ۳" class="speaker-image">
+      <div class="speaker-panel" data-speaker-code-id="702">
+        <img src="YOUR_IMAGE_LINK_HERE" alt="تصویر گوینده سوم" class="speaker-image" draggable="false">
         <div class="speaker-code">کد: ۷۰۲</div>
         <div class="speaker-details">
-          <p><strong>نام:</strong> گوینده سوم</p>
-          <p><strong>امتیاز:</strong> ۴.۷/۵</p>
-          <p><strong>قیمت:</strong> ۲٬۴۰۰٬۰۰۰ تومان</p>
+          <p class="speaker-name"><strong>نام گوینده:</strong> گوینده سوم</p>
+          <div class="genre-selection">
+            <h4>ژانرها:</h4>
+            <div class="genre-buttons">
+              <button class="genre-btn active" data-genre-audio="YOUR_AUDIO_LINK_HERE"
+                data-genre-name="ژانر اول گوینده سوم" data-genre-desc="توضیحات ژانر اول گوینده سوم">ژانر اول</button>
+              <button class="genre-btn" data-genre-audio="YOUR_AUDIO_LINK_HERE" data-genre-name="ژانر دوم گوینده سوم"
+                data-genre-desc="توضیحات ژانر دوم گوینده سوم">ژانر دوم</button>
+              <button class="genre-btn" data-genre-audio="YOUR_AUDIO_LINK_HERE" data-genre-name="ژانر سوم گوینده سوم"
+                data-genre-desc="توضیحات ژانر سوم گوینده سوم">ژانر سوم</button>
+            </div>
+            <p class="genre-description">توضیحات اولیه ژانر فعال در اینجا نمایش داده می‌شود.</p>
+          </div>
         </div>
         <div class="audio-container">
           <div class="waveform"></div>
@@ -326,7 +405,9 @@
 
     <div class="logo-container">
       <a href="https://dermastudiofficial.com/">
-        <img src="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/a56f9bb2-15ac-41ac-ba87-d44da4f2aec0_rwc_0x9x1615x1167x4096.png?h=d24ef3fc0f28136aa0938910906e382e" alt="لوگو" title="استودیو دِرما">
+        <img
+          src="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/a56f9bb2-15ac-41ac-ba87-d44da4f2aec0_rwc_0x9x1615x1167x4096.png?h=d24ef3fc0f28136aa0938910906e382e"
+          alt="لوگو" title="استودیو دِرما">
       </a>
     </div>
   </div>
@@ -355,15 +436,47 @@
         document.addEventListener(evt, e => { e.preventDefault(); showWarning(); }, true);
       });
 
-      function blockDevTools(e) {
+      // کد اصلاح شده برای مسدود کردن کلیدهای میانبر
+      document.addEventListener('keydown', e => {
+        const keyUpper = e.key.toUpperCase();
+        // const codeUpper = e.code ? e.code.toUpperCase() : ''; // برای بررسی دقیق‌تر کلید فیزیکی (اختیاری)
         const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-        const modifierKeyPressed = isMac ? e.metaKey && e.altKey : e.ctrlKey && e.shiftKey;
-        if ((modifierKeyPressed && ['I', 'J', 'C'].includes(e.key.toUpperCase())) || e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.key.toUpperCase() === 'U')) {
+        let prevent = false;
+
+        // F12
+        if (e.key === 'F12' || e.keyCode === 123) {
+          prevent = true;
+        }
+        // Developer Tools:
+        // Windows/Linux: Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
+        // Mac: Cmd+Option+I / Cmd+Option+J / Cmd+Option+C
+        else if (!isMac && e.ctrlKey && e.shiftKey && (keyUpper === 'I' || keyUpper === 'J' || keyUpper === 'C' || e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+          prevent = true;
+        }
+        else if (isMac && e.metaKey && e.altKey && !e.shiftKey && (keyUpper === 'I' || keyUpper === 'J' || keyUpper === 'C' || e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+          prevent = true;
+        }
+        // View Source:
+        // Windows/Linux: Ctrl+U
+        // Mac: Cmd+U
+        // (اطمینان از اینکه کلیدهای Shift یا Alt همزمان فشرده نشده‌اند)
+        else if (!isMac && e.ctrlKey && !e.shiftKey && !e.altKey && (keyUpper === 'U' || e.keyCode === 85)) {
+          prevent = true;
+        }
+        else if (isMac && e.metaKey && !e.shiftKey && !e.altKey && (keyUpper === 'U' || e.keyCode === 85)) {
+          prevent = true;
+        }
+        // PrintScreen and related keys
+        else if (e.key === 'PrintScreen' || e.keyCode === 44 /* PrintScreen */ || e.keyCode === 93 /* Context Menu Key */ || (e.key.toLowerCase() === 'snapshot' && e.altKey)) {
+          prevent = true;
+        }
+
+        if (prevent) {
           e.preventDefault();
           showWarning();
         }
-      }
-      document.addEventListener('keydown', blockDevTools, true);
+      }, true); // استفاده از فاز capture
+
 
       const wavesurferInstances = [];
 
@@ -378,38 +491,34 @@
       allSpeakerPanelsNodeList.forEach((panel, index) => {
         const waveformContainer = panel.querySelector('.waveform');
         const playPauseBtn = panel.querySelector('.playPauseBtn');
-        let initialAudioSrc = panel.dataset.audioSrc; // برای پنل‌های عادی
+        let initialAudioSrc;
 
-        const speakerId = panel.dataset.speakerCodeId; // برای شناسایی پنل خانم منفرد
-        const isMonfaredPanel = speakerId === "1010";
+        const speakerId = panel.dataset.speakerCodeId;
         const genreDescriptionElement = panel.querySelector('.genre-description');
 
-
-        if (isMonfaredPanel) {
-            const firstActiveGenreButton = panel.querySelector('.genre-btn.active');
-            if (firstActiveGenreButton && firstActiveGenreButton.dataset.genreAudio) {
-                initialAudioSrc = firstActiveGenreButton.dataset.genreAudio;
-                if (genreDescriptionElement) { // نمایش توضیحات ژانر پیش‌فرض
-                    genreDescriptionElement.textContent = firstActiveGenreButton.dataset.genreDesc || "توضیحات این ژانر موجود نیست.";
-                }
-            } else {
-                console.error("پنل خانم منفرد: دکمه ژانر فعال پیش‌فرض یا اطلاعات صوتی آن یافت نشد.");
-                if(playPauseBtn) { playPauseBtn.textContent = '⚠️'; playPauseBtn.disabled = true; }
-                return; 
+        const genreButtons = panel.querySelectorAll('.genre-btn');
+        if (genreButtons.length > 0) {
+          const firstActiveGenreButton = panel.querySelector('.genre-btn.active');
+          if (firstActiveGenreButton && firstActiveGenreButton.dataset.genreAudio) {
+            initialAudioSrc = firstActiveGenreButton.dataset.genreAudio;
+            if (genreDescriptionElement) {
+              genreDescriptionElement.textContent = firstActiveGenreButton.dataset.genreDesc || "توضیحات این ژانر موجود نیست.";
             }
+          } else {
+            console.error(`Panel with ID ${speakerId}: Default active genre button or its audio data not found.`);
+            if (playPauseBtn) { playPauseBtn.textContent = '⚠️'; playPauseBtn.disabled = true; }
+            return;
+          }
+        } else {
+          initialAudioSrc = panel.dataset.audioSrc;
         }
-        
-        // بررسی کلی برای همه پنل‌ها
-        if (!waveformContainer || !playPauseBtn || !initialAudioSrc || initialAudioSrc.startsWith("مسیر/")) {
-          // اگر initialAudioSrc برای پنل عادی معتبر نباشد یا برای منفرد تعیین نشده باشد
-          let panelName = `پنل شماره ${index + 1}`;
-          if(isMonfaredPanel) panelName = "پنل خانم منفرد (ژانر پیش‌فرض)";
 
-          console.error(`${panelName} فاقد کانتینر ویوفورم، دکمه پخش یا منبع صوتی معتبر اولیه است: ${initialAudioSrc}`);
-          if(playPauseBtn) { playPauseBtn.textContent = '⚠️'; playPauseBtn.disabled = true; }
+        if (!waveformContainer || !playPauseBtn || !initialAudioSrc || initialAudioSrc.startsWith("YOUR_AUDIO_LINK_HERE")) {
+          let panelName = `Panel with ID ${speakerId || 'N/A'} (index ${index + 1})`;
+          console.error(`${panelName} is missing waveform container, play button, or a valid initial audio source: ${initialAudioSrc}`);
+          if (playPauseBtn) { playPauseBtn.textContent = '⚠️'; playPauseBtn.disabled = true; }
           return;
         }
-
 
         const wavesurfer = WaveSurfer.create({
           container: waveformContainer, waveColor: '#F5F5F5', progressColor: '#3366CC',
@@ -421,7 +530,7 @@
 
         wavesurfer.on('ready', () => { playPauseBtn.disabled = false; playPauseBtn.textContent = '▶'; });
         wavesurfer.on('error', e => {
-          console.error(`خطا در بارگذاری فایل صوتی برای ${isMonfaredPanel ? 'خانم منفرد (ژانر فعلی)' : `پنل ${index + 1}`}:`, e, initialAudioSrc);
+          console.error(`Error loading audio for panel ID ${speakerId || 'N/A'}:`, e, initialAudioSrc);
           playPauseBtn.textContent = '⚠️'; playPauseBtn.disabled = true;
         });
 
@@ -440,43 +549,42 @@
 
         wavesurfer.on('pause', () => { playPauseBtn.textContent = '▶'; handleAudioStop(); });
         wavesurfer.on('finish', () => { playPauseBtn.textContent = '▶'; wavesurfer.seekTo(0); handleAudioStop(); });
-        
+
         wavesurfer.load(initialAudioSrc);
 
         playPauseBtn.addEventListener('click', () => { wavesurfer.playPause(); });
 
-        if (isMonfaredPanel) {
-            const genreButtons = panel.querySelectorAll('.genre-btn');
-            genreButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    if (button.classList.contains('active')) return;
+        if (genreButtons.length > 0) {
+          genreButtons.forEach(button => {
+            button.addEventListener('click', () => {
+              if (button.classList.contains('active')) return;
 
-                    const newAudioUrl = button.dataset.genreAudio;
-                    const genreDesc = button.dataset.genreDesc || "توضیحات این ژانر بارگذاری نشده است.";
-                    
-                    if (!newAudioUrl || newAudioUrl.startsWith("مسیر/")) {
-                        console.error(`منبع صوتی نامعتبر برای ژانر '${button.dataset.genreName || button.textContent}' در پنل خانم منفرد.`);
-                        if(genreDescriptionElement) genreDescriptionElement.textContent = "خطا: فایل صوتی این ژانر یافت نشد.";
-                        // اینجا می‌توانید دکمه پخش را نیز غیرفعال یا روی حالت خطا تنظیم کنید
-                        playPauseBtn.textContent = '⚠️';
-                        playPauseBtn.disabled = true;
-                        if (wavesurfer.isPlaying()) wavesurfer.stop(); // توقف پخش فعلی اگر در حال پخش بود
-                        return;
-                    }
+              const newAudioUrl = button.dataset.genreAudio;
+              const genreDesc = button.dataset.genreDesc || "توضیحات این ژانر بارگذاری نشده است.";
 
-                    if(genreDescriptionElement) genreDescriptionElement.textContent = genreDesc;
-                    genreButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
+              if (!newAudioUrl || newAudioUrl.startsWith("YOUR_AUDIO_LINK_HERE")) {
+                console.error(`Invalid audio source for genre '${button.dataset.genreName || button.textContent}' in panel ID ${speakerId}.`);
+                if (genreDescriptionElement) genreDescriptionElement.textContent = "خطا: فایل صوتی این ژانر یافت نشد.";
+                playPauseBtn.textContent = '⚠️';
+                playPauseBtn.disabled = true;
+                if (wavesurfer.isPlaying()) wavesurfer.stop();
+                return;
+              }
 
-                    if (wavesurfer.isPlaying()) wavesurfer.pause();
-                    playPauseBtn.textContent = '⏳';
-                    playPauseBtn.disabled = true;
-                    wavesurfer.load(newAudioUrl);
-                });
+              if (genreDescriptionElement) genreDescriptionElement.textContent = genreDesc;
+              genreButtons.forEach(btn => btn.classList.remove('active'));
+              button.classList.add('active');
+
+              if (wavesurfer.isPlaying()) wavesurfer.pause();
+              playPauseBtn.textContent = '⏳';
+              playPauseBtn.disabled = true;
+              wavesurfer.load(newAudioUrl);
             });
+          });
         }
       });
     });
   </script>
 </body>
+
 </html>
