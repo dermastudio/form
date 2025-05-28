@@ -17,7 +17,6 @@
 
     body {
       font-family: 'Aktiv Grotesk Medium', sans-serif;
-      /* اعمال فونت به کل صفحه */
       direction: rtl;
       background-image: url('https://dermastudio.github.io/form/Voice%20Portfolio/IMG_4226_BG_desktop.webp');
       background-repeat: no-repeat;
@@ -44,11 +43,12 @@
       background-color: white;
       border: 3.5px solid #3366CC;
       border-radius: 15px;
-      padding: 50px 20px 100px;
-      /* پدینگ پایین برای جای دادن پلیر */
+      padding: 40px 20px 100px;
+      /* Adjusted padding-top from 50px */
       position: relative;
       text-align: center;
       overflow: visible;
+      /* Important for overlapping elements like speaker-code */
       box-sizing: border-box;
       transition: filter 0.5s ease-in-out, opacity 0.5s ease-in-out;
     }
@@ -59,6 +59,9 @@
     }
 
     .speaker-image {
+      display: none;
+      /* Hides the profile image */
+      /*
       width: 200px;
       height: 200px;
       object-fit: cover;
@@ -68,7 +71,6 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 0;
-      /* استایل‌های جلوگیری از کپی و درگ کردن عکس */
       -webkit-user-drag: none;
       -moz-user-drag: none;
       -ms-user-drag: none;
@@ -77,37 +79,37 @@
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+      */
     }
 
     .speaker-code {
       background-color: #3366CC;
       color: white;
-      padding: 8px 40px;
+      padding: 12px 48px;
+      /* Increased padding for a larger box */
       border-radius: 10px;
       position: absolute;
-      top: 75px;
+      top: -22px;
+      /* Moved up to sit on/over the panel's top border */
       left: 50%;
       transform: translateX(-50%);
       z-index: 1;
+      /* Ensures it's above the panel border */
     }
 
     .speaker-details {
-      margin-top: 100px;
+      margin-top: 0;
+      /* Reduced from 100px, content now starts after panel's top padding */
       text-align: right;
       padding-bottom: 20px;
-      /* فضای بیشتر برای ژانرها اگر لازم باشد */
     }
 
-    /* برای بزرگ‌تر شدن نام گوینده */
     .speaker-name {
       font-size: 1.4em;
-      /* اندازه دلخواه برای نام گوینده */
       font-weight: bold;
       margin-bottom: 10px;
-      /* اضافه کردن کمی فاصله در پایین نام */
     }
 
-    /* استایل برای بخش انتخاب ژانر */
     .genre-selection {
       margin-top: 15px;
       text-align: right;
@@ -116,13 +118,11 @@
     .genre-selection h4 {
       margin-bottom: 8px;
       font-size: 1.1em;
-      /* کمی بزرگتر برای عنوان ژانرها */
     }
 
     .genre-buttons {
       display: flex;
       flex-direction: column;
-      /* تغییر به حالت ستونی */
       gap: 8px;
       margin-bottom: 10px;
       justify-content: flex-start;
@@ -133,15 +133,12 @@
       border: 1px solid #ccc;
       padding: 6px 12px;
       border-radius: 20px;
-      /* گردتر شدن دکمه‌ها */
       cursor: pointer;
       font-family: 'Aktiv Grotesk Medium', sans-serif;
       font-size: 13px;
       transition: background-color 0.3s, color 0.3s, border-color 0.3s;
       width: 100%;
-      /* اضافه کردن این خط برای عرض کامل */
       box-sizing: border-box;
-      /* برای در نظر گرفتن پدینگ و بردر در عرض */
     }
 
     .genre-btn:hover {
@@ -157,19 +154,14 @@
 
     .genre-description {
       font-size: 0.85em;
-      /* کمی کوچکتر برای توضیحات */
       color: #444;
-      /* کمی تیره‌تر */
       margin-top: 8px;
       min-height: 3em;
-      /* برای جلوگیری از پرش صفحه هنگام تغییر توضیحات */
       line-height: 1.5;
       padding: 5px;
       background-color: #f9f9f9;
-      /* پس‌زمینه ملایم برای توضیحات */
       border-radius: 5px;
       border-right: 3px solid #3366CC;
-      /* نوار رنگی کنار توضیحات */
       padding-right: 10px;
     }
 
@@ -273,17 +265,18 @@
 
       .speaker-panel {
         padding: 40px 15px 80px;
+        /* Ensure padding-top is consistent or adjusted for mobile if needed */
       }
     }
 
     @media (max-width: 480px) {
       .speaker-panel {
         padding: 30px 10px 60px;
+        /* Ensure padding-top is consistent or adjusted for mobile if needed */
       }
 
       .genre-buttons {
         justify-content: flex-start;
-        /* در موبایل هم سمت راست چین باشد */
       }
 
       .genre-description {
@@ -311,9 +304,7 @@
   <div id="content">
     <div class="panels-container">
       <div class="speaker-panel" data-speaker-code-id="1010">
-        <img src="https://dermastudio.github.io/form/Voice%20Portfolio/profile_template.jpg?raw=true"
-          alt="تصویر نیلوفر منفرد" class="speaker-image" draggable="false">
-        <div class="speaker-code">کد: ۱۰۱۰</div>
+        <div class="speaker-code">کد: 1010</div>
         <div class="speaker-details">
           <p class="speaker-name"><strong>نام گوینده:</strong> نیلوفر ساعدی منفرد</p>
           <div class="genre-selection">
@@ -351,22 +342,29 @@
       </div>
 
       <div class="speaker-panel" data-speaker-code-id="1111">
-        <img src="https://dermastudio.github.io/form/Voice%20Portfolio/profile_template.jpg?raw=true" alt="تصویر رضا غلامی" class="speaker-image" draggable="false">
-        <div class="speaker-code">کد: ۱۱۱۱</div>
+        <div class="speaker-code">کد: 1111</div>
         <div class="speaker-details">
           <p class="speaker-name"><strong>نام گوینده:</strong> رضا غلامی</p>
           <div class="genre-selection">
             <h4>ژانرها:</h4>
             <div class="genre-buttons">
-              <button class="genre-btn active" data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_01.mp3"
-                data-genre-name="ژانر اول گوینده دوم" data-genre-desc="با صدایی قدرتمند، پرصلابت و الهام‌بخش، مثل تیزرهای سینمایی.">حماسی، پرشور و
+              <button class="genre-btn active"
+                data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_01.mp3"
+                data-genre-name="ژانر اول گوینده دوم"
+                data-genre-desc="با صدایی قدرتمند، پرصلابت و الهام‌بخش، مثل تیزرهای سینمایی.">حماسی، پرشور و
                 انگیزشی</button>
-              <button class="genre-btn" data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_02.mp3" data-genre-name="ژانر دوم گوینده دوم"
+              <button class="genre-btn"
+                data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_02.mp3"
+                data-genre-name="ژانر دوم گوینده دوم"
                 data-genre-desc="با صدایی نرم، عمیق و پراحساس، مثل روایت یک داستان شخصی.">احساسی، گرم و صمیمی</button>
-              <button class="genre-btn" data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_03.mp3" data-genre-name="ژانر سوم گوینده دوم"
+              <button class="genre-btn"
+                data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_03.mp3"
+                data-genre-name="ژانر سوم گوینده دوم"
                 data-genre-desc="با صدایی واضح، مطمئن و رسمی، مثل مستند یا تبلیغات رادیویی.">نریشن، حرفه‌ای و
                 اطلاع‌رسان</button>
-              <button class="genre-btn" data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_04.mp3" data-genre-name="ژانر چهارم گوینده دوم"
+              <button class="genre-btn"
+                data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_04.mp3"
+                data-genre-name="ژانر چهارم گوینده دوم"
                 data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن">دوبله‌ای، پرانرژی و
                 نمایشی</button>
             </div>
@@ -382,24 +380,31 @@
       </div>
 
       <div class="speaker-panel" data-speaker-code-id="1212">
-        <img src="https://dermastudio.github.io/form/Voice%20Portfolio/profile_template.jpg?raw=true" alt="تصویر مینو میرحسینی" class="speaker-image" draggable="false">
-        <div class="speaker-code">کد: ۱۲۱۲</div>
+        <div class="speaker-code">کد: 1212</div>
         <div class="speaker-details">
           <p class="speaker-name"><strong>نام گوینده:</strong> مینو میرحسینی</p>
           <div class="genre-selection">
             <h4>ژانرها:</h4>
             <div class="genre-buttons">
-              <button class="genre-btn active" data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_01.mp3"
-                data-genre-name="ژانر اول گوینده سوم" data-genre-desc="با صدایی قدرتمند، پرصلابت و الهام‌بخش، مثل تیزرهای سینمایی.">حماسی، پرشور و
+              <button class="genre-btn active"
+                data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_01.mp3"
+                data-genre-name="ژانر اول گوینده سوم"
+                data-genre-desc="با صدایی قدرتمند، پرصلابت و الهام‌بخش، مثل تیزرهای سینمایی.">حماسی، پرشور و
                 انگیزشی</button>
-              <button class="genre-btn" data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_02.mp3" data-genre-name="ژانر دوم گوینده سوم"
+              <button class="genre-btn"
+                data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_02.mp3"
+                data-genre-name="ژانر دوم گوینده سوم"
                 data-genre-desc="با صدایی نرم، عمیق و پراحساس، مثل روایت یک داستان شخصی.">احساسی، گرم و صمیمی</button>
-              <button class="genre-btn" data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_03.mp3" data-genre-name="ژانر سوم گوینده سوم"
+              <button class="genre-btn"
+                data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_03.mp3"
+                data-genre-name="ژانر سوم گوینده سوم"
                 data-genre-desc="با صدایی واضح، مطمئن و رسمی، مثل مستند یا تبلیغات رادیویی.">نریشن، حرفه‌ای و
                 اطلاع‌رسان</button>
-                <button class="genre-btn" data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_04.mp3" data-genre-name="ژانر چهارم گوینده سوم"
-                  data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن">دوبله‌ای، پرانرژی و
-                  نمایشی</button>
+              <button class="genre-btn"
+                data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_04.mp3"
+                data-genre-name="ژانر چهارم گوینده سوم"
+                data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن">دوبله‌ای، پرانرژی و
+                نمایشی</button>
             </div>
             <p class="genre-description">توضیحات اولیه ژانر فعال در اینجا نمایش داده می‌شود.</p>
           </div>
@@ -446,37 +451,26 @@
         document.addEventListener(evt, e => { e.preventDefault(); showWarning(); }, true);
       });
 
-      // کد اصلاح شده برای مسدود کردن کلیدهای میانبر
       document.addEventListener('keydown', e => {
         const keyUpper = e.key.toUpperCase();
-        // const codeUpper = e.code ? e.code.toUpperCase() : ''; // برای بررسی دقیق‌تر کلید فیزیکی (اختیاری)
         const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
         let prevent = false;
 
-        // F12
         if (e.key === 'F12' || e.keyCode === 123) {
           prevent = true;
         }
-        // Developer Tools:
-        // Windows/Linux: Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
-        // Mac: Cmd+Option+I / Cmd+Option+J / Cmd+Option+C
         else if (!isMac && e.ctrlKey && e.shiftKey && (keyUpper === 'I' || keyUpper === 'J' || keyUpper === 'C' || e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
           prevent = true;
         }
         else if (isMac && e.metaKey && e.altKey && !e.shiftKey && (keyUpper === 'I' || keyUpper === 'J' || keyUpper === 'C' || e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
           prevent = true;
         }
-        // View Source:
-        // Windows/Linux: Ctrl+U
-        // Mac: Cmd+U
-        // (اطمینان از اینکه کلیدهای Shift یا Alt همزمان فشرده نشده‌اند)
         else if (!isMac && e.ctrlKey && !e.shiftKey && !e.altKey && (keyUpper === 'U' || e.keyCode === 85)) {
           prevent = true;
         }
         else if (isMac && e.metaKey && !e.shiftKey && !e.altKey && (keyUpper === 'U' || e.keyCode === 85)) {
           prevent = true;
         }
-        // PrintScreen and related keys
         else if (e.key === 'PrintScreen' || e.keyCode === 44 /* PrintScreen */ || e.keyCode === 93 /* Context Menu Key */ || (e.key.toLowerCase() === 'snapshot' && e.altKey)) {
           prevent = true;
         }
@@ -485,7 +479,7 @@
           e.preventDefault();
           showWarning();
         }
-      }, true); // استفاده از فاز capture
+      }, true);
 
 
       const wavesurferInstances = [];
