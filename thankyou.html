@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <title>تشکر بابت رزرو</title>
+
+  <link rel="icon" type="image/png"
+    href="https://cdn.myportfolio.com/ec43e03b-3cbc-459b-91a1-92a3c68c61a6/5bbf04eb-3d25-4e31-ae57-41f118fbe485_carw_1x1x180.png?h=d84265d8c37026d9c473a53c7675ab0b">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
@@ -11,14 +21,14 @@
     }
 
     body {
-      font-family: "Tahoma", sans-serif;
+      font-family: "Vazirmatn", sans-serif;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       background-color: #f5f5f5;
-      color: #333;
+      color: #222;
       overflow: hidden;
     }
 
@@ -26,7 +36,7 @@
       background: white;
       padding: 40px;
       border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 30px rgba(34, 34, 34, 0.1);
       animation: slideUp 1.5s ease-out forwards;
       opacity: 0;
       transform: translateY(100px);
@@ -41,19 +51,34 @@
     }
 
     h1 {
-      color: #3366CC;
-      margin-bottom: 16px;
+      color: #222;
+      margin-bottom: 24px;
+      /* Increased margin for better spacing */
       font-size: 28px;
     }
 
     p {
       font-size: 18px;
-      color: #555;
-      margin: 10px 0;
+      color: #505050;
+      margin: 20px 0;
+      /* Set consistent vertical margin */
+      line-height: 1.8;
     }
 
-    p + p {
-      margin-top: 30px;
+    /* The p + p rule was removed to ensure even spacing */
+
+    /* Style for the Telegram link */
+    p a {
+      color: #0088cc;
+      /* Telegram blue color */
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    p a:hover {
+      color: #005f8f;
+      text-decoration: underline;
     }
 
     .back-button {
@@ -62,8 +87,8 @@
 
     .back-button a {
       display: inline-block;
-      background-color: #3366CC;
-      color: white;
+      background-color: #505050;
+      color: #fff;
       padding: 12px 24px;
       border-radius: 8px;
       text-decoration: none;
@@ -72,21 +97,24 @@
     }
 
     .back-button a:hover {
-      background-color: #573771;
+      background-color: #222;
     }
   </style>
 </head>
+
 <body>
 
   <div class="container">
     <h1>با تشکر، رزرو شما با موفقیت ثبت شد!</h1>
     <p>به زودی با شما تماس خواهیم گرفت.</p>
-    <p>لطفا فایل‌های خود را ۱۰ دقیقه قبل از آمدن به استودیو ارسال کنید.</p>
+    <p>لطفا اگر فایلی دارید نیم ساعت قبل از آمدن به استودیو آن را در <a href="https://t.me/sinallameh" target="_blank"
+        rel="noopener noreferrer">تلگرام</a> ارسال بفرمایید.</p>
   </div>
 
   <div class="back-button">
-    <a href="https://www.dermastudiofficial.com/">بازگشت به سایت</a>
+    <a href="https://dermastudiofficial.com/home">بازگشت به سایت</a>
   </div>
 
 </body>
+
 </html>
