@@ -33,6 +33,7 @@
 
     .panels-container {
       display: grid;
+      /* تغییر به یک گرید سه ستونه ثابت برای دسکتاپ */
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       max-width: 1200px;
@@ -52,6 +53,17 @@
       box-sizing: border-box;
       transition: filter 0.5s ease-in-out, opacity 0.5s ease-in-out;
     }
+
+    /* === تغییر جدید: استایل برای وسط‌چین کردن پنل چهارم === */
+    .speaker-panel:nth-child(4) {
+      grid-column-start: 2;
+      /* شروع از خط گرید دوم */
+      grid-column-end: 3;
+      /* پایان در خط گرید سوم */
+      margin-top: 20px;
+      /* افزودن فاصله از ردیف بالا */
+    }
+
 
     .speaker-panel.panel-dimmed {
       filter: blur(5px) grayscale(1);
@@ -171,19 +183,33 @@
     .controls button {
       background: none;
       border: none;
-      color: white;
-      font-size: 20px;
       cursor: pointer;
       padding: 4px;
+      width: 24px;
+      /* اندازه ثابت برای دکمه */
+      height: 24px;
     }
 
-    .controls button:disabled {
-      opacity: 0.1;
-      cursor: default;
+    /* === تغییر جدید: افزودن فیلتر برای سفید کردن آیکون === */
+    .controls button img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: brightness(0) invert(1);
+      /* این خط آیکون را سفید می‌کند */
+      opacity: 1;
+      /* حالت فعال: کاملا سفید (شفافیت کامل) */
+      transition: opacity 0.5s ease;
     }
 
-    .controls button:hover:not(:disabled) {
+    .controls button:disabled img {
+      /* حالت غیرفعال/لودینگ: سفید با ۵۰٪ شفافیت */
       opacity: 0.5;
+    }
+
+    .controls button:hover:not(:disabled) img {
+      opacity: 0.5;
+      /* افکت هاور */
     }
 
     .logo-container {
@@ -223,9 +249,17 @@
       transition: filter 0.8s;
     }
 
+    /* === تغییر جدید: مدیریت چیدمان در نمایشگرهای کوچکتر === */
     @media (max-width: 900px) {
       .panels-container {
+        /* در این اندازه، به گرید دو ستونه تبدیل می‌شود */
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .speaker-panel:nth-child(4) {
+        /* استایل وسط‌چین را برای این حالت حذف می‌کنیم */
+        grid-column: auto;
+        margin-top: 0;
       }
     }
 
@@ -242,6 +276,8 @@
 
       .speaker-panel {
         padding: 40px 15px 80px;
+        /* افزودن فاصله پایینی برای جداسازی پنل‌ها در حالت تک ستونه */
+        margin-bottom: 20px;
       }
     }
 
@@ -311,7 +347,9 @@
         <div class="audio-container">
           <div class="waveform"></div>
           <div class="controls">
-            <button class="playPauseBtn" disabled>⏳</button>
+            <button class="playPauseBtn" disabled>
+              <img src="https://dermastudio.github.io/form/Voice Portfolio/Loading.svg" alt="Loading">
+            </button>
           </div>
         </div>
       </div>
@@ -340,7 +378,7 @@
               <button class="genre-btn"
                 data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_04.mp3"
                 data-genre-name="ژانر چهارم گوینده دوم"
-                data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن">دوبله‌ای، پرانرژی و
+                data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن.">دوبله‌ای، پرانرژی و
                 نمایشی</button>
             </div>
             <p class="genre-description">توضیحات اولیه ژانر فعال در اینجا نمایش داده می‌شود.</p>
@@ -349,7 +387,9 @@
         <div class="audio-container">
           <div class="waveform"></div>
           <div class="controls">
-            <button class="playPauseBtn" disabled>⏳</button>
+            <button class="playPauseBtn" disabled>
+              <img src="https://dermastudio.github.io/form/Voice Portfolio/Loading.svg" alt="Loading">
+            </button>
           </div>
         </div>
       </div>
@@ -378,7 +418,7 @@
               <button class="genre-btn"
                 data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_04.mp3"
                 data-genre-name="ژانر چهارم گوینده سوم"
-                data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن">دوبله‌ای، پرانرژی و
+                data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن.">دوبله‌ای، پرانرژی و
                 نمایشی</button>
             </div>
             <p class="genre-description">توضیحات اولیه ژانر فعال در اینجا نمایش داده می‌شود.</p>
@@ -387,7 +427,50 @@
         <div class="audio-container">
           <div class="waveform"></div>
           <div class="controls">
-            <button class="playPauseBtn" disabled>⏳</button>
+            <button class="playPauseBtn" disabled>
+              <img src="https://dermastudio.github.io/form/Voice Portfolio/Loading.svg" alt="Loading">
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-panel" data-speaker-code-id="8888">
+        <div class="speaker-code">کد: 8888</div>
+        <div class="speaker-details">
+          <p class="speaker-name"><strong>نام گوینده:</strong> هانیه موسوی</p>
+          <div class="genre-selection">
+            <h4>ژانرها:</h4>
+            <div class="genre-buttons">
+              <button class="genre-btn active"
+                data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Hamie Mousavi_01.mp3"
+                data-genre-name="ژانر اول گوینده چهارم"
+                data-genre-desc="با صدایی قدرتمند، پرصلابت و الهام‌بخش، مثل تیزرهای سینمایی.">حماسی، پرشور و
+                انگیزشی</button>
+              <button class="genre-btn"
+                data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Hamie Mousavi_02.mp3"
+                data-genre-name="ژانر دوم گوینده چهارم"
+                data-genre-desc="با صدایی نرم، عمیق و پراحساس، مثل روایت یک داستان شخصی.">احساسی، گرم و
+                صمیمی</button>
+              <button class="genre-btn"
+                data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Hamie Mousavi_03.mp3"
+                data-genre-name="ژانر سوم گوینده چهارم"
+                data-genre-desc="با صدایی واضح، مطمئن و رسمی، مثل مستند یا تبلیغات رادیویی.">نریشن، حرفه‌ای و
+                اطلاع‌رسان</button>
+              <button class="genre-btn"
+                data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Hamie Mousavi_04.mp3"
+                data-genre-name="ژانر چهارم گوینده چهارم"
+                data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن.">دوبله‌ای،
+                پرانرژی و نمایشی</button>
+            </div>
+            <p class="genre-description">توضیحات اولیه ژانر فعال در اینجا نمایش داده می‌شود.</p>
+          </div>
+        </div>
+        <div class="audio-container">
+          <div class="waveform"></div>
+          <div class="controls">
+            <button class="playPauseBtn" disabled>
+              <img src="https://dermastudio.github.io/form/Voice Portfolio/Loading.svg" alt="Loading">
+            </button>
           </div>
         </div>
       </div>
@@ -406,6 +489,13 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+
+      // --- مسیر فایل‌های SVG خود را در اینجا قرار دهید ---
+      const playIconUrl = "https://dermastudio.github.io/form/Voice Portfolio/Play.svg"; // آدرس فایل SVG دکمه Play
+      const pauseIconUrl = "https://dermastudio.github.io/form/Voice Portfolio/Pause.svg"; // آدرس فایل SVG دکمه Pause
+      const loadingIconUrl = "https://dermastudio.github.io/form/Voice Portfolio/Loading.svg"; // آدرس فایل SVG حالت لودینگ
+      const errorIconUrl = "https://dermastudio.github.io/form/error-icon.svg"; // (اختیاری) آدرس فایل SVG برای حالت خطا
+
       const contentElement = document.getElementById('content');
       const allSpeakerPanelsNodeList = document.querySelectorAll('.speaker-panel');
 
@@ -470,6 +560,7 @@
       allSpeakerPanelsNodeList.forEach((panel, index) => {
         const waveformContainer = panel.querySelector('.waveform');
         const playPauseBtn = panel.querySelector('.playPauseBtn');
+        const playPauseIcon = playPauseBtn ? playPauseBtn.querySelector('img') : null; // انتخاب تگ img
         let initialAudioSrc;
 
         const speakerId = panel.dataset.speakerCodeId;
@@ -485,19 +576,23 @@
             }
           } else {
             console.error(`Panel with ID ${speakerId}: Default active genre button or its audio data not found.`);
-            if (playPauseBtn) { playPauseBtn.textContent = '⚠️'; playPauseBtn.disabled = true; }
+            if (playPauseIcon) { playPauseIcon.src = errorIconUrl; playPauseBtn.disabled = true; }
             return;
           }
         } else {
           initialAudioSrc = panel.dataset.audioSrc;
         }
 
-        if (!waveformContainer || !playPauseBtn || !initialAudioSrc || initialAudioSrc.startsWith("YOUR_AUDIO_LINK_HERE")) {
+        if (!waveformContainer || !playPauseBtn || !playPauseIcon || !initialAudioSrc || initialAudioSrc.startsWith("YOUR_AUDIO_LINK_HERE")) {
           let panelName = `Panel with ID ${speakerId || 'N/A'} (index ${index + 1})`;
           console.error(`${panelName} is missing waveform container, play button, or a valid initial audio source: ${initialAudioSrc}`);
-          if (playPauseBtn) { playPauseBtn.textContent = '⚠️'; playPauseBtn.disabled = true; }
+          if (playPauseIcon) { playPauseIcon.src = errorIconUrl; playPauseBtn.disabled = true; }
           return;
         }
+
+        // مقداردهی اولیه آیکون لودینگ
+        playPauseIcon.src = loadingIconUrl;
+        playPauseIcon.alt = 'Loading';
 
         const wavesurfer = WaveSurfer.create({
           container: waveformContainer, waveColor: '#f5f5f5', progressColor: '#76FF7A',
@@ -507,17 +602,25 @@
 
         wavesurferInstances.push({ instance: wavesurfer, button: playPauseBtn, panelElement: panel });
 
-        wavesurfer.on('ready', () => { playPauseBtn.disabled = false; playPauseBtn.textContent = '▶'; });
+        wavesurfer.on('ready', () => {
+          playPauseBtn.disabled = false;
+          playPauseIcon.src = playIconUrl;
+          playPauseIcon.alt = 'Play';
+        });
+
         wavesurfer.on('error', e => {
           console.error(`Error loading audio for panel ID ${speakerId || 'N/A'}:`, e, initialAudioSrc);
-          playPauseBtn.textContent = '⚠️'; playPauseBtn.disabled = true;
+          playPauseIcon.src = errorIconUrl;
+          playPauseIcon.alt = 'Error';
+          playPauseBtn.disabled = true;
         });
 
         wavesurfer.on('play', () => {
           wavesurferInstances.forEach(item => {
             if (item.instance !== wavesurfer && item.instance.isPlaying()) item.instance.pause();
           });
-          playPauseBtn.textContent = '⏸︎';
+          playPauseIcon.src = pauseIconUrl;
+          playPauseIcon.alt = 'Pause';
           updatePanelEffects(panel);
         });
 
@@ -526,8 +629,16 @@
           updatePanelEffects(currentlyPlayingItem ? currentlyPlayingItem.panelElement : null);
         };
 
-        wavesurfer.on('pause', () => { playPauseBtn.textContent = '▶'; handleAudioStop(); });
-        wavesurfer.on('finish', () => { playPauseBtn.textContent = '▶'; wavesurfer.seekTo(0); handleAudioStop(); });
+        wavesurfer.on('pause', () => {
+          playPauseIcon.src = playIconUrl;
+          playPauseIcon.alt = 'Play';
+          handleAudioStop();
+        });
+        wavesurfer.on('finish', () => {
+          playPauseIcon.src = playIconUrl;
+          playPauseIcon.alt = 'Play';
+          wavesurfer.seekTo(0); handleAudioStop();
+        });
 
         wavesurfer.load(initialAudioSrc);
 
@@ -544,7 +655,8 @@
               if (!newAudioUrl || newAudioUrl.startsWith("YOUR_AUDIO_LINK_HERE")) {
                 console.error(`Invalid audio source for genre '${button.dataset.genreName || button.textContent}' in panel ID ${speakerId}.`);
                 if (genreDescriptionElement) genreDescriptionElement.textContent = "خطا: فایل صوتی این ژانر یافت نشد.";
-                playPauseBtn.textContent = '⚠️';
+                playPauseIcon.src = errorIconUrl;
+                playPauseIcon.alt = 'Error';
                 playPauseBtn.disabled = true;
                 if (wavesurfer.isPlaying()) wavesurfer.stop();
                 return;
@@ -555,7 +667,8 @@
               button.classList.add('active');
 
               if (wavesurfer.isPlaying()) wavesurfer.pause();
-              playPauseBtn.textContent = '⏳';
+              playPauseIcon.src = loadingIconUrl;
+              playPauseIcon.alt = 'Loading';
               playPauseBtn.disabled = true;
               wavesurfer.load(newAudioUrl);
             });
