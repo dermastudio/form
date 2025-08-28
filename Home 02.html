@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استودیو دِرما</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <style>
+        :root {
+            --brand-green: #76FF7A;
+            --background-color: #F5F5F5;
+            --text-color: #222222;
+            --button-bg-color: #222222;
+            --button-text-color: #F5F5F5;
+            --button-hover-bg-color: #444444;
+
+            --form-section-bg: #f5f5f5;
+            --form-bg: #ffffff;
+            --form-text-primary: #222;
+            --form-text-secondary: #505050;
+            --form-input-bg: #f5f5f5;
+            --form-border-color: #ccc;
+            --form-shadow: rgba(34, 34, 34, 0.1);
+        }
+
+        body.dark-mode {
+            --background-color: #222222;
+            --text-color: #F5F5F5;
+            --button-bg-color: #F5F5F5;
+            --button-text-color: #222222;
+            --button-hover-bg-color: #cccccc;
+
+            --form-section-bg: #1a1a1a;
+            --form-bg: #2b2b2b;
+            --form-text-primary: #f5f5f5;
+            --form-text-secondary: #bbbbbb;
+            --form-input-bg: #3c3c3c;
+            --form-border-color: #555555;
+            --form-shadow: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Vazirmatn', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+        }
+
+        .header-left,
+        .header-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left {
+            justify-content: flex-start;
+        }
+
+        .header-right {
+            justify-content: flex-end;
+        }
+
+        .social-links {
+            display: flex;
+        }
+
+        .social-links img {
+            transition: filter 0.3s, transform 0.2s;
+        }
+
+        .social-links a:hover img {
+            transform: scale(1.1);
+        }
+
+        body.dark-mode .social-links img {
+            filter: invert(1);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--text-color);
+            transition: color 0.3s;
+            padding: 0;
+        }
+
+        .theme-toggle:hover {
+            opacity: 0.8;
+        }
+
+        .header-center {
+            text-align: center;
+        }
+
+        .logo a {
+            display: inline-block;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo a:hover {
+            opacity: 0.75;
+        }
+
+        .logo svg {
+            width: 120px;
+            height: auto;
+        }
+
+        .logo svg .cls-1 {
+            fill: var(--text-color) !important;
+            transition: fill 0.3s;
+        }
+
+        .swiper-section {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 50px;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .swiper-pagination-bullet {
+            width: 25px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: #cccccc;
+            opacity: 1;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: var(--brand-green);
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--brand-green);
+        }
+
+        .buttons-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px 50px 20px;
+        }
+
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .button {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            background-color: var(--button-bg-color);
+            color: var(--button-text-color);
+            width: 120px;
+            height: 140px;
+            margin: 10px;
+            text-decoration: none;
+            font-size: 17px;
+            border-radius: 12px;
+            transition: background-color 0.3s, transform 0.2s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: var(--button-hover-bg-color);
+            transform: scale(1.05);
+        }
+
+        .button i {
+            font-size: 2.5em;
+            color: var(--button-text-color);
+        }
+
+        #booking-form-section {
+            background-color: var(--form-section-bg);
+            padding: 60px 20px;
+            transition: background-color 0.3s;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        #booking-form-section h2,
+        #sound-bank-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--form-text-primary);
+            font-weight: 700;
+        }
+
+        #booking-form-section form {
+            background: var(--form-bg);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 0 15px var(--form-shadow);
+        }
+
+        #booking-form-section label {
+            margin-top: 15px;
+            font-weight: 700;
+            color: var(--form-text-primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .star {
+            color: #c81414;
+            margin-right: 5px;
+            font-size: 18px;
+        }
+
+        #booking-form-section input,
+        #booking-form-section select,
+        #booking-form-section button {
+            font-family: 'Vazirmatn', sans-serif;
+            display: block;
+            width: 100%;
+            margin-top: 5px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--form-border-color);
+            font-size: 18px;
+            background: var(--form-input-bg);
+            color: var(--form-text-primary);
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        #recordTabs {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid var(--form-border-color);
+            border-radius: 8px;
+            background: #f0f0f0;
+            display: none;
+            gap: 15px;
+            align-items: center;
+        }
+
+        body.dark-mode #recordTabs {
+            background: #3c3c3c;
+            color: var(--form-text-primary);
+        }
+
+        #booking-form-section button[type=submit] {
+            background: var(--form-text-secondary);
+            color: var(--form-section-bg);
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 35px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: background-color 0.3s;
+        }
+
+        #booking-form-section button[type=submit]:hover {
+            background: var(--form-text-primary);
+        }
+
+        #timer {
+            color: var(--form-text-primary);
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        #calendarModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #calendarContainer {
+            background: var(--form-bg);
+            color: var(--form-text-primary);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(34, 34, 34, 0.3);
+            direction: rtl;
+            width: 340px;
+        }
+
+        #calendarContainer .header button {
+            background: none;
+            color: var(--form-text-secondary);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5em;
+            line-height: 1;
+        }
+
+        #calendarContainer .calendar .day.header {
+            background: none;
+            border: none;
+            border-radius: 0;
+            color: var(--form-text-primary);
+            font-weight: 700;
+            cursor: default;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        #calendarContainer .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        #calendarContainer .header span {
+            flex: 1;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        #calendarContainer .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        #calendarContainer .day {
+            padding: 8px 0;
+            cursor: pointer;
+            user-select: none;
+            background: transparent;
+            font-size: 1.4em;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #calendarContainer .day:not(.disabled):not(.header):hover {
+            background-color: var(--form-input-bg);
+        }
+
+        #calendarContainer .day.disabled {
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        body.dark-mode #calendarContainer .day.disabled {
+            color: #555;
+        }
+
+        #calendarContainer .day.today {
+            background: var(--form-text-primary);
+            color: var(--form-bg);
+            font-weight: 700;
+        }
+
+        #calendarContainer .day.friday {
+            color: #c81414 !important;
+        }
+
+        #calToday {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            border: none;
+            border-radius: 4px;
+            background: var(--form-text-secondary);
+            color: var(--form-bg);
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 700;
+        }
+
+        #sound-bank-section {
+            background-color: var(--form-section-bg);
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .panels-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding: 20px 0;
+        }
+
+        .speaker-panel {
+            width: 100%;
+            background-color: var(--form-bg);
+            border: 3.5px solid var(--form-text-secondary);
+            border-radius: 15px;
+            padding: 40px 20px 100px;
+            position: relative;
+            text-align: center;
+            overflow: visible;
+            box-sizing: border-box;
+            transition: filter 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        }
+
+        .speaker-panel:nth-child(4) {
+            grid-column: 2 / 3;
+            margin-top: 20px;
+        }
+
+        .speaker-panel.panel-dimmed {
+            filter: blur(5px) grayscale(1);
+            opacity: 0.5;
+        }
+
+        .speaker-code {
+            background-color: #222;
+            color: #f5f5f5;
+            padding: 12px 48px;
+            border-radius: 10px;
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .speaker-details {
+            margin-top: 0;
+            text-align: right;
+            padding-bottom: 20px;
+            color: var(--form-text-secondary);
+        }
+
+        .speaker-name {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--form-text-primary);
+        }
+
+        .genre-selection {
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        .genre-selection h4 {
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            color: var(--form-text-primary);
+        }
+
+        .genre-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 10px;
+            justify-content: flex-start;
+        }
+
+        .genre-btn {
+            background-color: var(--form-input-bg);
+            border: 1px solid #909090;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 13px;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+            color: var(--form-text-secondary);
+        }
+
+        .genre-btn:hover {
+            background-color: var(--form-bg);
+            border-color: var(--form-text-primary);
+        }
+
+        .genre-btn.active {
+            background-color: var(--form-text-secondary);
+            color: var(--form-bg);
+            border-color: var(--form-text-primary);
+        }
+
+        .genre-description {
+            font-size: 0.85em;
+            color: var(--form-text-primary);
+            margin-top: 8px;
+            min-height: 3em;
+            line-height: 1.5;
+            padding: 5px;
+            background-color: var(--form-input-bg);
+            border-radius: 5px;
+            border-right: 3px solid var(--form-text-secondary);
+            padding-right: 10px;
+        }
+
+        .audio-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background-color: #222;
+            /* اصلاح شد: همیشه تیره */
+            border-radius: 20px;
+            padding: 10px 30px 20px;
+        }
+
+        .waveform {
+            width: 90%;
+            height: 30px;
+        }
+
+        .controls {
+            position: absolute;
+            bottom: 17px;
+            left: 20px;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .controls button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 3px;
+            width: 25px;
+            height: 25px;
+        }
+
+        .controls button img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            filter: brightness(0) invert(1);
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .controls button:disabled img {
+            opacity: 0.5;
+        }
+
+        .controls button:hover:not(:disabled) img {
+            opacity: 0.5;
+        }
+
+        #warningBox {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(34, 34, 34, 0.9);
+            color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            font-size: 18px;
+            display: none;
+            z-index: 10000;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        #page-wrapper.blurred {
+            filter: blur(5px);
+            transition: filter 0.5s;
+        }
+
+        @media (max-width: 900px) {
+            .panels-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .speaker-panel:nth-child(4) {
+                grid-column: auto;
+                margin-top: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .panels-container {
+                grid-template-columns: 1fr;
+            }
+
+            .speaker-panel {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="page-wrapper">
+        <header class="page-header">
+            <div class="header-left"><button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
+            </div>
+            <div class="header-center">
+                <div class="logo"><a href="https://dermastudiofficial.com/" target="_blank"><svg id="Layer_2"
+                            data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 198.69 141.09">
+                            <defs>
+                                <style>
+                                    .cls-1 {
+                                        fill: #222222;
+                                    }
+                                </style>
+                            </defs>
+                            <g id="Layer_1-2" data-name="Layer 1">
+                                <g>
+                                    <g>
+                                        <path class="cls-1"
+                                            d="M21.11,112.5c-11.64,0-21.11-9.47-21.11-21.11V21h12v70.39c0,5.02,4.09,9.11,9.11,9.11s9.11-4.09,9.11-9.11V21.11c0-5.02-4.09-9.11-9.11-9.11H0V0h21.11c11.64,0,21.11,9.47,21.11,21.11v70.28c0,11.64-9.47,21.11-21.11,21.11Z" />
+                                        <path class="cls-1"
+                                            d="M74.48,112h-10.63c-9.17,0-16.63-7.46-16.63-16.63V25.63c0-9.17,7.46-13.63,16.63-13.63s16.63,4.46,16.63,13.63v48.74c0,9.17-7.46,16.63-16.63,16.63v-12c2.55,0,4.63-2.08,4.63-4.63V25.63c0-2.55-2.08-4.63-4.63-4.63s-4.63,2.08-4.63,4.63v69.74c0,2.55,2.08,4.63,4.63,4.63h10.63v12Z" />
+                                        <path class="cls-1"
+                                            d="M96.88,112h-12V25.63c0-9.17,7.46-13.63,16.63-13.63v9c-2.55,0-4.63,2.08-4.63,4.63v86.37Z" />
+                                        <path class="cls-1"
+                                            d="M198.69,25.63v86.37h-12V25.63c0-2.55-2.08-4.63-4.63-4.63s-4.63,2.08-4.63,4.63v69.73c0,2.56,2.08,4.63,4.63,4.63v12c-7.56,0-13.96-5.07-15.96-11.99-.44-1.47-.67-3.03-.67-4.64V25.63c0-9.17,7.46-13.63,16.63-13.63s16.63,4.46,16.63,13.63Z" />
+                                        <path class="cls-1"
+                                            d="M143.8,12c-4.04,0-7.75,1.45-10.63,3.85-2.88-2.4-6.59-3.85-10.63-3.85-9.17,0-16.63,4.46-16.63,13.63v86.37h12V25.63c0-2.55,2.08-4.63,4.63-4.63s4.63,2.08,4.63,4.63v86.37h12V25.63c0-2.55,2.08-4.63,4.63-4.63s4.63,2.08,4.63,4.63v86.37h12V25.63c0-9.17-7.46-13.63-16.63-13.63Z" />
+                                    </g>
+                                    <g>
+                                        <path class="cls-1"
+                                            d="M14.34,136.4l1.77-.15c.09.76.31,1.36.64,1.78s.81.77,1.44,1.03c.62.26,1.32.39,2.1.39,1.12,0,1.99-.22,2.61-.66s.93-1,.93-1.7c0-.41-.11-.77-.34-1.07-.23-.31-.56-.55-1.02-.75s-1.43-.47-2.94-.83c-1.34-.32-2.29-.64-2.86-.96s-1.01-.73-1.32-1.22c-.32-.49-.47-1.05-.47-1.68,0-1.12.45-2.04,1.36-2.75.91-.71,2.13-1.07,3.66-1.07,1.06,0,1.98.17,2.77.5.79.33,1.41.81,1.84,1.44.44.62.67,1.36.7,2.2l-1.81.13c-.09-.9-.43-1.57-1.01-2-.58-.44-1.39-.65-2.44-.65s-1.88.19-2.43.57-.84.87-.84,1.48c0,.56.21,1,.62,1.3.41.31,1.33.62,2.76.94,1.4.31,2.39.58,2.95.81.87.35,1.52.82,1.96,1.4.44.58.66,1.26.66,2.06s-.23,1.52-.7,2.17c-.46.65-1.1,1.15-1.9,1.49s-1.76.51-2.89.51c-1.76,0-3.16-.42-4.2-1.27s-1.59-1.99-1.62-3.43Z" />
+                                        <path class="cls-1"
+                                            d="M51.21,140.86v-12.22h-4.68v-1.63h11.26v1.63h-4.7v12.22h-1.88Z" />
+                                        <path class="cls-1"
+                                            d="M88.33,127h1.88v8.01c0,1.34-.16,2.44-.49,3.3-.33.86-.92,1.54-1.78,2.04-.86.5-1.96.75-3.29.75-1.87,0-3.28-.45-4.21-1.34-.93-.89-1.4-2.48-1.4-4.75v-8.01h1.88v8c0,1.25.12,2.16.37,2.72.24.56.64.99,1.2,1.28.55.29,1.23.44,2.03.44,1.34,0,2.31-.3,2.91-.91.6-.61.9-1.78.9-3.54v-8Z" />
+                                        <path class="cls-1"
+                                            d="M112.69,140.86v-13.86h4.9c1.21,0,2.13.09,2.76.25.83.22,1.54.62,2.15,1.21.61.59,1.08,1.32,1.42,2.22.34.89.51,1.95.51,3.17,0,1.57-.29,2.9-.86,3.99-.57,1.09-1.31,1.87-2.22,2.33-.9.46-2.08.69-3.54.69h-5.13ZM114.57,139.22h3.02c1.22,0,2.15-.16,2.78-.48.63-.32,1.11-.83,1.45-1.54.45-.94.67-2.06.67-3.38,0-1.4-.24-2.51-.72-3.31-.48-.8-1.09-1.34-1.84-1.61-.5-.18-1.3-.27-2.4-.27h-2.98v10.59Z" />
+                                        <path class="cls-1" d="M146.77,140.86v-13.86h1.88v13.86h-1.88Z" />
+                                        <path class="cls-1"
+                                            d="M170.76,134.11c0-2.36.65-4.18,1.95-5.45,1.3-1.27,2.92-1.9,4.86-1.9,1.25,0,2.39.28,3.43.85,1.03.57,1.85,1.39,2.45,2.47.6,1.08.9,2.37.9,3.86,0,2.05-.58,3.73-1.75,5.02-1.28,1.42-2.97,2.14-5.04,2.14s-3.78-.73-5.06-2.19c-1.16-1.32-1.74-2.92-1.74-4.79ZM172.7,134.13c0,1.71.47,3.04,1.41,3.98.94.94,2.09,1.41,3.43,1.41s2.53-.48,3.47-1.43c.93-.95,1.4-2.35,1.4-4.2,0-1.19-.24-2.26-.72-3.2-.37-.72-.93-1.29-1.67-1.73-.74-.43-1.56-.65-2.44-.65-1.42,0-2.59.47-3.5,1.42s-1.38,2.41-1.38,4.39Z" />
+                                    </g>
+                                </g>
+                            </g>
+                        </svg></a></div>
+            </div>
+            <div class="header-right">
+                <div class="social-links">
+                    <a href="mailto:studiodermaofficial@gmail.com" style="text-decoration: none; margin: 0 5px;"><img
+                            src="https://dermastudio.github.io/form/Email%20Signature/email.svg" alt="Email"
+                            width="24"></a>
+                    <a href="https://t.me/sinallameh" target="_blank" style="text-decoration: none; margin: 0 5px;"><img
+                            src="https://dermastudio.github.io/form/Email%20Signature/telegram.svg"
+                            alt="Telegram Contact" width="24"></a>
+                    <a href="https://soundcloud.com/sina-allameh" target="_blank"
+                        style="text-decoration: none; margin: 0 5px;"><img
+                            src="https://dermastudio.github.io/form/Email%20Signature/soundcloud.svg" alt="SoundCloud"
+                            width="24"></a>
+                    <a href="https://t.me/studioderma" target="_blank"
+                        style="text-decoration: none; margin: 0 5px;"><img
+                            src="https://dermastudio.github.io/form/Email%20Signature/telegram.svg"
+                            alt="Telegram Channel" width="24"></a>
+                    <a href="https://api.whatsapp.com/send/?phone=989137157291" target="_blank"
+                        style="text-decoration: none; margin: 0 5px;"><img
+                            src="https://dermastudio.github.io/form/Email%20Signature/whatsapp.svg" alt="WhatsApp"
+                            width="24"></a>
+                    <a href="https://www.instagram.com/studiodermaofficial/" target="_blank"
+                        style="text-decoration: none; margin: 0 5px;"><img
+                            src="https://dermastudio.github.io/form/Email%20Signature/instagram.svg" alt="Instagram"
+                            width="24"></a>
+                </div>
+            </div>
+        </header>
+
+        <section class="swiper-section">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://picsum.photos/1200/400?random=1" alt="تصویر اسلاید اول">
+                    </div>
+                    <div class="swiper-slide"><img src="https://picsum.photos/1200/400?random=2" alt="تصویر اسلاید دوم">
+                    </div>
+                    <div class="swiper-slide"><img src="https://picsum.photos/1200/400?random=3" alt="تصویر اسلاید سوم">
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <main class="buttons-section">
+            <div class="button-row">
+                <a href="#booking-form-section" class="button"><i class="fa-solid fa-calendar-check"></i><span>رزرو
+                        وقت</span></a>
+                <a href="#sound-bank-section" class="button"><i class="fa-solid fa-music"></i><span>بانک صدا</span></a>
+                <a href="about.html" class="button"><i class="fa-solid fa-users"></i><span>درباره‌ی ما</span></a>
+                <a href="contact.html" class="button"><i class="fa-solid fa-envelope"></i><span>تماس با ما</span></a>
+            </div>
+        </main>
+
+        <section id="booking-form-section">
+            <div class="form-container">
+                <div class="content">
+                    <h2>فرم رزرو وقت</h2>
+                    <form action="https://formsubmit.co/studiodermaofficial@gmail.com" method="POST"
+                        enctype="multipart/form-data"><input type="hidden" name="_captcha" value="false"><input
+                            type="hidden" name="_next" value="https://dermastudio.github.io/form/thankyou.html"><label
+                            for="name">نام کامل: <span class="star">*</span></label><input type="text" id="name"
+                            name="نام کامل" required><label for="phone">شماره تلفن: <span
+                                class="star">*</span></label><input type="text" id="phone" name="شماره تلفن"
+                            required><label for="reason">دلیل رزرو وقت: <span class="star">*</span></label><select
+                            id="reason" name="دلیل رزرو وقت" onchange="toggleTabs()" required>
+                            <option value="">انتخاب کنید</option>
+                            <option value="رکورد">رکورد</option>
+                            <option value="آهنگسازی">آهنگسازی</option>
+                            <option value="تنظیم">تنظیم</option>
+                            <option value="میکسینگ و مسترینگ">میکسینگ و مسترینگ</option>
+                            <option value="پادکست">پادکست</option>
+                            <option value="دوبله">دوبله</option>
+                            <option value="صداگذاری و صداسازی">صداگذاری و صداسازی</option>
+                            <option value="نریشن">نریشن</option>
+                        </select>
+                        <div id="recordTabs"><label><input type="radio" name="نوع رکورد" value="وکال">
+                                وکال</label><label><input type="radio" name="نوع رکورد" value="ساز"> ساز</label></div>
+                        <label for="date">تاریخ رزرو: <span class="star">*</span></label><input type="text" id="date"
+                            name="تاریخ رزرو" readonly required placeholder="کلیک کنید"><label for="startTime">از ساعت:
+                            <span class="star">*</span></label><select id="startTime" name="ساعت شروع رزرو"
+                            required></select><label for="endTime">تا ساعت: <span class="star">*</span></label><select
+                            id="endTime" name="ساعت پایان رزرو" required></select><label for="receipt">فیش واریزی: <span
+                                class="star">*</span></label><input type="file" id="receipt" name="فیش واریزی"
+                            accept="image/*" required><button type="submit">رزرو وقت</button>
+                        <div id="timer"></div>
+                    </form>
+                </div>
+                <div id="calendarModal">
+                    <div id="calendarContainer">
+                        <div class="header"><button id="calPrev">▶</button><span id="calMonthYear"></span><button
+                                id="calNext">◀</button></div>
+                        <div class="calendar" id="calDays"></div><button id="calToday">برو به امروز</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sound-bank-section">
+            <h2>بانک صدا</h2>
+            <div class="panels-container">
+                <div class="speaker-panel" data-speaker-code-id="1010">
+                    <div class="speaker-code">کد: 1010</div>
+                    <div class="speaker-details">
+                        <p class="speaker-name"><strong>نام گوینده:</strong> نیلوفر ساعدی منفرد</p>
+                        <div class="genre-selection">
+                            <h4>ژانرها:</h4>
+                            <div class="genre-buttons"><button class="genre-btn active"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Monfared_1010_01.mp3"
+                                    data-genre-name="نریشن داستانی"
+                                    data-genre-desc="با صدایی قدرتمند، پرصلابت و الهام‌بخش، مثل تیزرهای سینمایی.">حماسی،
+                                    پرشور و انگیزشی</button><button class="genre-btn"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Monfared_1010_02.mp3"
+                                    data-genre-name="احساسی، گرم و صمیمی"
+                                    data-genre-desc="با صدایی نرم، عمیق و پراحساس، مثل روایت یک داستان شخصی.">احساسی،
+                                    گرم و صمیمی</button><button class="genre-btn"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Monfared_1010_03.mp3"
+                                    data-genre-name="نریشن، حرفه‌ای و اطلاع‌رسان"
+                                    data-genre-desc="با صدایی واضح، مطمئن و رسمی، مثل مستند یا تبلیغات رادیویی.">نریشن،
+                                    حرفه‌ای و اطلاع‌رسان</button><button class="genre-btn"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Monfared_1010_04.mp3"
+                                    data-genre-name="دوبله‌ای، پرانرژی و نمایشی"
+                                    data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن.">دوبله‌ای،
+                                    پرانرژی و نمایشی</button></div>
+                            <p class="genre-description">توضیحات اولیه ژانر فعال در اینجا نمایش داده می‌شود.</p>
+                        </div>
+                    </div>
+                    <div class="audio-container">
+                        <div class="waveform"></div>
+                        <div class="controls"><button class="playPauseBtn" disabled><img
+                                    src="https://dermastudio.github.io/form/Voice Portfolio/Loading.svg"
+                                    alt="Loading"></button></div>
+                    </div>
+                </div>
+                <div class="speaker-panel" data-speaker-code-id="1111">
+                    <div class="speaker-code">کد: 1111</div>
+                    <div class="speaker-details">
+                        <p class="speaker-name"><strong>نام گوینده:</strong> رضا غلامی</p>
+                        <div class="genre-selection">
+                            <h4>ژانرها:</h4>
+                            <div class="genre-buttons"><button class="genre-btn active"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_01.mp3"
+                                    data-genre-name="ژانر اول گوینده دوم"
+                                    data-genre-desc="با صدایی قدرتمند، پرصلابت و الهام‌بخش، مثل تیزرهای سینمایی.">حماسی،
+                                    پرشور و انگیزشی</button><button class="genre-btn"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_02.mp3"
+                                    data-genre-name="ژانر دوم گوینده دوم"
+                                    data-genre-desc="با صدایی نرم، عمیق و پراحساس، مثل روایت یک داستان شخصی.">احساسی،
+                                    گرم و صمیمی</button><button class="genre-btn"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_03.mp3"
+                                    data-genre-name="ژانر سوم گوینده دوم"
+                                    data-genre-desc="با صدایی واضح، مطمئن و رسمی، مثل مستند یا تبلیغات رادیویی.">نریشن،
+                                    حرفه‌ای و اطلاع‌رسان</button><button class="genre-btn"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Reza Gholami_1111_04.mp3"
+                                    data-genre-name="ژانر چهارم گوینده دوم"
+                                    data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن.">دوبله‌ای،
+                                    پرانرژی و نمایشی</button></div>
+                            <p class="genre-description">توضیحات اولیه ژانر فعال در اینجا نمایش داده می‌شود.</p>
+                        </div>
+                    </div>
+                    <div class="audio-container">
+                        <div class="waveform"></div>
+                        <div class="controls"><button class="playPauseBtn" disabled><img
+                                    src="https://dermastudio.github.io/form/Voice Portfolio/Loading.svg"
+                                    alt="Loading"></button></div>
+                    </div>
+                </div>
+                <div class="speaker-panel" data-speaker-code-id="1212">
+                    <div class="speaker-code">کد: 1212</div>
+                    <div class="speaker-details">
+                        <p class="speaker-name"><strong>نام گوینده:</strong> مینو میرحسینی</p>
+                        <div class="genre-selection">
+                            <h4>ژانرها:</h4>
+                            <div class="genre-buttons"><button class="genre-btn active"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_01.mp3"
+                                    data-genre-name="ژانر اول گوینده سوم"
+                                    data-genre-desc="با صدایی قدرتمند، پرصلابت و الهام‌بخش، مثل تیزرهای سینمایی.">حماسی،
+                                    پرشور و انگیزشی</button><button class="genre-btn"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_02.mp3"
+                                    data-genre-name="ژانر دوم گوینده سوم"
+                                    data-genre-desc="با صدایی نرم، عمیق و پراحساس، مثل روایت یک داستان شخصی.">احساسی،
+                                    گرم و صمیمی</button><button class="genre-btn"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_03.mp3"
+                                    data-genre-name="ژانر سوم گوینده سوم"
+                                    data-genre-desc="با صدایی واضح، مطمئن و رسمی، مثل مستند یا تبلیغات رادیویی.">نریشن،
+                                    حرفه‌ای و اطلاع‌رسان</button><button class="genre-btn"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice%20Portfolio/Mino Mirhoseini_1212_04.mp3"
+                                    data-genre-name="ژانر چهارم گوینده سوم"
+                                    data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن.">دوبله‌ای،
+                                    پرانرژی و نمایشی</button></div>
+                            <p class="genre-description">توضیحات اولیه ژانر فعال در اینجا نمایش داده می‌شود.</p>
+                        </div>
+                    </div>
+                    <div class="audio-container">
+                        <div class="waveform"></div>
+                        <div class="controls"><button class="playPauseBtn" disabled><img
+                                    src="https://dermastudio.github.io/form/Voice Portfolio/Loading.svg"
+                                    alt="Loading"></button></div>
+                    </div>
+                </div>
+                <div class="speaker-panel" data-speaker-code-id="8888">
+                    <div class="speaker-code">کد: 8888</div>
+                    <div class="speaker-details">
+                        <p class="speaker-name"><strong>نام گوینده:</strong> هانیه موسوی</p>
+                        <div class="genre-selection">
+                            <h4>ژانرها:</h4>
+                            <div class="genre-buttons"><button class="genre-btn active"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Hamie Mousavi_01.mp3"
+                                    data-genre-name="ژانر اول گوینده چهارم"
+                                    data-genre-desc="با صدایی قدرتمند، پرصلابت و الهام‌بخش، مثل تیزرهای سینمایی.">حماسی،
+                                    پرشور و انگیزشی</button><button class="genre-btn"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Hamie Mousavi_02.mp3"
+                                    data-genre-name="ژانر دوم گوینده چهارم"
+                                    data-genre-desc="با صدایی نرم، عمیق و پراحساس، مثل روایت یک داستان شخصی.">احساسی،
+                                    گرم و صمیمی</button><button class="genre-btn"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Hamie Mousavi_03.mp3"
+                                    data-genre-name="ژانر سوم گوینده چهارم"
+                                    data-genre-desc="با صدایی واضح، مطمئن و رسمی، مثل مستند یا تبلیغات رادیویی.">نریشن،
+                                    حرفه‌ای و اطلاع‌رسان</button><button class="genre-btn"
+                                    data-genre-audio="https://dermastudio.github.io/form/Voice Portfolio/Hamie Mousavi_04.mp3"
+                                    data-genre-name="ژانر چهارم گوینده چهارم"
+                                    data-genre-desc="با صدایی بازیگوش، پویا و تبلیغاتی، مثل تیزرهای تجاری یا انیمیشن.">دوبله‌ای،
+                                    پرانرژی و نمایشی</button></div>
+                            <p class="genre-description">توضیحات اولیه ژانر فعال در اینجا نمایش داده می‌شود.</p>
+                        </div>
+                    </div>
+                    <div class="audio-container">
+                        <div class="waveform"></div>
+                        <div class="controls"><button class="playPauseBtn" disabled><img
+                                    src="https://dermastudio.github.io/form/Voice Portfolio/Loading.svg"
+                                    alt="Loading"></button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="warningBox">شما اجازه استفاده از این قابلیت را ندارید!</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/min/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-jalaali@0.9.2/build/moment-jalaali.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+
+    <script>
+        // --- اسکریپت‌های اصلی صفحه (اسلایدر، تم و اسکرول نرم) ---
+        var swiper = new Swiper(".mySwiper", { loop: true, pagination: { el: ".swiper-pagination", clickable: true }, navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }, autoplay: { delay: 10000, disableOnInteraction: false, reverseDirection: true } });
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+            themeToggle.innerHTML = currentTheme === 'dark-mode' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        } else {
+            body.classList.add('light-mode');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.replace('dark-mode', 'light-mode');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', 'light-mode');
+            } else {
+                body.classList.replace('light-mode', 'dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('theme', 'dark-mode');
+            }
+        });
+
+        // --- اسکریپت‌های مربوط به فرم رزرو ---
+        moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
+        function toggleTabs() { document.getElementById('recordTabs').style.display = document.getElementById('reason').value === 'رکورد' ? 'flex' : 'none'; }
+
+        $(function () {
+            // اسکرول نرم
+            $('a[href*="#"]').on('click', function (e) {
+                e.preventDefault();
+                $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top }, 500, 'linear');
+            });
+
+            // منطق فرم رزرو
+            let timeLeft = 300;
+            function conv(s) { return s.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]); }
+            function upd() { const m = Math.floor(timeLeft / 60), s = timeLeft % 60; $('#timer').text('زمان باقی مانده: ' + conv(`${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`)); }
+            upd(); setInterval(() => { if (timeLeft-- <= 0) { $('#booking-form-section form')[0].reset(); timeLeft = 300; } upd(); }, 1000);
+            const slots = []; for (let h = 7; h <= 22; h++) { const hh = h.toString().padStart(2, '0'); slots.push({ v: `${hh}:00`, t: `${hh}:00` }); }
+            function populate(sel, arr) { sel.empty(); arr.forEach(o => sel.append($('<option>').val(o.v).text(o.t))); }
+            populate($('#startTime'), slots); populate($('#endTime'), slots);
+            $('#startTime').on('change', function () { populate($('#endTime'), slots.filter(o => o.v > this.value)); });
+            const $M = $('#calendarModal'), $D = $('#calDays'), $MH = $('#calMonthYear');
+            let calDate = moment(), today = moment().startOf('day');
+            function render(d) {
+                $D.empty(); const s = d.clone().startOf('jMonth'), e = d.clone().endOf('jMonth');
+                const sd = (s.day() + 1) % 7, dm = e.jDate(); $MH.text(d.format('jYYYY jMMMM'));
+                ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'].forEach(w => $D.append(`<div class="day header">${w}</div>`));
+                for (let i = sd; i > 0; i--) { const dt = s.clone().subtract(i, 'days'); $D.append(`<div class="day out-of-month disabled">${dt.format('jD')}</div>`); }
+                for (let i = 1; i <= dm; i++) {
+                    const cell = d.clone().jDate(i);
+                    const isPast = cell.isBefore(today, 'day'); const dow = (cell.day() + 1) % 7;
+                    const cls = ['day', dow === 6 ? 'friday' : '', isPast ? 'disabled' : '', cell.isSame(today, 'day') ? 'today' : ''].filter(Boolean).join(' ');
+                    $D.append(`<div class="${cls}" data-day="${i}">${cell.format('jD')}</div>`);
+                }
+                const total = 42, used = sd + dm; for (let i = 1; i <= total - used; i++) { const dt = e.clone().add(i, 'days'); $D.append(`<div class="day out-of-month disabled">${dt.format('jD')}</div>`); }
+            }
+            $('#date').on('click', () => { render(calDate); $M.css('display', 'flex'); });
+            $('#calPrev').click(() => { calDate = calDate.clone().subtract(1, 'jMonth'); render(calDate); });
+            $('#calNext').click(() => { calDate = calDate.clone().add(1, 'jMonth'); render(calDate); });
+            $('#calToday').click(() => { calDate = moment(); render(calDate); });
+            $D.on('click', '.day', function () { if ($(this).hasClass('disabled') || $(this).hasClass('header')) return; const day = +$(this).data('day'), sel = calDate.clone().jDate(day); $('#date').val(sel.format('jYYYY/jMM/jDD')); $M.hide(); });
+        });
+    </script>
+
+    <script>
+        // --- اسکریپت‌های بانک صدا و محافظت از محتوا ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // محافظت از محتوا و مسدودسازی ابزارهای توسعه‌دهنده
+            function showWarning() {
+                if (document.body.dataset.warningShown === 'true') return;
+                document.body.dataset.warningShown = 'true';
+                document.getElementById('page-wrapper').classList.add('blurred');
+                const box = document.getElementById('warningBox');
+                box.style.display = 'block';
+                setTimeout(() => {
+                    box.style.display = 'none';
+                    document.getElementById('page-wrapper').classList.remove('blurred');
+                    delete document.body.dataset.warningShown;
+                }, 2500);
+            }
+
+            // مسدودسازی رویدادهای کپی، پیست و کلیک راست
+            ['contextmenu', 'copy', 'paste', 'cut'].forEach(evt => {
+                document.addEventListener(evt, e => { e.preventDefault(); showWarning(); }, true);
+            });
+
+            // مسدودسازی کلیدهای ترکیبی
+            document.addEventListener('keydown', e => {
+                if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && (e.key === 'u' || e.key === 'c' || e.key === 'v' || e.key === 'x'))) {
+                    e.preventDefault();
+                    showWarning();
+                }
+            }, true);
+
+            // بستن پاپ آپ تقویم با کلید Esc
+            $(document).on('keydown', e => { if (e.key === 'Escape') $('#calendarModal').hide(); });
+
+            // منطق بانک صدا
+            const wavesurferInstances = [];
+            const allSpeakerPanelsNodeList = document.querySelectorAll('.speaker-panel');
+
+            function updatePanelEffects(activePanelElement) { allSpeakerPanelsNodeList.forEach(p => { p.classList.toggle('panel-dimmed', activePanelElement && p !== activePanelElement); }); }
+            updatePanelEffects(null);
+
+            allSpeakerPanelsNodeList.forEach((panel) => {
+                const waveformContainer = panel.querySelector('.waveform');
+                const playPauseBtn = panel.querySelector('.playPauseBtn');
+                const playPauseIcon = playPauseBtn ? playPauseBtn.querySelector('img') : null;
+                const genreDescriptionElement = panel.querySelector('.genre-description');
+                const genreButtons = panel.querySelectorAll('.genre-btn');
+                const firstActiveGenreButton = panel.querySelector('.genre-btn.active');
+                if (!waveformContainer || !playPauseBtn || !playPauseIcon || !firstActiveGenreButton) return;
+                let initialAudioSrc = firstActiveGenreButton.dataset.genreAudio;
+                genreDescriptionElement.textContent = firstActiveGenreButton.dataset.genreDesc || "توضیحات این ژانر موجود نیست.";
+                playPauseIcon.src = "https://dermastudio.github.io/form/Voice Portfolio/Loading.svg";
+                playPauseIcon.alt = 'Loading';
+                const wavesurfer = WaveSurfer.create({ container: waveformContainer, waveColor: '#f5f5f5', progressColor: '#76FF7A', backgroundColor: 'transparent', cursorColor: '#00563B', height: 40, barWidth: 3, barRadius: 3, responsive: true, hideScrollbar: true });
+                wavesurferInstances.push({ instance: wavesurfer, panelElement: panel });
+                wavesurfer.load(initialAudioSrc);
+                wavesurfer.on('ready', () => { playPauseBtn.disabled = false; playPauseIcon.src = "https://dermastudio.github.io/form/Voice Portfolio/Play.svg"; playPauseIcon.alt = 'Play'; });
+                wavesurfer.on('error', (e) => { console.error('WaveSurfer error:', e); playPauseIcon.src = "https://dermastudio.github.io/form/error-icon.svg"; playPauseIcon.alt = 'Error'; });
+                wavesurfer.on('play', () => { wavesurferInstances.forEach(item => { if (item.instance !== wavesurfer && item.instance.isPlaying()) item.instance.pause(); }); playPauseIcon.src = "https://dermastudio.github.io/form/Voice Portfolio/Pause.svg"; playPauseIcon.alt = 'Pause'; updatePanelEffects(panel); });
+                const onAudioStop = () => { playPauseIcon.src = "https://dermastudio.github.io/form/Voice Portfolio/Play.svg"; playPauseIcon.alt = 'Play'; const isAnyPlaying = wavesurferInstances.some(item => item.instance.isPlaying()); if (!isAnyPlaying) updatePanelEffects(null); };
+                wavesurfer.on('pause', onAudioStop);
+                wavesurfer.on('finish', () => { wavesurfer.seekTo(0); onAudioStop(); });
+                playPauseBtn.addEventListener('click', () => { wavesurfer.playPause(); });
+                genreButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        if (button.classList.contains('active')) return;
+                        const newAudioUrl = button.dataset.genreAudio;
+                        if (!newAudioUrl) return;
+                        genreDescriptionElement.textContent = button.dataset.genreDesc || "توضیحات موجود نیست.";
+                        genreButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        playPauseBtn.disabled = true;
+                        playPauseIcon.src = "https://dermastudio.github.io/form/Voice Portfolio/Loading.svg";
+                        wavesurfer.load(newAudioUrl);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
