@@ -903,6 +903,45 @@
             .header-right {
                 flex: 0 1 auto;
             }
+
+            /* === START: Mobile Header Changes === */
+            .page-header {
+                flex-direction: column;
+                gap: 10px;
+                padding-bottom: 10px;
+            }
+
+            .header-center {
+                order: 1; /* Logo will be the first item in the column */
+            }
+
+            .header-right {
+                order: 2; /* Social links will be second, under the logo */
+                    justify-content: center; /* To center the social icons container */
+            }
+
+            .header-left {
+                /* Optional: To place the theme toggle button in the top-left corner */
+                position: absolute;
+                top: 15px;
+                left: 20px;
+            }
+            /* === END: Mobile Header Changes === */
+
+
+            /* === START: Mobile Slider Improvements === */
+            .swiper-section {
+                height: 10vh; /* Adjusts slider height for better viewing on mobile */
+                margin-bottom: 10px;
+            }
+
+            .swiper-slide {
+                background-color: #222222; /* Adds a background color for when images don't fill the slide */
+            }
+
+            .swiper-slide img {
+                object-fit: contain; /* This ensures the entire image is visible without being cropped */
+            }
         }
     </style>
 </head>
