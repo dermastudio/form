@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه یافت نشد!</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#222222">
+    <meta http-equiv="content-language" content="fa-IR">
+
+    <link rel="icon" href="https://dermastudiofficial.com/fav.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="https://dermastudiofficial.com/fav.png">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --brand-green: #76FF7A;
+            --brand-green-darker: #b9b9b9;
+            --background-color: #F5F5F5;
+            --text-color: #222222;
+            --button-bg-color: #222222;
+            --button-text-color: #F5F5F5;
+            --button-hover-bg-color: #555;
+            --form-section-bg: #f5f5f5;
+            --form-text-secondary: #505050;
+        }
+
+        body.dark-mode {
+            --background-color: #222222;
+            --text-color: #F5F5F5;
+            --button-bg-color: #F5F5F5;
+            --button-text-color: #222222;
+            --button-hover-bg-color: #76FF7A;
+            --form-section-bg: #1a1a1a;
+            --form-text-secondary: #bbbbbb;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Vazirmatn', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        #page-wrapper {
+            flex: 1 0 auto;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .header-left,
+        .header-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-left {
+            justify-content: flex-start;
+        }
+
+        .header-right {
+            justify-content: flex-end;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .social-links a {
+            margin: 0 4px;
+        }
+
+        .social-links img {
+            transition: filter 0.3s, transform 0.2s;
+        }
+
+        .social-links a:hover img {
+            transform: scale(1.1);
+        }
+
+        body.dark-mode .social-links img {
+            filter: invert(1);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            color: var(--text-color);
+            transition: color 0.3s, transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .theme-toggle .icon-sun path {
+            fill: var(--text-color);
+        }
+
+        .theme-toggle .icon-moon {
+            font-size: 24px;
+        }
+
+        .header-center {
+            flex-grow: 2;
+            text-align: center;
+        }
+
+        .logo a {
+            display: inline-block;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo a:hover {
+            opacity: 0.75;
+        }
+
+        .logo svg {
+            width: 120px;
+            height: auto;
+        }
+
+        .logo svg .cls-1 {
+            fill: var(--text-color) !important;
+            transition: fill 0.3s;
+        }
+
+        .error-section {
+            text-align: center;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .error-section h1 {
+            font-size: 8rem;
+            font-weight: 900;
+            margin: 0;
+            color: var(--brand-green);
+            line-height: 1;
+        }
+
+        body.light-mode .error-section h1 {
+            color: var(--button-bg-color);
+        }
+
+        .error-section p {
+            font-size: 1.5rem;
+            margin: 20px 0 40px;
+        }
+
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--button-bg-color);
+            color: var(--button-text-color);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            transition: background-color 0.3s, transform 0.2s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: var(--button-hover-bg-color);
+            transform: scale(1.05);
+        }
+
+        .page-footer {
+            flex-shrink: 0;
+            background-color: var(--form-section-bg);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: var(--form-text-secondary);
+        }
+
+        .page-footer .footer-logo svg {
+            width: 80px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .page-footer .footer-logo .cls-1 {
+            fill: var(--text-color);
+        }
+
+        .page-footer p {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+
+        .page-footer a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        body:not(.dark-mode) .page-footer a:hover {
+            color: var(--brand-green-darker);
+        }
+
+        body.dark-mode .page-footer a:hover {
+            color: var(--brand-green);
+        }
+
+        @media (max-width: 600px) {
+            .header-right .social-links a {
+                margin: 0 2px;
+            }
+
+            .header-left,
+            .header-right {
+                flex: 0 1 auto;
+            }
+
+            .error-section h1 {
+                font-size: 6rem;
+            }
+
+            .error-section p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="page-wrapper">
+        <header class="page-header">
+            <div class="header-left">
+                <button class="theme-toggle" id="theme-toggle">
+                </button>
+            </div>
+            <div class="header-center">
+                <div class="logo"><a href="https://dermastudiofficial.com/"><svg id="Layer_2" data-name="Layer 2"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 198.69 141.09">
+                            <defs>
+                                <style>
+                                    .cls-1 {
+                                        fill: #222222;
+                                    }
+                                </style>
+                            </defs>
+                            <g id="Layer_1-2" data-name="Layer 1">
+                                <g>
+                                    <g>
+                                        <path class="cls-1"
+                                            d="M21.11,112.5c-11.64,0-21.11-9.47-21.11-21.11V21h12v70.39c0,5.02,4.09,9.11,9.11,9.11s9.11-4.09,9.11-9.11V21.11c0-5.02-4.09-9.11-9.11-9.11H0V0h21.11c11.64,0,21.11,9.47,21.11,21.11v70.28c0,11.64-9.47,21.11-21.11,21.11Z" />
+                                        <path class="cls-1"
+                                            d="M74.48,112h-10.63c-9.17,0-16.63-7.46-16.63-16.63V25.63c0-9.17,7.46-13.63,16.63-13.63s16.63,4.46,16.63,13.63v48.74c0,9.17-7.46,16.63-16.63,16.63v-12c2.55,0,4.63-2.08,4.63-4.63V25.63c0-2.55-2.08-4.63-4.63-4.63s-4.63,2.08-4.63,4.63v69.74c0,2.55,2.08,4.63,4.63,4.63h10.63v12Z" />
+                                        <path class="cls-1"
+                                            d="M96.88,112h-12V25.63c0-9.17,7.46-13.63,16.63-13.63v9c-2.55,0-4.63,2.08-4.63,4.63v86.37Z" />
+                                        <path class="cls-1"
+                                            d="M198.69,25.63v86.37h-12V25.63c0-2.55-2.08-4.63-4.63-4.63s-4.63,2.08-4.63,4.63v69.73c0,2.56,2.08,4.63,4.63,4.63v12c-7.56,0-13.96-5.07-15.96-11.99-.44-1.47-.67-3.03-.67-4.64V25.63c0-9.17,7.46-13.63,16.63-13.63s16.63,4.46,16.63,13.63Z" />
+                                        <path class="cls-1"
+                                            d="M143.8,12c-4.04,0-7.75,1.45-10.63,3.85-2.88-2.4-6.59-3.85-10.63-3.85-9.17,0-16.63,4.46-16.63,13.63v86.37h12V25.63c0-2.55,2.08-4.63,4.63-4.63s4.63,2.08,4.63,4.63v86.37h12V25.63c0-2.55,2.08-4.63,4.63-4.63s4.63,2.08,4.63,4.63v86.37h12V25.63c0-9.17-7.46-13.63-16.63-13.63Z" />
+                                    </g>
+                                    <g>
+                                        <path class="cls-1"
+                                            d="M14.34,136.4l1.77-.15c.09.76.31,1.36.64,1.78s.81.77,1.44,1.03c.62.26,1.32.39,2.1.39,1.12,0,1.99-.22,2.61-.66s.93-1,.93-1.7c0-.41-.11-.77-.34-1.07-.23-.31-.56-.55-1.02-.75s-1.43-.47-2.94-.83c-1.34-.32-2.29-.64-2.86-.96s-1.01-.73-1.32-1.22c-.32-.49-.47-1.05-.47-1.68,0-1.12.45-2.04,1.36-2.75.91-.71,2.13-1.07,3.66-1.07,1.06,0,1.98.17,2.77.5.79.33,1.41.81,1.84,1.44.44.62.67,1.36.7,2.2l-1.81.13c-.09-.9-.43-1.57-1.01-2-.58-.44-1.39-.65-2.44-.65s-1.88.19-2.43.57-.84.87-.84,1.48c0,.56.21,1,.62,1.3.41.31,1.33.62,2.76.94,1.4.31,2.39.58,2.95.81.87.35,1.52.82,1.96,1.4.44.58.66,1.26.66,2.06s-.23,1.52-.7,2.17c-.46.65-1.1,1.15-1.9,1.49s-1.76.51-2.89.51c-1.76,0-3.16-.42-4.2-1.27s-1.59-1.99-1.62-3.43Z" />
+                                        <path class="cls-1"
+                                            d="M51.21,140.86v-12.22h-4.68v-1.63h11.26v1.63h-4.7v12.22h-1.88Z" />
+                                        <path class="cls-1"
+                                            d="M88.33,127h1.88v8.01c0,1.34-.16,2.44-.49,3.3-.33.86-.92,1.54-1.78,2.04-.86.5-1.96.75-3.29.75-1.87,0-3.28-.45-4.21-1.34-.93-.89-1.4-2.48-1.4-4.75v-8.01h1.88v8c0,1.25.12,2.16.37,2.72.24.56.64.99,1.2,1.28.55.29,1.23.44,2.03.44,1.34,0,2.31-.3,2.91-.91.6-.61.9-1.78.9-3.54v-8Z" />
+                                        <path class="cls-1"
+                                            d="M112.69,140.86v-13.86h4.9c1.21,0,2.13.09,2.76.25.83.22,1.54.62,2.15,1.21.61.59,1.08,1.32,1.42,2.22.34.89.51,1.95.51,3.17,0,1.57-.29,2.9-.86,3.99-.57,1.09-1.31,1.87-2.22,2.33-.9.46-2.08.69-3.54.69h-5.13ZM114.57,139.22h3.02c1.22,0,2.15-.16,2.78-.48.63-.32,1.11-.83,1.45-1.54.45-.94.67-2.06.67-3.38,0-1.4-.24-2.51-.72-3.31-.48-.8-1.09-1.34-1.84-1.61-.5-.18-1.3-.27-2.4-.27h-2.98v10.59Z" />
+                                        <path class="cls-1" d="M146.77,140.86v-13.86h1.88v13.86h-1.88Z" />
+                                        <path class="cls-1"
+                                            d="M170.76,134.11c0-2.36.65-4.18,1.95-5.45,1.3-1.27,2.92-1.9,4.86-1.9,1.25,0,2.39.28,3.43.85,1.03.57,1.85,1.39,2.45,2.47.6,1.08.9,2.37.9,3.86,0,2.05-.58,3.73-1.75,5.02-1.28,1.42-2.97,2.14-5.04,2.14s-3.78-.73-5.06-2.19c-1.16-1.32-1.74-2.92-1.74-4.79ZM172.7,134.13c0,1.71.47,3.04,1.41,3.98.94.94,2.09,1.41,3.43,1.41s2.53-.48,3.47-1.43c.93-.95,1.4-2.35,1.4-4.2,0-1.19-.24-2.26-.72-3.2-.37-.72-.93-1.29-1.67-1.73-.74-.43-1.56-.65-2.44-.65-1.42,0-2.59.47-3.5,1.42s-1.38,2.41-1.38,4.39Z" />
+                                    </g>
+                                </g>
+                            </g>
+                        </svg></a></div>
+            </div>
+            <div class="header-right">
+                <div class="social-links">
+                    <a href="mailto:studiodermaofficial@gmail.com" style="text-decoration: none;"><img
+                            src="https://dermastudiofficial.com/Email%20Signature/email.svg" alt="Email" width="24"></a>
+                    <a href="https://t.me/sinallameh" target="_blank" style="text-decoration: none;"><img
+                            src="https://dermastudiofficial.com/Email%20Signature/telegram.svg" alt="Telegram Contact"
+                            width="24"></a>
+                    <a href="https://soundcloud.com/sina-allameh" target="_blank" style="text-decoration: none;"><img
+                            src="https://dermastudiofficial.com/Email%20Signature/soundcloud.svg" alt="SoundCloud"
+                            width="24"></a>
+                    <a href="https://t.me/studioderma" target="_blank" style="text-decoration: none;"><img
+                            src="https://dermastudiofficial.com/Email%20Signature/telegram.svg" alt="Telegram Channel"
+                            width="24"></a>
+                    <a href="https://api.whatsapp.com/send/?phone=989137157291" target="_blank"
+                        style="text-decoration: none;"><img
+                            src="https://dermastudiofficial.com/Email%20Signature/whatsapp.svg" alt="WhatsApp"
+                            width="24"></a>
+                    <a href="https://www.instagram.com/studiodermaofficial/" target="_blank"
+                        style="text-decoration: none;"><img
+                            src="https://dermastudiofficial.com/Email%20Signature/instagram.svg" alt="Instagram"
+                            width="24"></a>
+                </div>
+            </div>
+        </header>
+
+        <main class="error-section">
+            <h1>404</h1>
+            <p>متاسفانه صفحه‌ای که به دنبال آن بودید یافت نشد.</p>
+            <a href="https://dermastudiofficial.com/" class="button">
+                <i class="fa-solid fa-house"></i>
+                <span>بازگشت به صفحه اصلی</span>
+            </a>
+        </main>
+    </div>
+
+    <footer class="page-footer">
+        <div class="footer-logo">
+            <a href="https://dermastudiofficial.com/" target="_blank"><svg id="Layer_2" data-name="Layer 2"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 198.69 141.09">
+                    <defs>
+                        <style>
+                            .cls-1 {
+                                fill: #222222;
+                            }
+                        </style>
+                    </defs>
+                    <g id="Layer_1-2" data-name="Layer 1">
+                        <g>
+                            <g>
+                                <path class="cls-1"
+                                    d="M21.11,112.5c-11.64,0-21.11-9.47-21.11-21.11V21h12v70.39c0,5.02,4.09,9.11,9.11,9.11s9.11-4.09,9.11-9.11V21.11c0-5.02-4.09-9.11-9.11-9.11H0V0h21.11c11.64,0,21.11,9.47,21.11,21.11v70.28c0,11.64-9.47,21.11-21.11,21.11Z" />
+                                <path class="cls-1"
+                                    d="M74.48,112h-10.63c-9.17,0-16.63-7.46-16.63-16.63V25.63c0-9.17,7.46-13.63,16.63-13.63s16.63,4.46,16.63,13.63v48.74c0,9.17-7.46,16.63-16.63,16.63v-12c2.55,0,4.63-2.08,4.63-4.63V25.63c0-2.55-2.08-4.63-4.63-4.63s-4.63,2.08-4.63,4.63v69.74c0,2.55,2.08,4.63,4.63,4.63h10.63v12Z" />
+                                <path class="cls-1"
+                                    d="M96.88,112h-12V25.63c0-9.17,7.46-13.63,16.63-13.63v9c-2.55,0-4.63,2.08-4.63,4.63v86.37Z" />
+                                <path class="cls-1"
+                                    d="M198.69,25.63v86.37h-12V25.63c0-2.55-2.08-4.63-4.63-4.63s-4.63,2.08-4.63,4.63v69.73c0,2.56,2.08,4.63,4.63,4.63v12c-7.56,0-13.96-5.07-15.96-11.99-.44-1.47-.67-3.03-.67-4.64V25.63c0-9.17,7.46-13.63,16.63-13.63s16.63,4.46,16.63,13.63Z" />
+                                <path class="cls-1"
+                                    d="M143.8,12c-4.04,0-7.75,1.45-10.63,3.85-2.88-2.4-6.59-3.85-10.63-3.85-9.17,0-16.63,4.46-16.63,13.63v86.37h12V25.63c0-2.55,2.08-4.63,4.63-4.63s4.63,2.08,4.63,4.63v86.37h12V25.63c0-2.55,2.08-4.63,4.63-4.63s4.63,2.08,4.63,4.63v86.37h12V25.63c0-9.17-7.46-13.63-16.63-13.63Z" />
+                            </g>
+                            <g>
+                                <path class="cls-1"
+                                    d="M14.34,136.4l1.77-.15c.09.76.31,1.36.64,1.78s.81.77,1.44,1.03c.62.26,1.32.39,2.1.39,1.12,0,1.99-.22,2.61-.66s.93-1,.93-1.7c0-.41-.11-.77-.34-1.07-.23-.31-.56-.55-1.02-.75s-1.43-.47-2.94-.83c-1.34-.32-2.29-.64-2.86-.96s-1.01-.73-1.32-1.22c-.32-.49-.47-1.05-.47-1.68,0-1.12.45-2.04,1.36-2.75.91-.71,2.13-1.07,3.66-1.07,1.06,0,1.98.17,2.77.5.79.33,1.41.81,1.84,1.44.44.62.67,1.36.7,2.2l-1.81.13c-.09-.9-.43-1.57-1.01-2-.58-.44-1.39-.65-2.44-.65s-1.88.19-2.43.57-.84.87-.84,1.48c0,.56.21,1,.62,1.3.41.31,1.33.62,2.76.94,1.4.31,2.39.58,2.95.81.87.35,1.52.82,1.96,1.4.44.58.66,1.26.66,2.06s-.23,1.52-.7,2.17c-.46.65-1.1,1.15-1.9,1.49s-1.76.51-2.89.51c-1.76,0-3.16-.42-4.2-1.27s-1.59-1.99-1.62-3.43Z" />
+                                <path class="cls-1" d="M51.21,140.86v-12.22h-4.68v-1.63h11.26v1.63h-4.7v12.22h-1.88Z" />
+                                <path class="cls-1"
+                                    d="M88.33,127h1.88v8.01c0,1.34-.16,2.44-.49,3.3-.33.86-.92,1.54-1.78,2.04-.86.5-1.96.75-3.29.75-1.87,0-3.28-.45-4.21-1.34-.93-.89-1.4-2.48-1.4-4.75v-8.01h1.88v8c0,1.25.12,2.16.37,2.72.24.56.64.99,1.2,1.28.55.29,1.23.44,2.03.44,1.34,0,2.31-.3,2.91-.91.6-.61.9-1.78.9-3.54v-8Z" />
+                                <path class="cls-1"
+                                    d="M112.69,140.86v-13.86h4.9c1.21,0,2.13.09,2.76.25.83.22,1.54.62,2.15,1.21.61.59,1.08,1.32,1.42,2.22.34.89.51,1.95.51,3.17,0,1.57-.29,2.9-.86,3.99-.57,1.09-1.31,1.87-2.22,2.33-.9.46-2.08.69-3.54.69h-5.13ZM114.57,139.22h3.02c1.22,0,2.15-.16,2.78-.48.63-.32,1.11-.83,1.45-1.54.45-.94.67-2.06.67-3.38,0-1.4-.24-2.51-.72-3.31-.48-.8-1.09-1.34-1.84-1.61-.5-.18-1.3-.27-2.4-.27h-2.98v10.59Z" />
+                                <path class="cls-1" d="M146.77,140.86v-13.86h1.88v13.86h-1.88Z" />
+                                <path class="cls-1"
+                                    d="M170.76,134.11c0-2.36.65-4.18,1.95-5.45,1.3-1.27,2.92-1.9,4.86-1.9,1.25,0,2.39.28,3.43.85,1.03.57,1.85,1.39,2.45,2.47.6,1.08.9,2.37.9,3.86,0,2.05-.58,3.73-1.75,5.02-1.28,1.42-2.97,2.14-5.04,2.14s-3.78-.73-5.06-2.19c-1.16-1.32-1.74-2.92-1.74-4.79ZM172.7,134.13c0,1.71.47,3.04,1.41,3.98.94.94,2.09,1.41,3.43,1.41s2.53-.48,3.47-1.43c.93-.95,1.4-2.35,1.4-4.2,0-1.19-.24-2.26-.72-3.2-.37-.72-.93-1.29-1.67-1.73-.74-.43-1.56-.65-2.44-.65-1.42,0-2.59.47-3.5,1.42s-1.38,2.41-1.38,4.39Z" />
+                            </g>
+                        </g>
+                    </g>
+                </svg></a>
+        </div>
+        <p>
+            تمامی حقوق مادی و معنوی متعلق به <a href="https://dermastudiofficial.com/" target="_blank"><strong>استودیو
+                    دِرما</strong></a> می‌باشد،
+            <br>
+            و هرگونه کپی برداری از طراحی سایت و محتوای آن پیگرد قانونی را به دنبال خواهد داشت.
+        </p>
+        <p>۱۴۰۳-۱۴۰۴</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            const moonIcon = `<i class="fas fa-moon icon-moon"></i>`;
+            const sunIcon = `<svg class="icon-sun" id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 256 256"><path d="M121.3,31.2v21.2h13.4V10h-13.4v21.2Z"/><path d="M44.5,44.7l-4.8,4.8,14.9,14.9,14.8,14.8,4.9-4.9,4.9-4.9-14.7-14.7c-8.1-8.1-14.9-14.7-15-14.7-.2,0-2.4,2.1-5,4.7Z"/><path d="M191.5,54.7l-14.7,14.8,4.9,4.9,4.9,4.9,14.8-14.8,14.9-14.9-4.8-4.8c-2.6-2.6-4.9-4.8-5-4.8s-6.9,6.6-15,14.7Z"/><path d="M118.3,74c-5.8,1.1-12.3,3.5-16.8,6-5.2,3-7.6,4.8-11.8,8.8-11.4,11.2-16.9,25.1-16.3,41.3.5,14.7,5.9,26.8,16.3,37,10.1,9.8,21.7,14.9,35.7,15.5,12.3.5,22.9-2.3,33-8.9,4-2.6,12.6-11.2,15.2-15.2,6.6-10.1,9.5-20.7,8.9-33-.6-13.9-5.7-25.6-15.5-35.7-7.4-7.5-15.5-12.2-25.7-14.9-5.8-1.6-17.2-2-23-.9Z"/><path d="M10,128v6.7h42.4v-13.4H10v6.7Z"/><path d="M203.7,128v6.7h42.3v-13.4h-42.4v6.7h0Z"/><path d="M54.5,191.8l-14.8,14.8,4.9,4.9,4.9,4.9,14.8-14.8,14.9-14.9-4.8-4.8c-2.6-2.6-4.9-4.8-5-4.8,0,0-6.8,6.5-14.9,14.7Z"/><path d="M181.5,181.8l-4.8,4.8,14.9,14.9,14.8,14.8,4.9-4.9,4.9-4.9-14.8-14.8c-8.1-8.1-14.8-14.8-15-14.8s-2.3,2.2-4.9,4.9Z"/><path d="M121.3,224.8v21.2h13.4v-42.4h-13.4v21.2Z"/></svg>`;
+
+            function setTheme(theme) {
+                if (theme === 'dark-mode') {
+                    body.classList.add('dark-mode');
+                    body.classList.remove('light-mode');
+                    themeToggle.innerHTML = sunIcon;
+                    localStorage.setItem('theme', 'dark-mode');
+                } else {
+                    body.classList.add('light-mode');
+                    body.classList.remove('dark-mode');
+                    themeToggle.innerHTML = moonIcon;
+                    localStorage.setItem('theme', 'light-mode');
+                }
+            }
+
+            const currentTheme = localStorage.getItem('theme');
+            setTheme(currentTheme || 'dark-mode');
+
+            themeToggle.addEventListener('click', () => {
+                const newTheme = body.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
+                setTheme(newTheme);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
