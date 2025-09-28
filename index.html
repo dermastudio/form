@@ -169,6 +169,10 @@
             padding: 10px 15px 15px;
         }
 
+        #rules-section ol {
+            list-style-type: persian;
+        }
+
         body.dark-mode .info-section .audio-container {
             background-color: #3c3c3c;
         }
@@ -278,9 +282,8 @@
             margin-bottom: 50px;
         }
 
-        .swiper {
-            width: 100%;
-            height: 100%;
+        .swiper-slide {
+            background-color: #222222;
         }
 
         .swiper-slide img {
@@ -931,16 +934,23 @@
 
             /* === START: Mobile Slider Improvements === */
             .swiper-section {
-                height: 10vh; /* Adjusts slider height for better viewing on mobile */
+                height: 40vh;
                 margin-bottom: 10px;
             }
 
             .swiper-slide {
-                background-color: #222222; /* Adds a background color for when images don't fill the slide */
+                background-color: #222222;
             }
 
             .swiper-slide img {
-                object-fit: contain; /* This ensures the entire image is visible without being cropped */
+                object-fit: cover;
+            }
+
+            .buttons-section {
+                margin-top: -200px;
+                padding-top: 0px;
+                padding-bottom: 25px;
+                position: relative;
             }
         }
     </style>
@@ -1050,6 +1060,7 @@
                 <a href="#booking-form-section" class="button"><i class="fa-solid fa-calendar-check"></i><span>رزرو
                         وقت</span></a>
                 <a href="#sound-bank-section" class="button"><i class="fa-solid fa-music"></i><span>بانک صدا</span></a>
+                <a href="#rules-section" class="button"><i class="fa-solid fa-gavel"></i><span>قوانین و شرایط</span></a>
                 <a href="#about-us-section" class="button"><i class="fa-solid fa-users"></i><span>درباره‌ی ما</span></a>
                 <a href="#contact-us-section" class="button"><i class="fa-solid fa-envelope"></i><span>تماس با
                         ما</span></a>
@@ -1384,6 +1395,23 @@
             </div>
         </section>
 
+        </section>
+        <section id="rules-section" class="info-section">
+            <div class="info-container">
+                <h2 style="text-align: center; margin-bottom: 40px;">قوانین و شرایط</h2>
+                <ol style="padding-right: 20px; list-style-position: inside; line-height: 2.5;">
+                    <li>حداقل زمان رزرو استودیو یک ساعت است و پس از پرداخت، رزرو قطعی خواهد بود.</li>
+                    <li>مدت زمان استودیو از لحظه‌ی ورود تا زمان خروج محاسبه می‌شود. در صورت بروز مشکل فنی از سوی استودیو، زمان
+                        تلف‌شده از تایم رزرو کم نمی‌شود.</li>
+                    <li>حضور یک نفر تهیه‌کننده یا ناظر ضبط در اتاق فرمان، تنها با هماهنگی قبلی امکان‌پذیر است.</li>
+                    <li>امکان پذیرش همزمان بیش از ۱۰ نفر در استودیو وجود ندارد.</li>
+                    <li>ورود کودکان زیر ۸ سال به استودیو ممنوع می‌باشد.</li>
+                    <li>ورود به استودیو با کفش مجاز نمی‌باشد.</li>
+                    <li>مصرف دخانیات در محیط استودیو ممنوع است.</li>
+                </ol>
+            </div>
+        </section>
+
         <section id="about-us-section">
             <div class="info-container">
                 <h2>درباره‌ی ما</h2>
@@ -1470,7 +1498,6 @@
                 </div>
             </div>
         </section>
-
     </div>
 
     <footer class="page-footer">
