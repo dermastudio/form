@@ -877,6 +877,13 @@
             color: var(--brand-green);
         }
 
+        .mobile-slider {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+        /* ... */
+        }
 
         @media (max-width: 900px) {
             .panels-container {
@@ -886,6 +893,13 @@
             .speaker-panel:nth-child(4) {
                 grid-column: auto;
                 margin-top: 0;
+            }
+            
+            .desktop-slider {
+                display: none;
+            }
+            .mobile-slider {
+                display: block;
             }
         }
 
@@ -935,7 +949,7 @@
             /* === START: Mobile Slider Improvements === */
             .swiper-section {
                 height: 40vh;
-                margin-bottom: 10px;
+                margin-bottom: 120px;
             }
 
             .swiper-slide {
@@ -947,7 +961,7 @@
             }
 
             .buttons-section {
-                margin-top: -200px;
+                margin-top: -100px;
                 padding-top: 0px;
                 padding-bottom: 25px;
                 position: relative;
@@ -1030,24 +1044,34 @@
             </div>
         </header>
 
-        <section class="swiper-section">
-            <div class="swiper mySwiper">
+        <section class="swiper-section desktop-slider">
+            <div class="swiper mySwiperDesktop">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/Photos/01.webp"
-                            alt="تصویر اسلاید اول">
+                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_desktop_template/01.webp" alt="اسلاید اول دسکتاپ">
                     </div>
-                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/Photos/02.webp"
-                            alt="تصویر اسلاید دوم">
+                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_desktop_template/02.webp" alt="اسلاید دوم دسکتاپ">
                     </div>
-                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/Photos/03.webp"
-                            alt="تصویر اسلاید سوم">
+                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_desktop_template/03.webp" alt="اسلاید سوم دسکتاپ">
                     </div>
-                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/Photos/04.webp"
-                            alt="تصویر اسلاید چهارم">
+                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_desktop_template/04.webp" alt="اسلاید چهارم دسکتاپ">
                     </div>
-                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/Photos/05.webp"
-                            alt="تصویر اسلاید پنجم">
+                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_desktop_template/05.webp" alt="اسلاید پنجم دسکتاپ">
                     </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+        
+        <section class="swiper-section mobile-slider">
+            <div class="swiper mySwiperMobile">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_mobile_template/01_m.webp" alt="اسلاید اول موبایل"></div>
+                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_mobile_template/02_m.webp" alt="اسلاید دوم موبایل"></div>
+                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_mobile_template/03_m.webp" alt="اسلاید سوم موبایل"></div>
+                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_mobile_template/04_m.webp" alt="اسلاید چهارم موبایل"></div>
+                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_mobile_template/05_m.webp" alt="اسلاید پنجم موبایل"></div>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -1576,7 +1600,21 @@
     <script src="https://unpkg.com/wavesurfer.js"></script>
 
     <script>
-        var swiper = new Swiper(".mySwiper", { loop: true, pagination: { el: ".swiper-pagination", clickable: true }, navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }, autoplay: { delay: 10000, disableOnInteraction: false, reverseDirection: true } });
+        // Desktop version slider
+            var swiperDesktop = new Swiper(".mySwiperDesktop", {
+                loop: true,
+                pagination: { el: ".swiper-pagination", clickable: true },
+                navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+                autoplay: { delay: 10000, disableOnInteraction: false, reverseDirection: true }
+            });
+
+            // Mobile version slider
+            var swiperMobile = new Swiper(".mySwiperMobile", {
+                loop: true,
+                pagination: { el: ".swiper-pagination", clickable: true },
+                navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+                autoplay: { delay: 5000, disableOnInteraction: false }
+            });
 
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
