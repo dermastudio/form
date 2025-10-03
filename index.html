@@ -170,7 +170,25 @@
         }
 
         #rules-section ol {
-            list-style-type: persian;
+            list-style: none; /* Removing the default list style */
+            counter-reset: rules-counter; /* Creating a new counter for the list */
+            padding-right: 0px;
+            list-style-position: inside;
+            line-height: 2.5;
+        }
+
+        #rules-section ol li {
+            counter-increment: rules-counter; /* Incrementing the counter for each item */
+            position: relative; /* For numbering placement */
+            padding-right: 35px; /* Creating space to display "1 - " */
+        }
+
+        #rules-section ol li::before {
+            content: counter(rules-counter, persian) " -"; /* Displaying the Persian number along with a dash */
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-weight: bold; /* You can edit this line to change the thickness of the number */
         }
 
         body.dark-mode .info-section .audio-container {
@@ -738,6 +756,12 @@
             padding-right: 10px;
         }
 
+        .info-container .controls {
+            top: 50%;
+            bottom: auto; /* Cancels the previous bottom value */
+            transform: translateY(-50%); /* It places the button exactly in the vertical center */
+        }
+
         .audio-container {
             position: absolute;
             bottom: 20px;
@@ -967,6 +991,52 @@
                 position: relative;
             }
         }
+
+        /* --- START: Custom Cursor Hover Effect --- */
+        body.light-mode #hover-effect-container path {
+            fill: #222222;
+        }
+
+        #hover-effect-container {
+            position: fixed;
+            pointer-events: none;
+            z-index: 10001;
+            /* This container is just a placeholder for positioning the SVGs */
+            width: 2px;
+            height: 2px;
+        }
+
+        #hover-effect-container .hover-svg {
+            position: absolute; /* For random positioning */
+            opacity: 0; /* Initially invisible */
+            transform-origin: center;
+        }
+
+        /* This class activates the animation on the SVGs */
+        #hover-effect-container.animate .hover-svg {
+            animation: randomFadeUp 0.95s ease-out forwards;
+        }
+
+        /* Animation delay for separate display */
+        #hover-effect-container.animate .hover-svg:nth-child(2) {
+            animation-delay: 0.08s;
+        }
+
+        #hover-effect-container.animate .hover-svg:nth-child(3) {
+            animation-delay: 0.25s;
+        }
+
+        @keyframes randomFadeUp {
+            0% {
+                opacity: 0.8;
+                transform: translateY(0) scale(0.8);
+                }
+                100% {
+                opacity: 0;
+                transform: translateY(-40px) scale(1.2); /* It moves up a little and fades out */
+            }
+        }
+        /* --- END: Custom Cursor Hover Effect --- */
     </style>
 </head>
 
@@ -1021,13 +1091,13 @@
             </div>
             <div class="header-right">
                 <div class="social-links">
-                    <a href="mailto:studiodermaofficial@gmail.com" style="text-decoration: none;"><img
-                            src="https://dermastudiofficial.com/Email%20Signature/email.svg" alt="Email" width="24"></a>
-                    <a href="https://t.me/sinallameh" target="_blank" style="text-decoration: none;"><img
-                            src="https://dermastudiofficial.com/Email%20Signature/telegram.svg" alt="Telegram Contact"
+                    <a href="https://soundcloud.com/sina-allameh" style="text-decoration: none;"><img
+                            src="https://dermastudiofficial.com/Email%20Signature/soundcloud.svg" alt="SoundCloud" width="24"></a>
+                    <a href="mailto:studiodermaofficial@gmail.com" target="_blank" style="text-decoration: none;"><img
+                            src="https://dermastudiofficial.com/Email%20Signature/email.svg" alt="Email"
                             width="24"></a>
-                    <a href="https://soundcloud.com/sina-allameh" target="_blank" style="text-decoration: none;"><img
-                            src="https://dermastudiofficial.com/Email%20Signature/soundcloud.svg" alt="SoundCloud"
+                    <a href="https://t.me/sinallameh" target="_blank" style="text-decoration: none;"><img
+                            src="https://dermastudiofficial.com/Email%20Signature/telegram.svg" alt="Telegram"
                             width="24"></a>
                     <a href="https://api.whatsapp.com/send/?phone=989137157291" target="_blank"
                         style="text-decoration: none;"><img
@@ -1217,7 +1287,7 @@
         <section id="rules-section" class="info-section">
             <div class="info-container">
                 <h2 style="text-align: center; margin-bottom: 40px;">قوانین و شرایط</h2>
-                <ol style="padding-right: 0px; list-style-position: inside; line-height: 2.5;">
+                <ol>
                     <li>حداقل زمان رزرو استودیو یک ساعت است و پس از پرداخت، رزرو قطعی خواهد بود.</li>
                     <li>مدت زمان استودیو از لحظه‌ی ورود تا زمان خروج محاسبه می‌شود. در صورت بروز مشکل فنی از سوی استودیو، زمان
                         تلف‌شده از تایم رزرو کم نمی‌شود.</li>
@@ -1598,20 +1668,20 @@
 
     <script>
         // Desktop version slider
-            var swiperDesktop = new Swiper(".mySwiperDesktop", {
-                loop: true,
-                pagination: { el: ".swiper-pagination", clickable: true },
-                navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-                autoplay: { delay: 10000, disableOnInteraction: false, reverseDirection: true }
-            });
+        var swiperDesktop = new Swiper(".mySwiperDesktop", {
+            loop: true,
+            pagination: { el: ".swiper-pagination", clickable: true },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+            autoplay: { delay: 10000, disableOnInteraction: false, reverseDirection: true }
+        });
 
-            // Mobile version slider
-            var swiperMobile = new Swiper(".mySwiperMobile", {
-                loop: true,
-                pagination: { el: ".swiper-pagination", clickable: true },
-                navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-                autoplay: { delay: 5000, disableOnInteraction: false }
-            });
+        // Mobile version slider
+        var swiperMobile = new Swiper(".mySwiperMobile", {
+            loop: true,
+            pagination: { el: ".swiper-pagination", clickable: true },
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+            autoplay: { delay: 5000, disableOnInteraction: false }
+        });
 
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
@@ -1714,6 +1784,45 @@
             }
             // === END: File Validation Code ===
 
+            // === START: Custom Cursor Hover Effect ===
+            const hoverEffectContainer = document.getElementById('hover-effect-container');
+            const effectSvgs = hoverEffectContainer.querySelectorAll('.hover-svg');
+            // لیست جدید و محدود شده دکمه ها
+            const hoverTargets = document.querySelectorAll('.button, .playPauseBtn');
+
+            if (hoverEffectContainer && effectSvgs.length) {
+                hoverTargets.forEach(target => {
+                    target.classList.add('has-custom-hover');
+
+                    // موقعیت ظرف اصلی را با حرکت ماوس تنظیم می‌کند
+                    target.addEventListener('mousemove', (e) => {
+                        hoverEffectContainer.style.left = `${e.clientX}px`;
+                        hoverEffectContainer.style.top = `${e.clientY}px`;
+                    });
+
+                    target.addEventListener('mouseenter', () => {
+                        // برای هر SVG، یک سایز و موقعیت رندوم ایجاد می‌کند
+                        effectSvgs.forEach(svg => {
+                            // سایز رندوم بین 15 تا 25 پیکسل
+                            const size = 15 + Math.random() * 10;
+                            // موقعیت رندوم در بالا و سمت راست ماوس
+                            const top = -(Math.random() * 60); // بین 0 تا 60 پیکسل بالاتر
+                            const left = Math.random() * 60;   // بین 0 تا 60 پیکسل به سمت راست
+
+                            svg.style.width = `${size}px`;
+                            svg.style.height = 'auto';
+                            svg.style.top = `${top}px`;
+                            svg.style.left = `${left}px`;
+                        });
+
+                        // انیمیشن را دوباره فعال می‌کند
+                        hoverEffectContainer.classList.remove('animate');
+                        void hoverEffectContainer.offsetWidth; // این خط برای ریست شدن انیمیشن ضروری است
+                        hoverEffectContainer.classList.add('animate');
+                    });
+                });
+            }
+            // === END: Custom Cursor Hover Effect ===
 
             const scrollToTopBtn = document.getElementById('scrollToTopBtn');
             if (scrollToTopBtn) {
@@ -1827,6 +1936,21 @@
             });
         });
     </script>
+    
+    <div id="hover-effect-container">
+        <svg class="hover-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.8 43.9">
+            <path fill="#76FF7A"
+                d="M18.9,22.8c0-.2,0-.3,0-.5.3-.8.9-1.5,1.2-2.4,1.8-5.5-1-9.6-6.5-10.8-.1,7.9-.4,16-.2,23.8.1,3.8.9,6.1-2.3,8.8-4.1,3.4-14.1,3.1-10.4-4.4,1.6-2.8,5.7-4.1,8.8-3.9s1.6.4,2,.3.2-.7.2-.9c.3-3,0-6.1,0-9.1,0-7.3.1-14.6.1-21.9s0-.8,0-1.2c.2-1,1.2-.9,1.6,0s.8,2.2,1.5,3.4c1.4,2.6,3.9,4.2,5.3,6.8s2.1,7.1.3,10.1-1.4,2.1-1.8,1.8Z" />
+        </svg>
+        <svg class="hover-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.8 43.9">
+            <path fill="#76FF7A"
+                d="M18.9,22.8c0-.2,0-.3,0-.5.3-.8.9-1.5,1.2-2.4,1.8-5.5-1-9.6-6.5-10.8-.1,7.9-.4,16-.2,23.8.1,3.8.9,6.1-2.3,8.8-4.1,3.4-14.1,3.1-10.4-4.4,1.6-2.8,5.7-4.1,8.8-3.9s1.6.4,2,.3.2-.7.2-.9c.3-3,0-6.1,0-9.1,0-7.3.1-14.6.1-21.9s0-.8,0-1.2c.2-1,1.2-.9,1.6,0s.8,2.2,1.5,3.4c1.4,2.6,3.9,4.2,5.3,6.8s2.1,7.1.3,10.1-1.4,2.1-1.8,1.8Z" />
+        </svg>
+        <svg class="hover-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.8 43.9">
+            <path fill="#76FF7A"
+                d="M18.9,22.8c0-.2,0-.3,0-.5.3-.8.9-1.5,1.2-2.4,1.8-5.5-1-9.6-6.5-10.8-.1,7.9-.4,16-.2,23.8.1,3.8.9,6.1-2.3,8.8-4.1,3.4-14.1,3.1-10.4-4.4,1.6-2.8,5.7-4.1,8.8-3.9s1.6.4,2,.3.2-.7.2-.9c.3-3,0-6.1,0-9.1,0-7.3.1-14.6.1-21.9s0-.8,0-1.2c.2-1,1.2-.9,1.6,0s.8,2.2,1.5,3.4c1.4,2.6,3.9,4.2,5.3,6.8s2.1,7.1.3,10.1-1.4,2.1-1.8,1.8Z" />
+        </svg>
+    </div>
 </body>
 
 </html>
