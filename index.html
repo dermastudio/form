@@ -330,9 +330,18 @@
 
         .buttons-section {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 0 20px 50px 20px;
+        }
+
+        .tagline {
+            color: var(--text-color);
+            font-weight: 900;
+            font-size: 80px;
+            margin-bottom: 40px;
+            text-align: center;
         }
 
         .button-row {
@@ -990,6 +999,13 @@
                 padding-bottom: 25px;
                 position: relative;
             }
+            .tagline {
+                color: var(--text-color);
+                font-weight: 900;
+                font-size: 32px;
+                margin-bottom: 25px;
+                text-align: center;
+            }
         }
 
         /* --- START: Custom Cursor Hover Effect --- */
@@ -1145,8 +1161,11 @@
         </section>
 
         <main class="buttons-section">
-            <div class="button-row">
-                <a href="#rules-section" class="button"><i class="fa-solid fa-gavel"></i><span>قوانین و شرایط</span></a>
+                                    <h2 class="tagline">دِرما صدای تو، هنر ما</h2>
+                       
+                        <div class="button-row">
+                                <a href="#rules-section" class="button"><i class="fa-solid fa-gavel"></i><span>قوانین و
+                        شرایط</span></a>
                 <a href="#booking-form-section" class="button"><i class="fa-solid fa-calendar-check"></i><span>رزرو
                         وقت</span></a>
                 <a href="#sound-bank-section" class="button"><i class="fa-solid fa-music"></i><span>بانک صدا</span></a>
