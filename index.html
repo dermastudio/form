@@ -297,7 +297,7 @@
         .swiper-section {
             width: 100%;
             height: 400px;
-            margin-bottom: 50px;
+            margin-bottom: -40px;
         }
 
         .swiper-slide {
@@ -342,6 +342,11 @@
             font-size: 80px;
             margin-bottom: 40px;
             text-align: center;
+        }
+
+        body.dark-mode .tagline {
+            color: #f5f5f5;
+            animation: softGlow 3s ease-in-out infinite;
         }
 
         .button-row {
@@ -982,7 +987,7 @@
             /* === START: Mobile Slider Improvements === */
             .swiper-section {
                 height: 40vh;
-                margin-bottom: 120px;
+                margin-bottom: 10px;
             }
 
             .swiper-slide {
@@ -994,7 +999,7 @@
             }
 
             .buttons-section {
-                margin-top: -100px;
+                margin-top: -110px;
                 padding-top: 0px;
                 padding-bottom: 25px;
                 position: relative;
@@ -1003,6 +1008,7 @@
                 color: var(--text-color);
                 font-weight: 900;
                 font-size: 32px;
+                margin-top: -10px;
                 margin-bottom: 25px;
                 text-align: center;
             }
@@ -1046,13 +1052,24 @@
             0% {
                 opacity: 0.8;
                 transform: translateY(0) scale(0.8);
-                }
-                100% {
+            }
+            100% {
                 opacity: 0;
-                transform: translateY(-40px) scale(1.2); /* It moves up a little and fades out */
+                transform: translateY(-40px) scale(1.2);
             }
         }
         /* --- END: Custom Cursor Hover Effect --- */
+
+        /* --- START: Tagline Glow Animation --- */
+        @keyframes softGlow {
+            0%, 100% {
+                text-shadow: 0 0 5px #f5f5f5;
+            }
+            50% {
+                text-shadow: 0 0 10px #f5f5f5, 0 0 20px #f5f5f5;
+            }
+        }
+        /* --- END: Tagline Glow Animation --- */
     </style>
 </head>
 
@@ -1148,7 +1165,6 @@
         <section class="swiper-section mobile-slider">
             <div class="swiper mySwiperMobile">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_mobile_template/01_m.webp" alt="اسلاید اول موبایل"></div>
                     <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_mobile_template/02_m.webp" alt="اسلاید دوم موبایل"></div>
                     <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_mobile_template/03_m.webp" alt="اسلاید سوم موبایل"></div>
                     <div class="swiper-slide"><img src="https://dermastudiofficial.com/swiper_mobile_template/04_m.webp" alt="اسلاید چهارم موبایل"></div>
