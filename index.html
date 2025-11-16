@@ -394,6 +394,10 @@
             text-align: right;
         }
 
+        body.light-mode .booking-notice {
+            border-right-color: #222222;
+        }
+
         #about-us-section,
         #contact-us-section {
             padding: 60px 20px;
@@ -1070,6 +1074,102 @@
             }
         }
         /* --- END: Tagline Glow Animation --- */
+
+        /* === START: Confirmation Modal Styles === */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--form-bg);
+            color: var(--form-text-primary);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            line-height: 2;
+            direction: rtl;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: var(--form-text-primary);
+            font-weight: 700;
+        }
+
+        .confirmation-code {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: var(--brand-green);
+            letter-spacing: 4px;
+            margin: 20px 0;
+            padding: 10px;
+            background: var(--form-input-bg);
+            border-radius: 8px;
+            user-select: all;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        body.light-mode .confirmation-code {
+            color: #222222;
+        }
+
+        .modal-button {
+            font-family: 'Vazirmatn', sans-serif;
+            background: var(--form-text-secondary);
+            color: var(--form-section-bg);
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .modal-button:hover {
+            background: var(--form-text-primary);
+        }
+
+        body.dark-mode .form-error-message {
+          color: var(--brand-green);
+          border-color: var(--brand-green);
+      }
+
+        /* === START: Custom Form Error Message Style === */
+        .form-error-message {
+            display: none;
+            background-color: var(--form-input-bg);
+            color: #c81414;
+            border: 1px solid #c81414;
+            border-right-width: 4px;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin-top: 20px;
+            margin-bottom: -15px;
+            font-size: 0.9em;
+            line-height: 1.8;
+            text-align: right;
+            font-weight: bold;
+        }
+        /* === END: Custom Form Error Message Style === */
+        
+        /* === END: Confirmation Modal Styles === */
+
     </style>
 </head>
 
@@ -1345,8 +1445,7 @@
                             کنید و از فیش واریزی خود یک تصویر هنگام فرایند تکمیل فرم رزرو ارسال کنید.‏</p>
                         <p>* لطفا توجه داشته باشید مبلغ پرداختی صرفا فقط جهت <strong>رزرو استودیو</strong> می‌باشد.‏</p>
                     </div>
-                    <form id="bookingForm" action="https://derma-studio-form.onrender.com/submit" method="POST"
-                        enctype="multipart/form-data">
+                    <form id="bookingForm" action="https://formspree.io/f/xzzygldz" method="POST" novalidate>
                                                                         <label for="name">نام کامل: <span
                                 class="star">*</span></label><input type="text" id="name" name="نام کامل"
                             required><label for="phone">شماره تلفن: <span
@@ -1369,9 +1468,7 @@
                             name="تاریخ رزرو" readonly required placeholder="کلیک کنید"><label for="startTime">از ساعت:
                             <span class="star">*</span></label><select id="startTime" name="ساعت شروع رزرو"
                             required></select><label for="endTime">تا ساعت: <span class="star">*</span></label><select
-                            id="endTime" name="ساعت پایان رزرو" required></select><label for="receipt">فیش واریزی: <span
-                                class="star">*</span></label><input type="file" id="receipt" name="فیش واریزی"
-                            accept=".webp, .png, .jpg, .jpeg, .heic, .gif, .bmp" required><button type="submit">رزرو
+                            id="endTime" name="ساعت پایان رزرو" required></select><div id="formError" class="form-error-message"></div><button type="submit">رزرو
                             وقت</button>
                         <div id="timer"></div>
                     </form>
@@ -1745,17 +1842,80 @@
         });
 
         moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
-        function toggleTabs() { document.getElementById('recordTabs').style.display = document.getElementById('reason').value === 'رکورد' ? 'flex' : 'none'; }
+        function toggleTabs() {
+                const reason = document.getElementById('reason').value;
+                const recordTabs = document.getElementById('recordTabs');
+                recordTabs.style.display = (reason === 'رکورد') ? 'flex' : 'none';
+            }
 
         $(function () {
             $('a[href*="#"]').on('click', function (e) {
                 e.preventDefault();
                 $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top }, 500, 'linear');
             });
+            // === START: Timer Logic (Starts on Scroll) ===
             let timeLeft = 300;
+            let timerInterval = null; // متغیری برای نگهداری اینتروال
+            const timerElement = $('#timer');
+            const formSection = document.getElementById('booking-form-section'); // عنصر فرم برای رصد شدن
+
+            // تابع تبدیل اعداد به فارسی
             function conv(s) { return s.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]); }
-            function upd() { const m = Math.floor(timeLeft / 60), s = timeLeft % 60; $('#timer').text('زمان باقی مانده: ' + conv(`${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`)); }
-            upd(); setInterval(() => { if (timeLeft-- <= 0) { $('#booking-form-section form')[0].reset(); timeLeft = 300; } upd(); }, 1000);
+
+            // تابع آپدیت نمایشگر تایمر
+            function upd() {
+                const m = Math.floor(timeLeft / 60);
+                const s = timeLeft % 60;
+                timerElement.text('زمان باقی مانده: ' + conv(`${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`));
+            }
+
+            // تابع شروع یا ادامه تایمر
+            function startTimer() {
+                if (timerInterval) return; // اگر در حال اجرا بود، دوباره اجرا نکن
+                timerInterval = setInterval(() => {
+                    if (timeLeft <= 0) {
+                        $('#booking-form-section form')[0].reset();
+                        timeLeft = 300;
+                    } else {
+                        timeLeft--;
+                    }
+                    upd();
+                }, 1000);
+            }
+
+            // تابع متوقف کردن تایمر
+            function stopTimer() {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+
+            // نمایش زمان اولیه (مثلاً ۰۵:۰۰) قبل از شروع
+            upd();
+
+            // منطق Intersection Observer
+            // چک می‌کنیم که آیا مرورگر از این قابلیت پشتیبانی می‌کند یا خیر
+            if ('IntersectionObserver' in window && formSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    const entry = entries[0];
+                    if (entry.isIntersecting) {
+                        // اگر کاربر بخش فرم را دید، تایمر را شروع کن
+                        startTimer();
+                    } else {
+                        // اگر کاربر از بخش فرم خارج شد، تایمر را متوقف کن
+                        stopTimer();
+                    }
+                }, {
+                    threshold: 0.1 // زمانی فعال شو که ۱۰٪ بخش فرم دیده شود
+                });
+
+                // رصد کردن بخش فرم را شروع کن
+                observer.observe(formSection);
+            } else {
+                // اگر مرورگر پشتیبانی نمی‌کرد (خیلی قدیمی)، تایمر را مثل قبل بلافاصله اجرا کن
+                console.warn('IntersectionObserver not supported. Starting timer immediately.');
+                startTimer();
+            }
+            // === END: Timer Logic ===
             const slots = []; for (let h = 7; h <= 22; h++) { const hh = h.toString().padStart(2, '0'); slots.push({ v: `${hh}:00`, t: `${hh}:00` }); }
             function populate(sel, arr) { sel.empty(); arr.forEach(o => sel.append($('<option>').val(o.v).text(o.t))); }
             populate($('#startTime'), slots); populate($('#endTime'), slots);
@@ -1784,38 +1944,147 @@
 
         document.addEventListener('DOMContentLoaded', () => {
 
-            // === START: File Validation Code ===
-            const fileInput = document.getElementById('receipt');
+            // ------------------------------------------------------------------
+            // === START: Booking Confirmation Modal Logic ===
+            // ------------------------------------------------------------------
+
             const bookingForm = document.getElementById('bookingForm');
 
-            if (fileInput && bookingForm) {
-                const allowedExtensions = ['webp', 'png', 'jpg', 'jpeg', 'heic', 'gif', 'bmp'];
+            const confirmationModal = document.getElementById('confirmationModal');
+            const modalConfirmButton = document.getElementById('modalConfirmButton');
+            const modalCodeElement = document.getElementById('modalConfirmationCode');
+            const formError = document.getElementById('formError');
 
-                fileInput.addEventListener('change', function (event) {
-                    const file = event.target.files[0];
-                    if (file) {
-                        const fileName = file.name;
-                        const fileExtension = fileName.split('.').pop().toLowerCase();
+            // 1.5: مدیریت کپی کردن کد در کلیپ‌بورد
+            if (modalCodeElement) {
+                modalCodeElement.addEventListener('click', () => {
+                    const code = modalCodeElement.textContent;
 
-                        if (!allowedExtensions.includes(fileExtension)) {
-                            alert('فقط فایل‌هایی با فرمت webp, png, jpg, jpeg, heic, gif, bmp مجاز هستند.');
-                            this.value = ''; // پاک کردن فایل نامعتبر
-                        }
-                    }
-                });
+                    navigator.clipboard.writeText(code).then(() => {
+                        // موفقیت در کپی
+                        const originalText = code;
+                        const originalFontSize = modalCodeElement.style.fontSize;
+                        const originalLetterSpacing = modalCodeElement.style.letterSpacing;
 
-                bookingForm.addEventListener('submit', function (event) {
-                    const file = fileInput.files[0];
-                    if (file) {
-                        const fileExtension = file.name.split('.').pop().toLowerCase();
-                        if (!allowedExtensions.includes(fileExtension)) {
-                            alert('فرمت فایل انتخاب شده برای فیش واریزی مجاز نیست.');
-                            event.preventDefault(); // جلوگیری از ارسال فرم
-                        }
-                    }
+                        // نمایش پیغام "کپی شد"
+                        modalCodeElement.textContent = 'کپی شد!';
+                        modalCodeElement.style.fontSize = '1.8em'; // فونت کوچکتر برای متن فارسی
+                        modalCodeElement.style.letterSpacing = 'normal';
+
+                        // بازگرداندن به حالت اولیه بعد از 1.5 ثانیه
+                        setTimeout(() => {
+                            modalCodeElement.textContent = originalText;
+                            modalCodeElement.style.fontSize = originalFontSize || '2.2em';
+                            modalCodeElement.style.letterSpacing = originalLetterSpacing || '4px';
+                        }, 1500);
+
+                    }).catch(err => {
+                        console.error('خطا در کپی کردن کد: ', err);
+                        // در صورت بروز خطا، حداقل کاربر می‌تواند کد را دستی کپی کند
+                    });
                 });
             }
-            // === END: File Validation Code ===
+
+            // 1. تابع ساخت کد 6 رقمی رندوم
+            function generateRandomCode() {
+                return Math.floor(100000 + Math.random() * 900000).toString();
+            }
+
+            // 2. رهگیری رویداد submit فرم
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function (event) {
+                    // جلوگیری از ارسال عادی فرم
+                    event.preventDefault();
+
+                    // --- بخش جدید اعتبارسنجی سفارشی ---
+                    formError.style.display = 'none'; // 1. مخفی کردن خطای قبلی
+
+                    // 2. گرفتن مقادیر فیلدها
+                    const name = document.getElementById('name').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const reason = document.getElementById('reason').value;
+                    const date = document.getElementById('date').value;
+                    const startTime = document.getElementById('startTime').value;
+                    const endTime = document.getElementById('endTime').value;
+
+                    let isValid = true; // 3. فرض اولیه بر معتبر بودن فرم
+
+                    // 4. چک کردن فیلدهای اصلی
+                    if (!name || !phone || !reason || !date || !startTime || !endTime) {
+                        isValid = false;
+                    }
+
+                    // 5. چک کردن شرطی فیلد "نوع رکورد"
+                    if (reason === 'رکورد') {
+                        const recordType = bookingForm.querySelector('input[name="نوع رکورد"]:checked');
+                        if (!recordType) {
+                            isValid = false;
+                        }
+                    }
+
+                    // 6. نمایش خطا در صورت نامعتبر بودن
+                    if (!isValid) {
+                        formError.textContent = 'لطفا همه‌ی فیلدهارو پر کنید!'; // پیام خطای درخواستی شما
+                        formError.style.display = 'block';
+                        return; // جلوگیری از باز شدن پاپ‌آپ
+                    }
+                    // --- پایان بخش اعتبارسنجی سفارشی ---
+
+                    // 1. ساخت کد رندوم
+                    const reservationCode = generateRandomCode();
+
+                    // 2. حذف فیلد مخفی کد قبلی (برای جلوگیری از تکرار)
+                    const existingCodeInput = bookingForm.querySelector('input[name="کد تایید"]');
+                    if (existingCodeInput) {
+                        existingCodeInput.remove();
+                    }
+
+                    // 3. ایجاد یک فیلد مخفی (hidden input) برای ارسال کد به Formspree
+                    const codeInput = document.createElement('input');
+                    codeInput.type = 'hidden';
+                    codeInput.name = 'کد تایید'; // این نام در ایمیل Formspree نمایش داده می‌شود
+                    codeInput.value = reservationCode;
+                    bookingForm.appendChild(codeInput);
+
+                    // 4. قرار دادن کد در پاپ‌آپ و نمایش آن
+                    modalCodeElement.textContent = reservationCode;
+                    confirmationModal.style.display = 'flex';
+                });
+            }
+
+            // 3. مدیریت کلیک روی دکمه "تایید" پاپ‌آپ
+            if (modalConfirmButton) {
+                modalConfirmButton.addEventListener('click', () => {
+
+                    // غیرفعال کردن دکمه برای جلوگیری از کلیک مجدد
+                    modalConfirmButton.disabled = true;
+                    modalConfirmButton.textContent = 'در حال ارسال...';
+
+                    // ارسال فرم در پس‌زمینه با استفاده از AJAX (Fetch)
+                    const formData = new FormData(bookingForm);
+                    const formAction = bookingForm.getAttribute('action');
+
+                    fetch(formAction, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                        .catch(error => {
+                            // حتی اگر ارسال ناموفق بود، کاربر را هدایت کن
+                            console.error('خطا در ارسال فرم به Formspree:', error);
+                        })
+                        .finally(() => {
+                            // در هر صورت (موفق یا ناموفق) کاربر به صفحه تشکر هدایت می‌شود
+                            window.location.href = 'https://dermastudiofficial.com/thankyou.html';
+                        });
+                });
+            }
+
+            // ------------------------------------------------------------------
+            // === END: Booking Confirmation Modal Logic ===
+            // ------------------------------------------------------------------
 
             // === START: Custom Cursor Hover Effect ===
             const hoverEffectContainer = document.getElementById('hover-effect-container');
@@ -1969,6 +2238,15 @@
             });
         });
     </script>
+
+    <div id="confirmationModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>تایید نهایی رزرو</h3>
+            <p>لطفا فیش واریزی خود را به همراه کد زیر، برای تایید رزرو خود به واتساپ و یا ایمیل استودیو ارسال بفرمایید:</p>
+            <div class="confirmation-code" id="modalConfirmationCode"></div>
+            <button id="modalConfirmButton" class="modal-button">تایید و ارسال</button>
+        </div>
+    </div>
     
     <div id="hover-effect-container">
         <svg class="hover-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.8 43.9">
