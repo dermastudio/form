@@ -1490,14 +1490,12 @@
                             name="تاریخ رزرو" readonly required placeholder="کلیک کنید"><label for="startTime">از ساعت:
                             <span class="star">*</span></label><select id="startTime" name="ساعت شروع رزرو"
                             required></select><label for="endTime">تا ساعت: <span class="star">*</span></label><select
-                            id="endTime" name="ساعت پایان رزرو" required></select><div id="formError" class="form-error-message">
+                            id="endTime" name="ساعت پایان رزرو" required></select><div id="formError" class="form-error-message"></div>
                             
-                            </div><div class="h-captcha"
-                            data-captcha="true"
-                            data-callback="onCaptchaSuccess"    
-                            data-expired-callback="onCaptchaExpired"
-                            data-error-callback="onCaptchaExpired">
-                            </div>
+                            <div class="h-captcha"                                  data-captcha="true"                                
+                                 data-callback="onCaptchaSuccess"                                  data-expired-callback="onCaptchaExpired"        
+                                                         data-error-callback="onCaptchaExpired"                                  data-lang="fa">    
+                                                        </div>
                             <button type="submit" id="submitButton" disabled>رزرو وقت</button>
                         <div id="timer"></div>
                     </form>
