@@ -533,6 +533,19 @@
             background: var(--form-text-primary);
         }
 
+        /* === START: Disabled Submit Button Style === */
+        #booking-form-section button[type=submit]:disabled {
+            background: #cccccc;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+        
+        body.dark-mode #booking-form-section button[type=submit]:disabled {
+            background: #999;
+            color: #444;
+        }
+        /* === END: Disabled Submit Button Style === */
+
         #timer {
             color: var(--form-text-primary);
             text-align: center;
@@ -1477,8 +1490,15 @@
                             name="تاریخ رزرو" readonly required placeholder="کلیک کنید"><label for="startTime">از ساعت:
                             <span class="star">*</span></label><select id="startTime" name="ساعت شروع رزرو"
                             required></select><label for="endTime">تا ساعت: <span class="star">*</span></label><select
-                            id="endTime" name="ساعت پایان رزرو" required></select><div id="formError" class="form-error-message"></div><div class="h-captcha" data-captcha="true"></div><button type="submit">رزرو
-                            وقت</button>
+                            id="endTime" name="ساعت پایان رزرو" required></select><div id="formError" class="form-error-message">
+                            
+                            </div><div class="h-captcha"
+                            data-captcha="true"
+                            data-callback="onCaptchaSuccess"    
+                            data-expired-callback="onCaptchaExpired"
+                            data-error-callback="onCaptchaExpired">
+                            </div>
+                            <button type="submit" id="submitButton" disabled>رزرو وقت</button>
                         <div id="timer"></div>
                     </form>
                 </div>
@@ -1806,6 +1826,18 @@
     <script src="https://unpkg.com/wavesurfer.js"></script>
 
     <script>
+        // === START: Captcha Callbacks ===
+            function onCaptchaSuccess() {
+                // دکمه را فعال کن
+                document.getElementById('submitButton').disabled = false;
+            }
+
+            function onCaptchaExpired() {
+                // دکمه را دوباره غیرفعال کن
+                document.getElementById('submitButton').disabled = true;
+            }
+            // === END: Captcha Callbacks ===
+
         // Desktop version slider
         var swiperDesktop = new Swiper(".mySwiperDesktop", {
             loop: true,
