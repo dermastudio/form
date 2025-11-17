@@ -1170,6 +1170,15 @@
         
         /* === END: Confirmation Modal Styles === */
 
+        /* === START: hCaptcha Custom Style === */
+        .h-captcha {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        /* === END: hCaptcha Custom Style === */
+
     </style>
 </head>
 
@@ -1468,7 +1477,7 @@
                             name="تاریخ رزرو" readonly required placeholder="کلیک کنید"><label for="startTime">از ساعت:
                             <span class="star">*</span></label><select id="startTime" name="ساعت شروع رزرو"
                             required></select><label for="endTime">تا ساعت: <span class="star">*</span></label><select
-                            id="endTime" name="ساعت پایان رزرو" required></select><div id="formError" class="form-error-message"></div><button type="submit">رزرو
+                            id="endTime" name="ساعت پایان رزرو" required></select><div id="formError" class="form-error-message"></div><div class="h-captcha" data-captcha="true"></div><button type="submit">رزرو
                             وقت</button>
                         <div id="timer"></div>
                     </form>
@@ -2024,7 +2033,7 @@
 
                     // 6. نمایش خطا در صورت نامعتبر بودن
                     if (!isValid) {
-                        formError.textContent = 'لطفا همه‌ی فیلدهارو پر کنید!'; // پیام خطای درخواستی شما
+                        formError.textContent = 'لطفا همه‌ی فیلدها را پر کنید!';
                         formError.style.display = 'block';
                         return; // جلوگیری از باز شدن پاپ‌آپ
                     }
@@ -2238,6 +2247,8 @@
             });
         });
     </script>
+
+        <script src="https://web3forms.com/client/script.js" async defer></script>
 
     <div id="confirmationModal" class="modal-overlay">
         <div class="modal-content">
