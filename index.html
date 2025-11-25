@@ -1223,42 +1223,37 @@
 
         /* --- تنظیمات لایت مود (Light Mode) --- */
         
-        /* هاور در لایت مود: خاکستری تیره (رنگ متن اصلی) */
         .pricing-card:hover {
             transform: translateY(-5px);
             border-color: #555555; 
             box-shadow: 0 10px 20px var(--form-shadow);
         }
 
-        /* رنگ تیک‌ها در لایت مود: خاکستری */
         .pricing-features li::before {
             content: '✔';
             position: absolute;
             right: 0;
-            color: #888888; /* خاکستری */
+            color: #888888;
             font-weight: bold;
         }
 
-        /* رنگ متن استثنا (بدون آهنگسازی) در لایت مود: خاکستری روشن */
+        /* رنگ متن استثنا در لایت مود: خیلی روشن‌تر شد */
         .exclusion-note {
             font-size: 0.8em;
-            color: #999999; /* تغییر به خاکستری روشن */
+            color: #b3b3b3; /* خاکستری روشن */
             transition: color 0.3s;
         }
 
         /* --- تنظیمات دارک مود (Dark Mode) --- */
 
-        /* هاور در دارک مود: سبز */
         body.dark-mode .pricing-card:hover {
             border-color: var(--brand-green);
         }
 
-        /* رنگ تیک‌ها در دارک مود: سبز */
         body.dark-mode .pricing-features li::before {
             color: var(--brand-green);
         }
 
-        /* رنگ متن استثنا در دارک مود: سبز */
         body.dark-mode .exclusion-note {
             color: var(--brand-green);
         }
@@ -1342,13 +1337,24 @@
             }
         }
 
+        /* --- ترتیب‌بندی مخصوص موبایل --- */
         @media (max-width: 650px) {
             .pricing-grid {
                 grid-template-columns: 1fr;
+                display: flex; /* استفاده از فلکس برای اردردهی راحت‌تر */
+                flex-direction: column;
             }
             .pricing-card {
                 margin-bottom: 15px;
             }
+            
+            /* ترتیب دلخواه شما */
+            .plan-silver   { order: 1; }
+            .plan-gold     { order: 2; }
+            .plan-vst      { order: 3; }
+            .plan-live     { order: 4; }
+            .plan-podcast  { order: 5; }
+            .plan-procast  { order: 6; }
         }
         /* === END: Pricing Plans Styles === */
 
@@ -1477,15 +1483,14 @@
             <h2 style="text-align: center; margin-bottom: 40px; font-size: 2em;">پکیج‌های استودیو دِرما</h2>
             <div class="pricing-grid">
         
-                <div class="pricing-card">
+                <div class="pricing-card plan-silver">
                     <h3>نقره‌ای</h3>
-                    <div class="subtitle">مناسب برای دموهای باکیفیت</div>
+                    <div class="subtitle">مناسب برای دموهای با کیفیت و بیت‌های آماده</div>
                     <div class="equipment-info">میکروفن: Lewitt LCT 240 Pro</div>
                     <ul class="pricing-features">
-                        <li>۵ خدمت تخصصی</li>
+                        <li>شامل ۵ آپشن تخصصی</li>
                         <li>۲ ساعت ضبط وکال</li>
-                        <li>ناظر ضبط</li>
-                        <li>لِوِل بندی</li>
+                        <li>ناظر ضبط و لِوِل بندی</li>
                         <li>۳ مرتبه اصلاحیه</li>
                         <li>۲ لاین میکس و مسترینگ رایگان</li>
                     </ul>
@@ -1494,90 +1499,92 @@
                     </div>
                 </div>
         
-                <div class="pricing-card featured">
+                <div class="pricing-card plan-gold">
                     <h3>طلایی</h3>
-                    <div class="subtitle">مخصوص خوانندگان دارای بیت آماده</div>
+                    <div class="subtitle">مخصوص خوانندگانی که بیت (موزیک بیکلام) آماده دارند</div>
                     <div class="equipment-info">میکروفن: Audio-Technica AT4050</div>
                     <ul class="pricing-features">
-                        <li>۶ خدمت تخصصی</li>
-                        <li>۴ ساعت ضبط وکال + ساز</li>
-                        <li>نظارت تخصصی بر اجرا</li>
-                        <li>لِوِل بندی + ۳ اصلاحیه</li>
+                        <li>شامل ۶ آپشن تخصصی</li>
+                        <li>۴ ساعت ضبط وکال + ضبط ساز</li>
+                        <li>نظارت تخصصی بر اجرا و لِوِل بندی</li>
+                        <li>۳ مرتبه اصلاحیه</li>
                         <li>۵ لاین میکس و مسترینگ رایگان</li>
-                        <li class="exclusion-note">(بدون آهنگسازی و تنظیم)</li>
+                        <li class="exclusion-note">(این پکیج شامل آهنگسازی و تنظیم نمی‌باشد)</li>
                     </ul>
                     <div class="pricing-price-box">
                         <span class="old-price">۴,۹۷۰,۰۰۰ تومان</span>
                         <span class="final-price">۳,۵۰۰,۰۰۰ تومان</span>
-                        <span class="price-note">۱,۴۷۰,۰۰۰ تومان تخفیف</span>
+                        <span class="price-note">۱,۴۷۰,۰۰۰ تومان تخفیف مستقیم</span>
                     </div>
                 </div>
         
-                <div class="pricing-card featured">
+                <div class="pricing-card plan-vst">
                     <h3>الماس (VST)</h3>
-                    <div class="subtitle">هیپ هاپ، EDM، پاپ الکترونیک</div>
-                    <div class="equipment-info">بانک‌های صدای مجازی با کیفیت</div>
+                    <div class="subtitle">تولید موزیک با باکیفیت‌ترین بانک‌های صدای مجازی</div>
+                    <div class="equipment-info">مناسب: هیپ‌هاپ، EDM، پاپ الکترونیک و موسیقی متن</div>
                     <ul class="pricing-features">
-                        <li>۸ خدمت کامل</li>
-                        <li>۵ ساعت ضبط وکال + ساز</li>
+                        <li>شامل ۸ آپشن کامل</li>
+                        <li>۵ ساعت ضبط وکال + ضبط ساز</li>
+                        <li>نظارت تخصصی بر اجرا و لِوِل بندی</li>
                         <li>آهنگسازی + تنظیم</li>
                         <li>میکس و مسترینگ</li>
-                        <li>نظارت تخصصی + ۳ اصلاحیه</li>
+                        <li>۳ مرتبه اصلاحیه</li>
                     </ul>
                     <div class="pricing-price-box">
                         <span class="old-price">۹,۹۷۰,۰۰۰ تومان</span>
                         <span class="final-price">۸,۵۰۰,۰۰۰ تومان</span>
-                        <span class="price-note">۱,۴۷۰,۰۰۰ تومان تخفیف</span>
+                        <span class="price-note">۱,۴۷۰,۰۰۰ تومان تخفیف مستقیم</span>
                     </div>
                 </div>
         
-                <div class="pricing-card">
-                    <h3>الماس (Live)</h3>
-                    <div class="subtitle">پروژه کاملا با سازهای زنده</div>
-                    <div class="equipment-info">ضبط زهی، بادی، کوبه‌ای و...</div>
+                <div class="pricing-card plan-procast">
+                    <h3>تولید کامل (Procast)</h3>
+                    <div class="subtitle">استانداردسازی صدا برای پلتفرم‌های شنیداری (Loudness Standard)</div>
+                    <div class="equipment-info">تدوین کامل Full Edit</div>
                     <ul class="pricing-features">
-                        <li>۸ خدمت کامل</li>
-                        <li>۵ ساعت ضبط وکال + ساز</li>
-                        <li>آهنگسازی + تنظیم</li>
-                        <li>میکس و مسترینگ</li>
-                        <li>نظارت تخصصی + ۳ اصلاحیه</li>
+                        <li>۲ ساعت ضبط با نظارت محتوایی</li>
+                        <li>حذف نفس‌گیری‌ها و سکوت‌های اضافی</li>
+                        <li>میکس و صداگذاری</li>
+                        <li>افزودن Intro/Outro و موسیقی زیرصدا</li>
+                        <li>مسترینگ نهایی</li>
                     </ul>
                     <div class="pricing-price-box">
-                        <span class="price-note">شروع قیمت از:</span>
-                        <span class="final-price">۱۱,۵۰۰,۰۰۰ تومان</span>
-                        <span class="price-note">(هزینه نوازنده جداگانه محاسبه می‌شود)</span>
+                        <span class="final-price">۱,۴۹۰,۰۰۰ تومان</span>
                     </div>
                 </div>
         
-                <div class="pricing-card">
-                    <h3>پکیج پادکست</h3>
-                    <div class="subtitle">Audio Content</div>
-                    <div class="equipment-info">تجهیزات: Lewitt & Audient Class A</div>
+                <div class="pricing-card plan-podcast">
+                    <h3>پکیج پادکست<br>(Audio Content)</h3>
+                    <div class="subtitle">مناسب برای افرادی که تدوینگر دارند</div>
+                    <div class="equipment-info">میکروفن Lewitt و پری‌امپ Audient کلاس A</div>
                     <ul class="pricing-features">
-                        <li>۱.۵ ساعت ضبط مفید</li>
-                        <li>اتاق آکوستیک Dead Room</li>
-                        <li>تحویل فایل High-RES</li>
-                        <li>لِوِل بندی شده</li>
-                        <li>مناسب برای تدوین‌گران</li>
+                        <li>۱.۵ ساعت ضبط مفید در اتاق Dead Room</li>
+                        <li>گرمای صدای رادیویی</li>
+                        <li>تحویل فایل خام با کیفیت بالا (High-RES)</li>
+                        <li>فایل لِوِل بندی شده</li>
+                        <li>برندسازی شنیداری</li>
                     </ul>
                     <div class="pricing-price-box">
                         <span class="final-price">۴۹۰,۰۰۰ تومان</span>
                     </div>
                 </div>
         
-                <div class="pricing-card">
-                    <h3>تولید کامل (Procast)</h3>
-                    <div class="subtitle">استانداردسازی Loudness Standard</div>
-                    <div class="equipment-info">نظارت محتوایی و تدوین کامل</div>
+                <div class="pricing-card plan-live">
+                    <h3>الماس (Live)</h3>
+                    <div class="subtitle">پروژه کاملاً با سازهای زنده (گیتار، زهی، بادی، کوبه‌ای و...)</div>
+                    <div class="equipment-info">صدابرداری حرفه‌ای سازها</div>
                     <ul class="pricing-features">
-                        <li>۲ ساعت ضبط</li>
-                        <li>تدوین کامل (Full Edit)</li>
-                        <li>حذف نفس‌گیری و سکوت‌ها</li>
-                        <li>صداگذاری + موسیقی زیرصدا</li>
-                        <li>افزودن Intro/Outro</li>
+                        <li>شامل ۸ آپشن کامل</li>
+                        <li>۵ ساعت ضبط وکال + ضبط ساز</li>
+                        <li>نظارت تخصصی بر اجرا و لِوِل بندی</li>
+                        <li>آهنگسازی + تنظیم</li>
+                        <li>میکس و مسترینگ</li>
+                        <li>۳ مرتبه اصلاحیه</li>
                     </ul>
                     <div class="pricing-price-box">
-                        <span class="final-price">۱,۴۹۰,۰۰۰ تومان</span>
+                        <span class="price-note">شروع قیمت از:</span>
+                        <span class="final-price">۱۱,۵۰۰,۰۰۰ تومان</span>
+                        <span class="price-note">(هزینه نوازنده پس از مشاوره محاسبه می‌شود)</span>
                     </div>
                 </div>
         
@@ -1760,8 +1767,8 @@
                             <option value="پکیج طلایی">پکیج طلایی</option>
                             <option value="پکیج الماس (VST)">پکیج الماس VST</option>
                             <option value="پکیج الماس (Live)">پکیج الماس Live</option>
-                            <option value="پکیج پادکست">پکیج پادکست</option>
-                            <option value="پکیج تولید کامل (Procast)">پکیج تولید کامل Procast </option>
+                            <option value="پکیج پادکست">پکیج پادکست (Audio Content)</option>
+                            <option value="پکیج تولید کامل (Procast)">پکیج تولید کامل (Procast)</option>
                         </select>
                         <div id="recordTabs"><label><input type="radio" name="نوع رکورد" value="وکال">
                                 وکال</label><label><input type="radio" name="نوع رکورد" value="ساز"> ساز</label></div>
