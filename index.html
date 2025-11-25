@@ -1192,6 +1192,166 @@
         }
         /* === END: hCaptcha Custom Style === */
 
+        /* === START: Pricing Plans Styles === */
+        #pricing-section {
+            padding: 20px 20px 60px 20px;
+            background-color: var(--background-color);
+            transition: background-color 0.3s;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background-color: var(--form-bg);
+            border: 2px solid var(--form-border-color);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- تنظیمات لایت مود (Light Mode) --- */
+        
+        /* هاور در لایت مود: خاکستری تیره (رنگ متن اصلی) */
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: #555555; 
+            box-shadow: 0 10px 20px var(--form-shadow);
+        }
+
+        /* رنگ تیک‌ها در لایت مود: خاکستری */
+        .pricing-features li::before {
+            content: '✔';
+            position: absolute;
+            right: 0;
+            color: #888888; /* خاکستری */
+            font-weight: bold;
+        }
+
+        /* رنگ متن استثنا (بدون آهنگسازی) در لایت مود: خاکستری روشن */
+        .exclusion-note {
+            font-size: 0.8em;
+            color: #999999; /* تغییر به خاکستری روشن */
+            transition: color 0.3s;
+        }
+
+        /* --- تنظیمات دارک مود (Dark Mode) --- */
+
+        /* هاور در دارک مود: سبز */
+        body.dark-mode .pricing-card:hover {
+            border-color: var(--brand-green);
+        }
+
+        /* رنگ تیک‌ها در دارک مود: سبز */
+        body.dark-mode .pricing-features li::before {
+            color: var(--brand-green);
+        }
+
+        /* رنگ متن استثنا در دارک مود: سبز */
+        body.dark-mode .exclusion-note {
+            color: var(--brand-green);
+        }
+
+        /* --- سایر استایل‌های عمومی --- */
+
+        .pricing-card h3 {
+            color: var(--text-color);
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .pricing-card .subtitle {
+            font-size: 0.9em;
+            color: var(--form-text-secondary);
+            margin-bottom: 20px;
+            height: 40px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: right;
+            border-top: 1px solid var(--form-border-color);
+            border-bottom: 1px solid var(--form-border-color);
+            padding: 20px 0;
+        }
+
+        .pricing-features li {
+            margin-bottom: 12px;
+            color: var(--form-text-primary);
+            font-size: 0.95em;
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .pricing-card .equipment-info {
+            font-size: 0.85em;
+            color: var(--form-text-secondary);
+            background: var(--form-input-bg);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .pricing-price-box {
+            margin-top: auto;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 0.9em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .final-price {
+            font-size: 1.6em;
+            font-weight: 900;
+            color: var(--text-color);
+            display: block;
+        }
+        
+        body.dark-mode .final-price {
+            color: var(--brand-green);
+        }
+
+        .price-note {
+            font-size: 0.8em;
+            color: var(--form-text-secondary);
+            display: block;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-card {
+                margin-bottom: 15px;
+            }
+        }
+        /* === END: Pricing Plans Styles === */
+
     </style>
 </head>
 
@@ -1312,6 +1472,117 @@
                         ما</span></a>
             </div>
         </main>
+
+        <section id="pricing-section">
+            <h2 style="text-align: center; margin-bottom: 40px; font-size: 2em;">پکیج‌های استودیو دِرما</h2>
+            <div class="pricing-grid">
+        
+                <div class="pricing-card">
+                    <h3>نقره‌ای</h3>
+                    <div class="subtitle">مناسب برای دموهای باکیفیت</div>
+                    <div class="equipment-info">میکروفن: Lewitt LCT 240 Pro</div>
+                    <ul class="pricing-features">
+                        <li>۵ خدمت تخصصی</li>
+                        <li>۲ ساعت ضبط وکال</li>
+                        <li>ناظر ضبط</li>
+                        <li>لِوِل بندی</li>
+                        <li>۳ مرتبه اصلاحیه</li>
+                        <li>۲ لاین میکس و مسترینگ رایگان</li>
+                    </ul>
+                    <div class="pricing-price-box">
+                        <span class="final-price">۱,۲۵۰,۰۰۰ تومان</span>
+                    </div>
+                </div>
+        
+                <div class="pricing-card featured">
+                    <h3>طلایی</h3>
+                    <div class="subtitle">مخصوص خوانندگان دارای بیت آماده</div>
+                    <div class="equipment-info">میکروفن: Audio-Technica AT4050</div>
+                    <ul class="pricing-features">
+                        <li>۶ خدمت تخصصی</li>
+                        <li>۴ ساعت ضبط وکال + ساز</li>
+                        <li>نظارت تخصصی بر اجرا</li>
+                        <li>لِوِل بندی + ۳ اصلاحیه</li>
+                        <li>۵ لاین میکس و مسترینگ رایگان</li>
+                        <li class="exclusion-note">(بدون آهنگسازی و تنظیم)</li>
+                    </ul>
+                    <div class="pricing-price-box">
+                        <span class="old-price">۴,۹۷۰,۰۰۰ تومان</span>
+                        <span class="final-price">۳,۵۰۰,۰۰۰ تومان</span>
+                        <span class="price-note">۱,۴۷۰,۰۰۰ تومان تخفیف</span>
+                    </div>
+                </div>
+        
+                <div class="pricing-card featured">
+                    <h3>الماس (VST)</h3>
+                    <div class="subtitle">هیپ هاپ، EDM، پاپ الکترونیک</div>
+                    <div class="equipment-info">بانک‌های صدای مجازی با کیفیت</div>
+                    <ul class="pricing-features">
+                        <li>۸ خدمت کامل</li>
+                        <li>۵ ساعت ضبط وکال + ساز</li>
+                        <li>آهنگسازی + تنظیم</li>
+                        <li>میکس و مسترینگ</li>
+                        <li>نظارت تخصصی + ۳ اصلاحیه</li>
+                    </ul>
+                    <div class="pricing-price-box">
+                        <span class="old-price">۹,۹۷۰,۰۰۰ تومان</span>
+                        <span class="final-price">۸,۵۰۰,۰۰۰ تومان</span>
+                        <span class="price-note">۱,۴۷۰,۰۰۰ تومان تخفیف</span>
+                    </div>
+                </div>
+        
+                <div class="pricing-card">
+                    <h3>الماس (Live)</h3>
+                    <div class="subtitle">پروژه کاملا با سازهای زنده</div>
+                    <div class="equipment-info">ضبط زهی، بادی، کوبه‌ای و...</div>
+                    <ul class="pricing-features">
+                        <li>۸ خدمت کامل</li>
+                        <li>۵ ساعت ضبط وکال + ساز</li>
+                        <li>آهنگسازی + تنظیم</li>
+                        <li>میکس و مسترینگ</li>
+                        <li>نظارت تخصصی + ۳ اصلاحیه</li>
+                    </ul>
+                    <div class="pricing-price-box">
+                        <span class="price-note">شروع قیمت از:</span>
+                        <span class="final-price">۱۱,۵۰۰,۰۰۰ تومان</span>
+                        <span class="price-note">(هزینه نوازنده جداگانه محاسبه می‌شود)</span>
+                    </div>
+                </div>
+        
+                <div class="pricing-card">
+                    <h3>پکیج پادکست</h3>
+                    <div class="subtitle">Audio Content</div>
+                    <div class="equipment-info">تجهیزات: Lewitt & Audient Class A</div>
+                    <ul class="pricing-features">
+                        <li>۱.۵ ساعت ضبط مفید</li>
+                        <li>اتاق آکوستیک Dead Room</li>
+                        <li>تحویل فایل High-RES</li>
+                        <li>لِوِل بندی شده</li>
+                        <li>مناسب برای تدوین‌گران</li>
+                    </ul>
+                    <div class="pricing-price-box">
+                        <span class="final-price">۴۹۰,۰۰۰ تومان</span>
+                    </div>
+                </div>
+        
+                <div class="pricing-card">
+                    <h3>تولید کامل (Procast)</h3>
+                    <div class="subtitle">استانداردسازی Loudness Standard</div>
+                    <div class="equipment-info">نظارت محتوایی و تدوین کامل</div>
+                    <ul class="pricing-features">
+                        <li>۲ ساعت ضبط</li>
+                        <li>تدوین کامل (Full Edit)</li>
+                        <li>حذف نفس‌گیری و سکوت‌ها</li>
+                        <li>صداگذاری + موسیقی زیرصدا</li>
+                        <li>افزودن Intro/Outro</li>
+                    </ul>
+                    <div class="pricing-price-box">
+                        <span class="final-price">۱,۴۹۰,۰۰۰ تومان</span>
+                    </div>
+                </div>
+        
+            </div>
+        </section>
 
         <section class="info-section">
             <div class="info-container">
@@ -1483,6 +1754,14 @@
                             <option value="دوبله">دوبله</option>
                             <option value="صداگذاری و صداسازی">صداگذاری و صداسازی</option>
                             <option value="نریشن">نریشن</option>
+
+                            <option disabled>──────────────</option>
+                            <option value="پکیج نقره‌ای">پکیج نقره‌ای</option>
+                            <option value="پکیج طلایی">پکیج طلایی</option>
+                            <option value="پکیج الماس (VST)">پکیج الماس VST</option>
+                            <option value="پکیج الماس (Live)">پکیج الماس Live</option>
+                            <option value="پکیج پادکست">پکیج پادکست</option>
+                            <option value="پکیج تولید کامل (Procast)">پکیج تولید کامل Procast </option>
                         </select>
                         <div id="recordTabs"><label><input type="radio" name="نوع رکورد" value="وکال">
                                 وکال</label><label><input type="radio" name="نوع رکورد" value="ساز"> ساز</label></div>
