@@ -1215,7 +1215,7 @@
             text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center; 
             transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
             position: relative;
             overflow: hidden;
@@ -1237,10 +1237,9 @@
             font-weight: bold;
         }
 
-        /* رنگ متن استثنا در لایت مود: خیلی روشن‌تر شد */
         .exclusion-note {
             font-size: 0.8em;
-            color: #b3b3b3; /* خاکستری روشن */
+            color: #b3b3b3; 
             transition: color 0.3s;
         }
 
@@ -1271,7 +1270,6 @@
             font-size: 0.9em;
             color: var(--form-text-secondary);
             margin-bottom: 20px;
-            height: 40px;
         }
 
         .pricing-features {
@@ -1302,7 +1300,7 @@
         }
 
         .pricing-price-box {
-            margin-top: auto;
+            margin-top: 25px; 
         }
 
         .old-price {
@@ -1341,14 +1339,13 @@
         @media (max-width: 650px) {
             .pricing-grid {
                 grid-template-columns: 1fr;
-                display: flex; /* استفاده از فلکس برای اردردهی راحت‌تر */
+                display: flex;
                 flex-direction: column;
             }
             .pricing-card {
                 margin-bottom: 15px;
             }
             
-            /* ترتیب دلخواه شما */
             .plan-silver   { order: 1; }
             .plan-gold     { order: 2; }
             .plan-vst      { order: 3; }
@@ -1571,8 +1568,8 @@
         
                 <div class="pricing-card plan-live">
                     <h3>الماس (Live)</h3>
-                    <div class="subtitle">گیتارها، سازهای زهی، سازهای بادی<br>و کوبه‌ای صدابرداری می‌شود</div>
-                    <div class="equipment-info">صدابرداری حرفه‌ای سازها</div>
+                    <div class="subtitle">صدابرداری حرفه‌ای سازها</div>
+                    <div class="equipment-info">گیتارها، سازهای زهی، سازهای بادی<br>و کوبه‌ای صدابرداری می‌شود</div>
                     <ul class="pricing-features">
                         <li>شامل ۸ آپشن کامل</li>
                         <li>۵ ساعت ضبط وکال + ضبط ساز</li>
