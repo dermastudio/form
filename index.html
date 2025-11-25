@@ -1212,17 +1212,16 @@
             border: 2px solid var(--form-border-color);
             border-radius: 20px;
             padding: 30px 20px;
-            text-align: center;
+            text-align: right; 
             display: flex;
             flex-direction: column;
-            justify-content: center; 
+            justify-content: flex-start; 
             transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
             position: relative;
             overflow: hidden;
         }
 
         /* --- تنظیمات لایت مود (Light Mode) --- */
-        
         .pricing-card:hover {
             transform: translateY(-5px);
             border-color: #555555; 
@@ -1244,7 +1243,6 @@
         }
 
         /* --- تنظیمات دارک مود (Dark Mode) --- */
-
         body.dark-mode .pricing-card:hover {
             border-color: var(--brand-green);
         }
@@ -1258,18 +1256,19 @@
         }
 
         /* --- سایر استایل‌های عمومی --- */
-
         .pricing-card h3 {
             color: var(--text-color);
             font-size: 1.8em;
             margin-bottom: 10px;
             margin-top: 0;
+            text-align: center; 
         }
 
         .pricing-card .subtitle {
             font-size: 0.9em;
             color: var(--form-text-secondary);
             margin-bottom: 20px;
+            text-align: center; 
         }
 
         .pricing-features {
@@ -1297,10 +1296,16 @@
             padding: 10px;
             border-radius: 8px;
             margin-bottom: 15px;
+            text-align: right;
         }
 
         .pricing-price-box {
-            margin-top: 25px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            text-align: center;
+            width: 100%;
         }
 
         .old-price {
@@ -1491,7 +1496,7 @@
                         <li>۳ مرتبه اصلاحیه</li>
                         <li>۲ لاین میکس و مسترینگ رایگان</li>
                     </ul>
-                    <div class="pricing-price-box">
+                    <div class="pricing-price-box" style="margin-top: 80px;">
                         <span class="final-price">۱,۲۵۰,۰۰۰ تومان</span>
                     </div>
                 </div>
@@ -1508,7 +1513,7 @@
                         <li>۵ لاین میکس و مسترینگ رایگان</li>
                         <li class="exclusion-note">(این پکیج شامل آهنگسازی و تنظیم نمی‌باشد)</li>
                     </ul>
-                    <div class="pricing-price-box">
+                    <div class="pricing-price-box" style="margin-top: 30px;">
                         <span class="old-price">۴,۹۷۰,۰۰۰ تومان</span>
                         <span class="final-price">۳,۵۰۰,۰۰۰ تومان</span>
                         <span class="price-note">۱,۴۷۰,۰۰۰ تومان تخفیف مستقیم</span>
@@ -1518,7 +1523,8 @@
                 <div class="pricing-card plan-vst">
                     <h3>الماس (VST)</h3>
                     <div class="subtitle">تولید موزیک با استفاده از باکیفیت‌ترین<br>بانک‌های صدای مجازی و VSTها</div>
-                    <div class="equipment-info">مناسب سبک‌های: هیپ‌هاپ، EDM، پاپ الکترونیک و موسیقی متن فیلم و تیزرهای تبلیغاتی</div>
+                    <div class="equipment-info">مناسب سبک‌های: هیپ‌هاپ، EDM، پاپ الکترونیک و موسیقی متن فیلم و تیزرهای تبلیغاتی
+                    </div>
                     <ul class="pricing-features">
                         <li>شامل ۸ آپشن کامل</li>
                         <li>۵ ساعت ضبط وکال + ضبط ساز</li>
@@ -1527,7 +1533,7 @@
                         <li>میکس و مسترینگ</li>
                         <li>۳ مرتبه اصلاحیه</li>
                     </ul>
-                    <div class="pricing-price-box">
+                    <div class="pricing-price-box" style="margin-top: 5px;">
                         <span class="old-price">۹,۹۷۰,۰۰۰ تومان</span>
                         <span class="final-price">۸,۵۰۰,۰۰۰ تومان</span>
                         <span class="price-note">۱,۴۷۰,۰۰۰ تومان تخفیف مستقیم</span>
@@ -1545,7 +1551,7 @@
                         <li>افزودن Intro/Outro و موسیقی زیرصدا</li>
                         <li>مسترینگ نهایی</li>
                     </ul>
-                    <div class="pricing-price-box">
+                    <div class="pricing-price-box" style="margin-top: 60px;">
                         <span class="final-price">۱,۴۹۰,۰۰۰ تومان</span>
                     </div>
                 </div>
@@ -1561,7 +1567,7 @@
                         <li>فایل لِوِل بندی شده</li>
                         <li>برندسازی شنیداری</li>
                     </ul>
-                    <div class="pricing-price-box">
+                    <div class="pricing-price-box" style="margin-top: 40px;">
                         <span class="final-price">۴۹۰,۰۰۰ تومان</span>
                     </div>
                 </div>
@@ -1578,7 +1584,7 @@
                         <li>میکس و مسترینگ</li>
                         <li>۳ مرتبه اصلاحیه</li>
                     </ul>
-                    <div class="pricing-price-box">
+                    <div class="pricing-price-box" style="margin-top: 10px;">
                         <span class="price-note">شروع قیمت از:</span>
                         <span class="final-price">۱۱,۵۰۰,۰۰۰ تومان</span>
                         <span class="price-note">هزینه پس از مشاوره‌ی اولیه و توافق با شما<br>به قیمت پایه اضافه خواهد شد.</span>
