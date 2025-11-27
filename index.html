@@ -1359,53 +1359,59 @@
             }
         }
 
-        /* --- ترتیب‌بندی مخصوص موبایل --- */
+        /* --- Mobile-Specific Ordering --- */
         @media (max-width: 650px) {
-            .pricing-card {
-                width: 90% !important; /* عرض کارت در موبایل */
-                max-width: 400px !important; /* جلوگیری از پهن شدن بیش از حد */
-                margin-left: auto !important;
-                margin-right: auto !important;
-            }
-            
-           /* 1. تنظیمات کلی لیست پنل‌ها */
+            /* 1. General List Settings */
             .pricing-grid {
                 display: flex !important;
                 flex-direction: column !important;
-                /* این خط زیر باعث می‌شود پنل‌ها به هم نچسبند */
-                gap: 30px !important; 
+                align-items: center !important;
+                gap: 30px !important; /* Spacing between panels */
             }
 
-            /* 2. تنظیمات دستی فاصله قیمت (عدد) از بالای خودش در هر پنل */
+            .pricing-card {
+                width: 90% !important;
+                max-width: 400px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+
+            /* 2. Changing Panel Order */
+            .plan-silver   { order: 1; }
+            .plan-gold     { order: 2; }
+            .plan-vst      { order: 3; }
+            .plan-live     { order: 4; }
+            .plan-procast  { order: 5; }
+            .plan-podcast  { order: 6; }
             
-            /* قیمت پنل نقره‌ای */
+            /* Silver Panel Price */
             .plan-silver .pricing-price-box {
-                margin-top: 20px !important; /* فاصله را اینجا تغییر دهید */
+                margin-top: 20px !important;
             }
 
-            /* قیمت پنل طلایی */
+            /* Gold Panel Price */
             .plan-gold .pricing-price-box {
-                margin-top: 10px !important; /* فاصله را اینجا تغییر دهید */
+                margin-top: 10px !important;
             }
 
-            /* قیمت پنل الماس VST */
+            /* Diamond VST Panel Price */
             .plan-vst .pricing-price-box {
-                margin-top: 5px !important; /* فاصله را اینجا تغییر دهید */
+                margin-top: 5px !important;
             }
 
-            /* قیمت پنل تولید کامل (Procast) */
+            /* Full Production Panel Price (Procast) */
             .plan-procast .pricing-price-box {
-                margin-top: 20px !important; /* فاصله را اینجا تغییر دهید */
+                margin-top: 20px !important;
             }
 
-            /* قیمت پنل پادکست */
+            /* Podcast Panel Price */
             .plan-podcast .pricing-price-box {
-                margin-top: 20px !important; /* فاصله را اینجا تغییر دهید */
+                margin-top: 20px !important;
             }
 
-            /* قیمت پنل الماس Live */
+            /* Diamond Live Panel Price */
             .plan-live .pricing-price-box {
-                margin-top: 10px !important; /* فاصله را اینجا تغییر دهید */
+                margin-top: 10px !important;
             }
         }
         /* === END: Pricing Plans Styles === */
