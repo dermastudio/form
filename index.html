@@ -937,10 +937,6 @@
         }
 
         @media (max-width: 900px) {
-        /* ... */
-        }
-
-        @media (max-width: 900px) {
             .panels-container {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1021,6 +1017,7 @@
                 padding-bottom: 25px;
                 position: relative;
             }
+            
             .tagline {
                 color: var(--text-color);
                 font-weight: 900;
@@ -1028,6 +1025,28 @@
                 margin-top: -10px;
                 margin-bottom: 25px;
                 text-align: center;
+            }
+
+            #recordTabs {
+                justify-content: flex-start;
+                gap: 20px;
+            }
+
+            #recordTabs label {
+                cursor: pointer;
+                padding: 5px 0;
+                position: relative;
+                transition: color 0.3s;
+            }
+
+            #recordTabs input[type="radio"] {
+                display: none; 
+            }
+
+            #recordTabs label:has(input:checked) {
+                font-weight: bold;
+                color: var(--brand-green);
+                border-bottom: 2px solid var(--brand-green);
             }
         }
 
@@ -1342,21 +1361,52 @@
 
         /* --- ترتیب‌بندی مخصوص موبایل --- */
         @media (max-width: 650px) {
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                display: flex;
-                flex-direction: column;
-            }
             .pricing-card {
-                margin-bottom: 15px;
+                width: 90% !important; /* عرض کارت در موبایل */
+                max-width: 400px !important; /* جلوگیری از پهن شدن بیش از حد */
+                margin-left: auto !important;
+                margin-right: auto !important;
             }
             
-            .plan-silver   { order: 1; }
-            .plan-gold     { order: 2; }
-            .plan-vst      { order: 3; }
-            .plan-live     { order: 4; }
-            .plan-podcast  { order: 5; }
-            .plan-procast  { order: 6; }
+           /* 1. تنظیمات کلی لیست پنل‌ها */
+            .pricing-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                /* این خط زیر باعث می‌شود پنل‌ها به هم نچسبند */
+                gap: 30px !important; 
+            }
+
+            /* 2. تنظیمات دستی فاصله قیمت (عدد) از بالای خودش در هر پنل */
+            
+            /* قیمت پنل نقره‌ای */
+            .plan-silver .pricing-price-box {
+                margin-top: 20px !important; /* فاصله را اینجا تغییر دهید */
+            }
+
+            /* قیمت پنل طلایی */
+            .plan-gold .pricing-price-box {
+                margin-top: 10px !important; /* فاصله را اینجا تغییر دهید */
+            }
+
+            /* قیمت پنل الماس VST */
+            .plan-vst .pricing-price-box {
+                margin-top: 5px !important; /* فاصله را اینجا تغییر دهید */
+            }
+
+            /* قیمت پنل تولید کامل (Procast) */
+            .plan-procast .pricing-price-box {
+                margin-top: 20px !important; /* فاصله را اینجا تغییر دهید */
+            }
+
+            /* قیمت پنل پادکست */
+            .plan-podcast .pricing-price-box {
+                margin-top: 20px !important; /* فاصله را اینجا تغییر دهید */
+            }
+
+            /* قیمت پنل الماس Live */
+            .plan-live .pricing-price-box {
+                margin-top: 10px !important; /* فاصله را اینجا تغییر دهید */
+            }
         }
         /* === END: Pricing Plans Styles === */
 
@@ -1574,7 +1624,7 @@
         
                 <div class="pricing-card plan-live">
                     <h3>الماس (Live)</h3>
-                    <div class="subtitle">صدابرداری حرفه‌ای سازها</div>
+                    <div class="subtitle">تولید موزیک با سازهای زنده</div>
                     <div class="equipment-info">گیتارها، سازهای زهی، سازهای بادی<br>و کوبه‌ای صدابرداری می‌شود</div>
                     <ul class="pricing-features">
                         <li>شامل ۸ آپشن کامل</li>
@@ -1587,7 +1637,7 @@
                     <div class="pricing-price-box" style="margin-top: 10px;">
                         <span class="price-note">شروع قیمت از:</span>
                         <span class="final-price">۱۱,۵۰۰,۰۰۰ تومان</span>
-                        <span class="price-note">هزینه پس از مشاوره‌ی اولیه و توافق با شما<br>به قیمت پایه اضافه خواهد شد.</span>
+                        <span class="price-note">هزینه هر نوازنده پس از مشاوره اولیه و توافق<br>با شما به قیمت پایه اضافه خواهد شد.</span>
                     </div>
                 </div>
         
