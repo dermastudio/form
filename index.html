@@ -1877,7 +1877,7 @@
                     هر نوع پروژه، از تیزرهای تبلیغاتی گرفته تا پادکست و دوبله، فراهم می‌آورد. با خیالی آسوده انتخاب کنید
                     و مطمئن باشید که نتیجه، اثری خواهد بود که نه‌تنها انتظارات شما را برآورده می‌کند، بلکه فراتر از آن
                     می‌درخشد.</p>
-                <p style="margin-top: 45px; font-weight: bold; text-align: center; color: var(--form-text-primary);">
+                <p style="margin-top: 60px; font-weight: bold; font-size: 24px; text-align: center; color: var(--form-text-primary);">
                     * (هزینه هر گوینده با توجه به سوابق و تجربه گوینده متغیر است و هزینه استودیو به صورت جداگانه محاسبه می‌شود.)
                 </p>
                 </div>
@@ -2437,21 +2437,24 @@
 
                     let isValid = true; // 3. فرض اولیه بر معتبر بودن فرم
 
-                    // 4. چک کردن فیلدهای اصلی
+                    // 4. چک کردن فیلدهای اصلی (اگر هرکدام خالی بود)
                     if (!name || !phone || !reason || !date || !startTime || !endTime || !receiptInput.value) {
                         isValid = false;
+                        errorMessage = 'لطفا تمام گزینه‌ها را پر کنید.';
                     }
 
-                    // 5. چک کردن شرطی فیلد "نوع رکورد"
-                    if (reason === 'رکورد') {
+                    // 5. چک کردن شرطی فیلد "نوع رکورد" (فقط اگر فیلدهای قبلی پر شده باشند بررسی میشود)
+                    else if (reason === 'رکورد') {
                         const recordType = bookingForm.querySelector('input[name="نوع رکورد"]:checked');
                         if (!recordType) {
                             isValid = false;
+                            errorMessage = 'لطفا نوع رکورد (وکال یا ساز) را انتخاب کنید.';
                         }
                     }
 
-                    // --- بخش جدید: چک کردن فرمت فایل ---
-                    if (receiptInput.files.length > 0) {
+                    // --- بخش چک کردن فرمت فایل ---
+                    // فقط اگر تا اینجا خطایی نداشتیم، فرمت فایل را چک کن
+                    if (isValid && receiptInput.files.length > 0) {
                         const fileName = receiptInput.value;
                         const idxDot = fileName.lastIndexOf(".") + 1;
                         const extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
