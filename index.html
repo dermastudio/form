@@ -1805,8 +1805,11 @@
                             کنید و از فیش واریزی خود یک تصویر هنگام فرایند تکمیل فرم رزرو ارسال کنید.‏</p>
                         <p>* لطفا توجه داشته باشید مبلغ پرداختی صرفا فقط جهت <strong>رزرو استودیو</strong> می‌باشد.‏</p>
                     </div>
-                    <form id="bookingForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
-                        <input type="hidden" name="access_key" value="8d132102-0603-46d1-a44a-c00db75b9eb4">
+                    <form id="bookingForm" action="https://formsubmit.co/studiodermaofficial@gmail.com" method="POST"
+                        enctype="multipart/form-data" novalidate>
+                        <input type="hidden" name="_subject" value="رزرو جدید + فیش واریزی">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
                         <label for="name">نام کامل: <span class="star">*</span></label><input type="text" id="name" name="نام کامل"
                             required><label for="phone">شماره تلفن: <span
                                 class="star">*</span></label><input type="text" id="phone" name="شماره تلفن"
@@ -1835,8 +1838,16 @@
                         <label for="date">تاریخ رزرو: <span class="star">*</span></label><input type="text" id="date"
                             name="تاریخ رزرو" readonly required placeholder="کلیک کنید"><label for="startTime">از ساعت:
                             <span class="star">*</span></label><select id="startTime" name="ساعت شروع رزرو"
-                            required></select><label for="endTime">تا ساعت: <span class="star">*</span></label><select
-                            id="endTime" name="ساعت پایان رزرو" required></select><div id="formError" class="form-error-message"></div>
+                            required></select><label for="endTime">تا ساعت: <span class="star">*</span></label>
+                            <select id="endTime" name="ساعت پایان رزرو" required></select>
+                            
+                            <label for="receipt" style="margin-top: 25px;">تصویر فیش واریزی: <span class="star">*</span></label>
+                            <input type="file" id="receipt" name="فیش واریزی" accept=".jpg, .jpeg, .png, .gif, .webp" required>
+                            
+                            <div style="font-size: 0.8rem; color: #888; margin-top: 5px; text-align: right;">
+                                فرمت‌های مجاز: JPG, PNG, GIF, WEBP
+                            </div>
+                        <div id="formError" class="form-error-message"></div>
                             
                             <div class="h-captcha"                                  data-captcha="true"                                
                                  data-callback="onCaptchaSuccess"                                  data-expired-callback="onCaptchaExpired"        
@@ -2339,6 +2350,36 @@
             const modalConfirmButton = document.getElementById('modalConfirmButton');
             const modalCodeElement = document.getElementById('modalConfirmationCode');
             const formError = document.getElementById('formError');
+            const receiptInput = document.getElementById('receipt');
+            const formErrorBox = document.getElementById('formError');
+
+            // گوش دادن به تغییر فایل (وقتی کاربر فایلی را انتخاب می‌کند)
+            receiptInput.addEventListener('change', function () {
+                const file = this.files[0];
+
+                // اگر فایلی انتخاب شده بود
+                if (file) {
+                    const validExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+                    const fileName = file.name;
+                    // جدا کردن پسوند فایل و تبدیل به حروف کوچک
+                    const fileExt = fileName.split('.').pop().toLowerCase();
+
+                    // چک کردن اینکه آیا پسوند در لیست مجاز هست یا نه
+                    if (!validExtensions.includes(fileExt)) {
+                        // 1. خالی کردن فیلد (حذف فایل غیرمجاز)
+                        this.value = '';
+
+                        // 2. تنظیم متن خطا
+                        formErrorBox.textContent = 'فرمت فایل انتخاب شده مجاز نیست! لطفا فقط فایل‌هایی با فرمت (JPG, PNG, GIF, WEBP) آپلود کنید!';
+
+                        // 3. نمایش باکس خطا (با استایل قرمز و کادر که قبلاً در CSS تعریف شده)
+                        formErrorBox.style.display = 'block';
+                    } else {
+                        // اگر فایل درست بود، خطا را مخفی کن
+                        formErrorBox.style.display = 'none';
+                    }
+                }
+            });
 
             // 1.5: مدیریت کپی کردن کد در کلیپ‌بورد
             if (modalCodeElement) {
@@ -2391,11 +2432,12 @@
                     const date = document.getElementById('date').value;
                     const startTime = document.getElementById('startTime').value;
                     const endTime = document.getElementById('endTime').value;
+                    const receiptInput = document.getElementById('receipt');
 
                     let isValid = true; // 3. فرض اولیه بر معتبر بودن فرم
 
                     // 4. چک کردن فیلدهای اصلی
-                    if (!name || !phone || !reason || !date || !startTime || !endTime) {
+                    if (!name || !phone || !reason || !date || !startTime || !endTime || !receiptInput.value) {
                         isValid = false;
                     }
 
@@ -2407,9 +2449,20 @@
                         }
                     }
 
+                    // --- بخش جدید: چک کردن فرمت فایل ---
+                    if (receiptInput.files.length > 0) {
+                        const fileName = receiptInput.value;
+                        const idxDot = fileName.lastIndexOf(".") + 1;
+                        const extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+                        if (extFile !== "jpg" && extFile !== "jpeg" && extFile !== "png" && extFile !== "gif" && extFile !== "webp") {
+                            isValid = false;
+                            errorMessage = 'فرمت فایل انتخابی مجاز نیست! (لطفا فایل را با فرمت‌های مجاز آپلود کنید.)';
+                        }
+                    }
+
                     // 6. نمایش خطا در صورت نامعتبر بودن
                     if (!isValid) {
-                        formError.textContent = 'لطفا همه‌ی فیلدها را پر کنید!';
+                        formError.textContent = errorMessage;
                         formError.style.display = 'block';
                         return; // جلوگیری از باز شدن پاپ‌آپ
                     }
